@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>五子棋 - 机械仔的小站</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="game.css">
+</head>
+<body class="romantic">
+    <nav class="main-nav">
+        <a href="index.html" class="nav-logo hover-float">
+            <span class="btn-icon">🏠</span>
+            返回首页
+        </a>
+        <button class="theme-btn" id="theme-toggle">
+            <span class="theme-icon">🌙</span>
+        </button>
+    </nav>
+
+    <main class="game-page">
+        <h1 class="page-title animate__animated animate__bounceIn">🎮 五子棋小游戏</h1>
+        
+        <div class="game-container animate__animated animate__fadeIn">
+            <div class="game-info">
+                <div id="status" class="game-status"></div>
+                <div class="player-info">
+                    <div class="player black">⚫ 黑棋</div>
+                    <div class="player white">⚪ 白棋</div>
+                </div>
+            </div>
+            
+            <div id="game-board" class="hover-float">
+                <div class="game-board-border"></div>
+            </div>
+            
+            <div class="game-controls">
+                <button id="restart-btn" class="btn hover-float">
+                    <span class="btn-icon">🔄</span> 重新开始
+                </button>
+                <button id="undo-btn" class="btn hover-float">
+                    <span class="btn-icon">↩️</span> 悔棋
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="game.js"></script>
+</body>
+</html> 

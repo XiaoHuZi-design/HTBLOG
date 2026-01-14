@@ -1,0 +1,199 @@
+.game-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.game-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(15, 40px);
+    grid-template-rows: repeat(15, 40px);
+    background-color: #DEB887;
+    padding: 20px;
+    border: 8px solid #8B4513;
+    border-radius: 5px;
+    margin: 20px auto;
+    position: relative;
+    box-shadow: 0 0 20px rgba(139, 69, 19, 0.2);
+}
+
+/* 修改棋盘网格样式 */
+#game-board::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 19px;
+    bottom: 19px;
+    background-image: 
+        linear-gradient(to right, rgba(139, 69, 19, 0.5) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(139, 69, 19, 0.5) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* 添加额外的伪元素来绘制右边和下边的线 */
+#game-board::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: 19px;
+    bottom: 19px;
+    width: 1px;
+    background-color: rgba(139, 69, 19, 0.5);
+}
+
+.game-board-border {
+    content: '';
+    position: absolute;
+    left: 20px;
+    right: 19px;
+    bottom: 19px;
+    height: 1px;
+    background-color: rgba(139, 69, 19, 0.5);
+}
+
+.cell {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+/* 棋子样式 */
+.cell.black::after,
+.cell.white::after {
+    content: '';
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.cell.black::after {
+    background: radial-gradient(circle at 30% 30%, #666, #000);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.cell.white::after {
+    background: radial-gradient(circle at 30% 30%, #fff, #ddd);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 棋盘中心点标记 */
+.cell[data-row="7"][data-col="7"]::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #8B4513;
+    border-radius: 50%;
+}
+
+/* 落子悬停效果 */
+.cell:not(.black):not(.white):hover::after {
+    content: '';
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: currentColor;
+    opacity: 0.2;
+}
+
+.game-status {
+    font-size: 1.5rem;
+    margin: 20px 0;
+    color: #6a4a3c;
+    font-weight: bold;
+}
+
+.game-controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.game-controls .btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+}
+
+.player-info {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 15px 0;
+}
+
+.player {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.player.active {
+    background: #ffccd5;
+    transform: scale(1.1);
+}
+
+/* 夜间模式适配 */
+body.night .game-container {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+body.night .game-status {
+    color: #fff;
+}
+
+body.night #game-board {
+    background-color: #2d2d2d;
+    border-color: #4a4a4a;
+}
+
+body.night #game-board::before {
+    background-image: 
+        linear-gradient(to right, rgba(74, 74, 74, 0.5) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(74, 74, 74, 0.5) 1px, transparent 1px);
+}
+
+body.night #game-board::after {
+    background-color: rgba(74, 74, 74, 0.5);
+}
+
+body.night .game-board-border {
+    background-color: rgba(74, 74, 74, 0.5);
+}
+
+body.night .cell[data-row="7"][data-col="7"]::before {
+    background-color: #4a4a4a;
+}
+
+/* 添加动画效果 */
+@keyframes piece-drop {
+    0% { transform: scale(1.2); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.cell.black::after,
+.cell.white::after {
+    animation: piece-drop 0.3s ease-out;
+} 

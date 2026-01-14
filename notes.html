@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>笔记本 - 机械仔的小站</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="notes.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+</head>
+<body class="romantic">
+    <main class="notes-page">
+        <!-- 左侧编辑区 -->
+        <section class="notes-editor-section">
+            <nav class="main-nav">
+                <a href="index.html" class="nav-logo hover-float">
+                    <span class="btn-icon">🏠</span>
+                    返回首页
+                </a>
+                <button class="theme-btn" id="theme-toggle">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </nav>
+
+            <div class="editor-container">
+                <div class="note-controls">
+                    <select id="noteCategory" class="note-category-select">
+                        <option value="默认">默认分类</option>
+                        <option value="工作">工作</option>
+                        <option value="生活">生活</option>
+                        <option value="学习">学习</option>
+                    </select>
+                    <input type="text" id="noteTags" class="note-tags-input" placeholder="添加标签 (用逗号分隔)">
+                </div>
+                
+                <div class="editor-wrapper">
+                    <!-- 编辑区 -->
+                    <div class="edit-area">
+                        <textarea class="note-input" id="noteInput" placeholder="在这里写下你的想法...&#10;支持 Markdown 格式&#10;## 标题&#10;- 列表&#10;> 引用&#10;**粗体**"></textarea>
+                    </div>
+                    
+                    <!-- 预览区 -->
+                    <div class="preview-area" id="preview">
+                        <div class="preview-header">
+                            <span class="preview-title">预览效果</span>
+                            <button class="btn-close" onclick="togglePreview()">×</button>
+                        </div>
+                        <div class="preview-content markdown-body"></div>
+                    </div>
+                </div>
+
+                <div class="note-toolbar">
+                    <div class="markdown-tools">
+                        <button class="tool-btn" onclick="insertMarkdown('bold')" title="粗体">B</button>
+                        <button class="tool-btn" onclick="insertMarkdown('italic')" title="斜体">I</button>
+                        <button class="tool-btn" onclick="insertMarkdown('heading')" title="标题">#</button>
+                        <button class="tool-btn" onclick="insertMarkdown('link')" title="链接">🔗</button>
+                        <button class="tool-btn" onclick="insertMarkdown('image')" title="图片">🖼️</button>
+                        <button class="tool-btn" onclick="insertMarkdown('code')" title="代码">`</button>
+                        <button class="tool-btn" onclick="insertMarkdown('list')" title="列表">•</button>
+                    </div>
+                    
+                    <div class="note-actions">
+                        <button class="btn" onclick="saveNote()">
+                            <span class="btn-icon">💾</span> 保存笔记
+                        </button>
+                        <button class="btn" onclick="togglePreview()">
+                            <span class="btn-icon">👁️</span> 预览
+                        </button>
+                        <button class="btn" onclick="exportNotes()">
+                            <span class="btn-icon">📤</span> 导出
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 右侧笔记列表 -->
+        <section class="notes-display-section">
+            <div class="notes-header">
+                <h1 class="page-title">我的笔记本</h1>
+                <div class="notes-search">
+                    <input type="text" id="searchInput" class="search-input" placeholder="搜索笔记...">
+                    <button class="btn" onclick="searchNotes()">
+                        <span class="btn-icon">🔍</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="notes-grid" id="notesList"></div>
+        </section>
+    </main>
+
+    <!-- 在笔记内容下方添加评论区 -->
+    <div class="note-comments">
+        <div id="gitalk-container"></div>
+    </div>
+
+    <script src="notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+</body>
+</html> 

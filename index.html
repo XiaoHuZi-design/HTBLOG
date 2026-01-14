@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>机械仔的小站</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Swiper CSS for card effect -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+</head>
+<body class="romantic">
+    <div id="sky-body" class="sky-body sun"></div>
+    <div id="stars-container" class="stars-container"></div>
+
+    <!-- 樱花飘落效果 -->
+    <div id="sakura-container"></div>
+
+    <main class="welcome-page">
+        <div class="robot-mascot" id="robot">
+            <div class="face">
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+                <div class="mouth"></div>
+            </div>
+        </div>
+
+        <h1 class="glow-text animate__animated animate__bounceIn">机械仔的小站</h1>
+        <p class="subtitle animate__animated animate__fadeIn">欢迎来到我的可爱浪漫空间~</p>
+
+        <div class="menu-buttons">
+            <a href="blog.html" class="menu-btn hover-float anime-btn">
+                <span class="btn-icon">📚</span>
+                我的博客
+            </a>
+            <a href="about.html" class="menu-btn hover-float anime-btn">
+                <span class="btn-icon">👤</span>
+                关于我
+            </a>
+            <a href="notes.html" class="menu-btn hover-float anime-btn">
+                <span class="btn-icon">📝</span>
+                我的笔记本
+            </a>
+            <a href="game.html" class="menu-btn hover-float anime-btn">
+                <span class="btn-icon">🎮</span>
+                五子棋游戏
+            </a>
+            <a href="#" class="menu-btn hover-float anime-btn" id="theme-toggle">
+                <span class="btn-icon">🎨</span>
+                切换主题
+            </a>
+            <a href="#" class="menu-btn hover-float anime-btn" id="card-toggle">
+                <span class="btn-icon">🎴</span>
+                语录卡片
+            </a>
+        </div>
+
+        <!-- 卡片展示区域 (可折叠) -->
+        <div id="card-section" class="card-section hidden">
+            <div class="card-section-header">
+                <h2>每日语录卡片</h2>
+                <button class="close-card-btn" id="close-card">✕</button>
+            </div>
+            <div class="swiper card-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="card anime-card">
+                            <img src="card/images/1.png" alt="1">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card anime-card">
+                            <img src="card/images/2.png" alt="2">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card anime-card">
+                            <img src="card/images/3.png" alt="3">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card anime-card">
+                            <img src="card/images/4.png" alt="4">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card anime-card">
+                            <img src="card/images/5.png" alt="5">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card anime-card">
+                            <img src="card/images/6.png" alt="6">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card anime-card">
+                            <img src="card/images/7.png" alt="7">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card anime-card">
+                            <img src="card/images/8.png" alt="8">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card anime-card">
+                            <img src="card/images/9.png" alt="9">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card anime-card">
+                            <img src="card/images/10.png" alt="10">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="social-links animate__animated animate__fadeInUp">
+            <a href="https://www.bilibili.com" target="_blank" class="social-card hover-float">
+                <span class="social-icon">📺</span>
+                <span class="social-name">B站</span>
+            </a>
+            <a href="https://www.douyin.com" target="_blank" class="social-card hover-float">
+                <span class="social-icon">🎵</span>
+                <span class="social-name">抖音</span>
+            </a>
+            <a href="https://www.youtube.com" target="_blank" class="social-card hover-float">
+                <span class="social-icon">▶️</span>
+                <span class="social-name">YouTube</span>
+            </a>
+            <a href="https://github.com/XiaoHuZi-design" target="_blank" class="social-card hover-float">
+                <span class="social-icon">🐙</span>
+                <span class="social-name">GitHub</span>
+            </a>
+        </div>
+    </main>
+
+    <footer class="animate__animated animate__fadeIn">
+        <p>&copy; 2024 机械仔的小站 ❤️</p>
+    </footer>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="welcome.js"></script>
+
+    <!-- 看板娘 Live2D -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/gh/IlysvlVEizbr/Live2D@1.9/kbn.js';
+            script.onload = function() {
+                if (typeof window.waifuRun === 'function') {
+                    window.waifuRun();
+                }
+            };
+            document.body.appendChild(script);
+        });
+    </script>
+</body>
+</html>

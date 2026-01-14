@@ -1,0 +1,21 @@
+{
+  "name": "notes-site",
+  "version": "1.0.0",
+  "description": "个人笔记小站",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack serve --mode development"
+  },
+  "dependencies": {
+    "gitalk": "^1.7.2",
+    "marked": "^4.0.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1",
+    "css-loader": "^6.5.1",
+    "style-loader": "^3.3.1",
+    "html-webpack-plugin": "^5.5.0",
+    "copy-webpack-plugin": "^9.1.0"
+  }
+} 

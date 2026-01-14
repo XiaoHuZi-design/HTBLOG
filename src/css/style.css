@@ -1,0 +1,70 @@
+/* 全局样式 */
+:root {
+    --primary-color: #ff8fa3;
+    --bg-color: #fff6f8;
+    --text-color: #6a4a3c;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+.home-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.site-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.site-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.site-nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+.nav-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: var(--text-color);
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(255, 182, 193, 0.2);
+    transition: all 0.3s ease;
+}
+
+.nav-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 182, 193, 0.3);
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.nav-card h2 {
+    margin: 10px 0;
+    color: var(--primary-color);
+}
+
+.nav-card p {
+    margin: 0;
+    opacity: 0.8;
+} 
