@@ -16,8 +16,8 @@ let githubConfig = {
 
 // Gitalk配置 - 需要用户自行配置
 const gitalkConfig = {
-    clientID: 'Ov23ctkR3x4dcec6C8kY',  // 用户需要填写自己的GitHub OAuth App Client ID
-    clientSecret: '7531a15e87dcba97e0b234d9b140f46b23dd67ec',  // 用户需要填写自己的Client Secret
+    clientID: 'Ov23litZBDaEbUtqG4PL',  // 用户需要填写自己的GitHub OAuth App Client ID
+    clientSecret: 'ba2e7cc6838a651fd8a43242351fdce6ae00b9fa',  // 用户需要填写自己的Client Secret
     repo: 'libra_discuss',  // 评论存储的仓库
     owner: 'XiaoHuZi-design',
     admin: ['XiaoHuZi-design'],
@@ -49,6 +49,7 @@ const savePostBtn = document.getElementById('save-post-btn');
 const settingsBtn = document.getElementById('settings-btn');
 const saveConfigBtn = document.getElementById('save-config');
 const cancelConfigBtn = document.getElementById('cancel-config');
+const clearConfigBtn = document.getElementById('clear-config');
 
 // 输入框
 const postTitleInput = document.getElementById('post-title-input');
@@ -135,6 +136,7 @@ function initEventListeners() {
     settingsBtn.addEventListener('click', showConfigModal);
     saveConfigBtn.addEventListener('click', saveConfig);
     cancelConfigBtn.addEventListener('click', hideConfigModal);
+    clearConfigBtn.addEventListener('click', clearConfig);
 
     // 搜索
     searchInput.addEventListener('input', debounce(filterPosts, 300));
@@ -184,6 +186,27 @@ function showConfigModal() {
 
 function hideConfigModal() {
     configModal.classList.add('hidden');
+}
+
+function clearConfig() {
+    if (confirm('确定要清除所有GitHub配置吗？')) {
+        localStorage.removeItem(CONFIG_KEY);
+        githubConfig = {
+            token: '',
+            owner: '',
+            repo: '',
+            branch: 'main',
+            path: 'posts'
+        };
+        githubTokenInput.value = '';
+        githubOwnerInput.value = '';
+        githubRepoInput.value = '';
+        githubBranchInput.value = 'main';
+        githubPathInput.value = 'posts';
+        showToast('配置已清除！', 'success');
+        hideConfigModal();
+        loadPosts();
+    }
 }
 
 function isConfigured() {

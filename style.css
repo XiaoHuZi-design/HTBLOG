@@ -353,8 +353,11 @@ body.night h1 {
 
 .menu-buttons {
     display: flex;
-    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
     margin: 30px 0;
+    max-width: 800px;
 }
 
 .menu-btn {
