@@ -677,9 +677,20 @@ function encodeBase64(str) {
     return btoa(unescape(encodeURIComponent(str)));
 }
 
-// Base64解码
+// Base64解码 - 支持UTF-8中文
 function decodeBase64(str) {
-    return decodeURIComponent(escape(atob(str)));
+    try {
+        // 先尝试标准方法
+        const binaryStr = atob(str);
+        const bytes = new Uint8Array(binaryStr.length);
+        for (let i = 0; i < binaryStr.length; i++) {
+            bytes[i] = binaryStr.charCodeAt(i);
+        }
+        return new TextDecoder('utf-8').decode(bytes);
+    } catch (e) {
+        // 回退方法
+        return decodeURIComponent(escape(atob(str)));
+    }
 }
 
 // HTML转义
