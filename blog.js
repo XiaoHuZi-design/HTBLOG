@@ -5,7 +5,15 @@
 const CONFIG_KEY = 'blog_github_config';
 const POSTS_CACHE_KEY = 'blog_posts_cache';
 
-// 默认配置
+// 默认仓库配置（公开读取，无需Token）
+const DEFAULT_REPO = {
+    owner: 'XiaoHuZi-design',
+    repo: 'HTBLOG',
+    branch: 'main',
+    path: 'posts'
+};
+
+// 用户配置（写文章需要Token）
 let githubConfig = {
     token: '',
     owner: '',
@@ -18,7 +26,7 @@ let githubConfig = {
 const gitalkConfig = {
     clientID: 'Ov23litZBDaEbUtqG4PL',  // 用户需要填写自己的GitHub OAuth App Client ID
     clientSecret: 'ba2e7cc6838a651fd8a43242351fdce6ae00b9fa',  // 用户需要填写自己的Client Secret
-    repo: 'libra_discuss',  // 评论存储的仓库
+    repo: 'HTBLOG',  // 评论存储的仓库
     owner: 'XiaoHuZi-design',
     admin: ['XiaoHuZi-design'],
     distractionFreeMode: false
@@ -214,6 +222,26 @@ function isConfigured() {
 }
 
 // ==================== GitHub API ====================
+// 公开API请求（无需Token，用于读取文章）
+async function publicGithubAPI(endpoint) {
+    const baseUrl = 'https://api.github.com';
+    const url = `${baseUrl}${endpoint}`;
+
+    const response = await fetch(url, {
+        headers: {
+            'Accept': 'application/vnd.github.v3+json'
+        }
+    });
+
+    if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || '请求失败');
+    }
+
+    return response.json();
+}
+
+// 需要认证的API请求（写文章需要Token）
 async function githubAPI(endpoint, options = {}) {
     const baseUrl = 'https://api.github.com';
     const url = `${baseUrl}${endpoint}`;
@@ -238,7 +266,7 @@ async function githubAPI(endpoint, options = {}) {
     return response.json();
 }
 
-// 获取文章列表
+// 获取文章列表（默认从公开仓库读取，无需配置）
 async function loadPosts() {
     postsContainer.innerHTML = `
         <div class="loading-anime">
@@ -249,21 +277,49 @@ async function loadPosts() {
         </div>
     `;
 
-    // 优先尝试从GitHub加载
-    if (isConfigured()) {
-        try {
-            await loadPostsFromGitHub();
-            return;
-        } catch (error) {
-            console.log('GitHub加载失败，尝试本地加载:', error.message);
-        }
+    // 直接从默认公开仓库加载文章
+    try {
+        await loadPostsFromPublicRepo();
+    } catch (error) {
+        console.log('加载失败:', error.message);
+        showEmptyState('文章加载失败，请稍后重试~');
     }
-
-    // 回退到本地加载
-    await loadLocalPosts();
 }
 
-// 从GitHub加载文章
+// 从公开仓库加载文章（无需Token）
+async function loadPostsFromPublicRepo() {
+    const { owner, repo, branch, path } = DEFAULT_REPO;
+    const endpoint = `/repos/${owner}/${repo}/contents/${path}?ref=${branch}`;
+
+    const files = await publicGithubAPI(endpoint);
+    const mdFiles = files.filter(f => f.name.endsWith('.md'));
+
+    if (mdFiles.length === 0) {
+        showEmptyState('还没有文章呢~');
+        return;
+    }
+
+    // 获取每篇文章的内容
+    currentPosts = await Promise.all(
+        mdFiles.map(async (file) => {
+            const content = await publicGithubAPI(`/repos/${owner}/${repo}/contents/${path}/${file.name}?ref=${branch}`);
+            const decoded = decodeBase64(content.content);
+            const parsed = parseMarkdown(decoded, file.name);
+            return {
+                ...parsed,
+                sha: content.sha,
+                path: file.path
+            };
+        })
+    );
+
+    // 按日期排序
+    currentPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    renderPosts(currentPosts);
+}
+
+// 从配置的GitHub仓库加载文章（需要Token，用于管理自己的文章）
 async function loadPostsFromGitHub() {
     const { owner, repo, branch, path } = githubConfig;
     const endpoint = `/repos/${owner}/${repo}/contents/${path}?ref=${branch}`;
