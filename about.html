@@ -3,9 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>关于我 - 机械仔的小站</title>
+    <title>关于我 - 机械仔的技术小站</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="about.css">
+    <style>
+        /* 统一二次元气泡风格样式 */
+        .projects-section, .mini-projects-section, .awards-section, .certificates-section {
+            margin: 2rem auto;
+            padding: 0 1rem;
+            max-width: 1200px;
+        }
+        
+        .projects-grid, .mini-projects-grid, .awards-grid, .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        /* 气泡卡片通用样式 */
+        .project-card, .mini-project-card, .award-card, .certificate-card {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 24px rgba(255, 105, 180, 0.15), 0 2px 6px rgba(0, 0, 0, 0.08);
+            border: 2px solid #ff9ecc;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover, .mini-project-card:hover, .award-card:hover, .certificate-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(255, 105, 180, 0.25), 0 4px 12px rgba(0, 0, 0, 0.12);
+            border-color: #ff7eb9;
+        }
+        
+        /* 卡片装饰元素 */
+        .project-card::before, .mini-project-card::before, .award-card::before, .certificate-card::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 223, 238, 0.5);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        /* 图标样式 */
+        .project-icon, .mini-project-icon, .award-icon, .certificate-icon {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+            display: inline-block;
+        }
+        
+        /* 项目卡片特有样式 */
+        .project-card h3 {
+            color: #d63384;
+            margin: 0.5rem 0;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .project-tech {
+            color: #6a1b9a;
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .project-card p {
+            color: #333;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 迷你项目卡片 */
+        .mini-project-card h3 {
+            color: #d63384;
+            margin: 0.8rem 0 0.3rem 0;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 奖项卡片 */
+        .award-card h3 {
+            color: #d63384;
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .award-card p {
+            color: #666;
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 证书卡片 */
+        .certificate-card h3 {
+            color: #d63384;
+            margin: 0.8rem 0 0.3rem 0;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 板块标题样式统一 */
+        .section-title {
+            color: #d63384;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff9ecc, #d63384);
+            margin: 0.5rem auto;
+            border-radius: 3px;
+        }
+    </style>
 </head>
 <body class="romantic">
     <div id="sky-body" class="sky-body sun"></div>
@@ -32,18 +165,33 @@
             </div>
             <div class="profile-info">
                 <h2 class="profile-name">机械仔</h2>
-                <p class="profile-title">二次元爱好者 / 技术宅 / 终身学习者</p>
+                <p class="profile-title">二次元爱好者 / 技术宅 / 终身学习者 / 机器人技术开发者</p>
+                <!-- <p class="profile-bio">
+                    嗨！我是机械仔~✨ 一枚沉迷二次元的技术宅！
+                    左手追番右手敲代码，脑袋里装着ACG的浪漫，指尖敲得出机器人的未来~
+                    作为机械工程硕士（机器视觉、机器人方向），沉迷嵌入式开发、机器视觉这些硬核技术，
+                    喜欢折腾各种奇奇怪怪的机器人项目，享受把脑洞变成现实的快乐！
+                    希望在这里记录我的技术成长日记，也想和同频的小伙伴贴贴，一起在二次元和技术圈快乐摸鱼~
+                </p> -->
+                <!-- <p class="profile-bio"></p>
+                    嗨！我是机械仔~ 一个热爱技术和二次元的小透明！ 喜欢折腾各种有趣的项目，享受学习新知识的乐趣。 希望能在这里记录我的成长，也希望能认识更多志同道合的朋友！。
+                    作为机械工程硕士（机器视觉、机器人方向），专注于嵌入式开发、机器视觉与智能机器人领域。
+                    既是热爱技术的宅男，也是沉迷二次元的爱好者，拥有丰富的项目实践经验和竞赛经历，
+                    熟练掌握多种工程设计软件与开发工具，热衷于将技术转化为实际应用，在二次元世界和技术领域共同成长！
+                </p> -->
                 <p class="profile-bio">
-                    嗨！我是机械仔~ 一个热爱技术和二次元的小透明！
-                    喜欢折腾各种有趣的项目，享受学习新知识的乐趣。
-                    希望能在这里记录我的成长，也希望能认识更多志同道合的朋友！
+                    嗨！我是机械仔~✨ 一个热爱技术和二次元的小透明ฅ・ω・ฅ！喜欢折腾各种有趣的项目，享受学习新知识的乐趣✧。
+                    左手追番右手敲代码⌨️，脑袋里装着ACG的浪漫💫，指尖敲得出机器人的未来⭐！
+                    作为机械工程硕士，沉迷嵌入式开发、机器视觉这些硬核技术🔧，
+                    喜欢折腾各种奇奇怪怪的机器人项目，享受把脑洞变成现实的快乐🌸！
+                    希望在这里记录我的技术成长日记📝，也想和同频的小伙伴贴贴♥，一起在二次元和技术圈快乐摸鱼~ 爱你呦❤️ෆ！
                 </p>
                 <div class="profile-tags">
-                    <span class="tag">🎮 游戏</span>
-                    <span class="tag">📺 动漫</span>
-                    <span class="tag">💻 编程</span>
-                    <span class="tag">🎨 设计</span>
-                    <span class="tag">📚 阅读</span>
+                    <span class="tag">🤖 机器人开发</span>
+                    <span class="tag">👁️ 机器视觉</span>
+                    <span class="tag">💻 嵌入式开发</span>
+                    <span class="tag">⚙️ 机械设计</span>
+                    <span class="tag">📊 深度学习</span>
                 </div>
             </div>
         </section>
@@ -53,67 +201,195 @@
             <h2 class="section-title">🛠️ 技能树</h2>
             <div class="skills-grid">
                 <div class="skill-card">
-                    <div class="skill-icon">🌐</div>
-                    <h3>前端开发</h3>
+                    <div class="skill-icon">💻</div>
+                    <h3>编程开发</h3>
                     <div class="skill-bar">
-                        <div class="skill-progress" style="width: 85%"></div>
+                        <div class="skill-progress" style="width: 48%"></div>
                     </div>
-                    <p>HTML / CSS / JavaScript / Vue / React</p>
+                    <p>Python / Matlab / C++ / C语言 / ROS / Qt </p>
                 </div>
                 <div class="skill-card">
                     <div class="skill-icon">⚙️</div>
-                    <h3>后端开发</h3>
+                    <h3>机械设计</h3>
                     <div class="skill-bar">
-                        <div class="skill-progress" style="width: 70%"></div>
+                        <div class="skill-progress" style="width: 75%"></div>
                     </div>
-                    <p>Node.js / Python / Java</p>
+                    <p>SolidWorks / AutoCAD / 结构设计 / 组件选型</p>
                 </div>
                 <div class="skill-card">
-                    <div class="skill-icon">🗄️</div>
-                    <h3>数据库</h3>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 65%"></div>
-                    </div>
-                    <p>MySQL / MongoDB / Redis</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">🔧</div>
-                    <h3>开发工具</h3>
+                    <div class="skill-icon">🖥️</div>
+                    <h3>工具与系统</h3>
                     <div class="skill-bar">
                         <div class="skill-progress" style="width: 80%"></div>
                     </div>
-                    <p>Git / Docker / VS Code</p>
+                    <p>Linux / STM32 / Gazebo / Rviz / CUDA / Labelme</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🔧</div>
+                    <h3>硬件应用</h3>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%"></div>
+                    </div>
+                    <p>RGB-D深度相机 / 二维激光雷达 / 舵机 / 直流电机 / 树莓派 / Jetson nano </p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🤖</div>
+                    <h3>机器人技术</h3>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 60%"></div>
+                    </div>
+                    <p>SLAM导航 / 路径规划 / 运动控制 / 传感器融合</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">👁️</div>
+                    <h3>机器视觉</h3>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                    <p>OpenCV / PCL点云库 / YOLOv8/v11 / ORB-SLAM3</p>
                 </div>
             </div>
         </section>
 
-        <!-- 时间线 -->
+        <!-- 教育与经历时间线 -->
         <section class="timeline-section">
             <h2 class="section-title">📅 我的旅程</h2>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <span class="timeline-date">2024</span>
+                        <span class="timeline-date">2026.01 </span>
                         <h3>开始博客之旅</h3>
-                        <p>搭建了这个二次元风格的个人博客，开始记录学习和生活~</p>
+                        <p>结合AI工具搭建了这个二次元风格的个人博客，开始记录学习和生活~</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <span class="timeline-date">2023</span>
-                        <h3>深入学习前端</h3>
-                        <p>学习了Vue、React等现代前端框架，完成了多个实践项目。</p>
+                        <span class="timeline-date">2023.09 - 2026.07</span>
+                        <h3>机械工程硕士（机器视觉、机器人方向）</h3>
+                        <p>GPA 3.26/4 | 主修：机器视觉原理与应用、智能移动机器人，仿生机械与智能机械等。</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <span class="timeline-date">2022</span>
-                        <h3>踏入编程世界</h3>
-                        <p>开始接触编程，学习HTML、CSS、JavaScript基础知识。</p>
+                        <span class="timeline-date">2019.09 - 2023.07</span>
+                        <h3>机械电子工程本科</h3>
+                        <p>GPA 2.87/4 | 主修：机械原理、机械设计、机械工程控制、PLC控制、单片机原理、液压传动与控制等。</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 项目经验 -->
+        <section class="projects-section">
+            <h2 class="section-title">📚 核心项目</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <span class="project-icon">🤖</span>
+                    <h3>皮带巡检机器人系统</h3>
+                    <p class="project-tech">Python/C++/MFC/CUDA/OpenCV | YOLOv8</p>
+                    <p>设计自动化皮带巡检机器人，实现皮带破损、托辊故障等检测，检测率达90%-95%，撰写技术报告与安装教程</p>
+                </div>
+                <div class="project-card">
+                    <span class="project-icon">🚁</span>
+                    <h3>配电设备无人机喷涂装置</h3>
+                    <p class="project-tech">SolidWorks | 气动/电动喷漆枪 | 机械结构设计</p>
+                    <p>设计无人机搭载的绝缘喷涂装置，替代人工登杆作业，完成飞行平台选型、喷枪测试与固定装置设计</p>
+                </div>
+                <div class="project-card">
+                    <span class="project-icon">🗺️</span>
+                    <h3>嵌入式Linux SLAM导航仿真系统</h3>
+                    <p class="project-tech">ROS/Gazebo/QT | ORB-SLAM3 | TEB/DWA路径规划</p>
+                    <p>构建激光与视觉SLAM纯仿真系统，开发Qt上位机实现建图与导航可视化监控交互</p>
+                </div>
+                <div class="project-card">
+                    <span class="project-icon">⚡</span>
+                    <h3>电机磁芯缺陷检测及自动化充磁设备</h3>
+                    <p class="project-tech">SolidWorks/Python/C++ | YOLOv11 | 自动化分拣</p>
+                    <p>搭建缺陷检测与自动化分拣设备，外观一次性通过率85%+，实现磁芯全方位检测与智能分拣</p>
+                </div>
+                <div class="project-card">
+                    <span class="project-icon">🚚</span>
+                    <h3>基于STM32和OpenMV的智能物流小车</h3>
+                    <p class="project-tech">C语言/Python/OpenMV | STM32F407 | 视觉识别</p>
+                    <p>设计麦克纳姆轮底盘物流小车，实现颜色/形状识别、避障与自动分拣功能</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 其他小项目 -->
+        <section class="mini-projects-section">
+            <h2 class="section-title">🔬 其他项目</h2>
+            <div class="mini-projects-grid">
+                <div class="mini-project-card">
+                    <span class="mini-project-icon">🐶</span>
+                    <h3>基于STM32的智能语音小狗</h3>
+                </div>
+                <div class="mini-project-card">
+                    <span class="mini-project-icon">🖼️</span>
+                    <h3>基于QT的图像处理小程序</h3>
+                </div>
+                <div class="mini-project-card">
+                    <span class="mini-project-icon">🃏</span>
+                    <h3>基于QT的欢乐斗地主实现</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- 奖项荣誉 -->
+        <section class="awards-section">
+            <h2 class="section-title">🏆 奖项荣誉</h2>
+            <div class="awards-grid">
+                <div class="award-card">
+                    <span class="award-icon">🥉</span>
+                    <h3>睿抗ROS机器人虚实挑战赛 国三</h3>
+                    <p>2025年 | 国家级奖项</p>
+                </div>
+                <div class="award-card">
+                    <span class="award-icon">🥉</span>
+                    <h3>高校智能机器人创意大赛 省三</h3>
+                    <p>2025年 | 省级奖项</p>
+                </div>
+                <div class="award-card">
+                    <span class="award-icon">🥇</span>
+                    <h3>全国三维数字化创新设计大赛 省一</h3>
+                    <p>2025年 | 省级奖项</p>
+                </div>
+                <div class="award-card">
+                    <span class="award-icon">🏅</span>
+                    <h3>学业一等奖学金</h3>
+                    <p>2024年 | 校级荣誉</p>
+                </div>
+                <div class="award-card">
+                    <span class="award-icon">🏅</span>
+                    <h3>学业一等奖学金</h3>
+                    <p>2025年 | 校级荣誉</p>
+                </div>
+                <div class="award-card">
+                    <span class="award-icon">🏅</span>
+                    <h3>优秀研究生</h3>
+                    <p>2025年 | 校级荣誉</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 证书资质 -->
+        <section class="certificates-section">
+            <h2 class="section-title">📜 证书资质</h2>
+            <div class="certificates-grid">
+                <div class="certificate-card">
+                    <span class="certificate-icon">📚</span>
+                    <h3>英语四级证书</h3>
+                </div>
+                <div class="certificate-card">
+                    <span class="certificate-icon">💻</span>
+                    <h3>计算机二级证书</h3>
+                </div>
+                <div class="certificate-card">
+                    <span class="certificate-icon">🚗</span>
+                    <h3>驾驶证C1</h3>
                 </div>
             </div>
         </section>
@@ -130,17 +406,17 @@
                 <div class="hobby-card">
                     <span class="hobby-icon">🎮</span>
                     <h3>游戏</h3>
-                    <p>原神、崩坏系列、各种独立游戏，一起来玩吧~</p>
+                    <p>原神、双人成行系列、各种独立游戏，技术宅的快乐源泉~</p>
+                </div>
+                <div class="hobby-card">
+                    <span class="hobby-icon">🔧</span>
+                    <h3>技术折腾</h3>
+                    <p>研究机器人、嵌入式开发，把兴趣变成技术能力！</p>
                 </div>
                 <div class="hobby-card">
                     <span class="hobby-icon">📖</span>
                     <h3>阅读</h3>
                     <p>技术书籍、轻小说、漫画，知识和娱乐两不误！</p>
-                </div>
-                <div class="hobby-card">
-                    <span class="hobby-icon">🎵</span>
-                    <h3>音乐</h3>
-                    <p>ACG音乐、电子音乐、J-POP，耳机党的日常~</p>
                 </div>
             </div>
         </section>
@@ -149,17 +425,20 @@
         <section class="contact-section">
             <h2 class="section-title">📮 联系我</h2>
             <div class="contact-cards">
+                <a href="mailto:xxx@qq.com" class="contact-card">
+                    <span class="contact-icon">📧</span>
+                    <span class="contact-name">QQ邮箱</span>
+                    <span class="contact-detail">2388817362@qq.com</span>
+                </a>
+                <a href="#" class="contact-card">
+                    <span class="contact-icon">📱</span>
+                    <span class="contact-name">微信公众号</span>
+                    <span class="contact-detail">机械仔的技术日志</span>
+                </a>
                 <a href="https://github.com/XiaoHuZi-design" target="_blank" class="contact-card">
                     <span class="contact-icon">🐙</span>
                     <span class="contact-name">GitHub</span>
-                </a>
-                <a href="mailto:2388817362@qq.com" class="contact-card">
-                    <span class="contact-icon">📧</span>
-                    <span class="contact-name">QQ邮箱</span>
-                </a>
-                <a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=LingJia_XiaoHu" target="_blank" class="contact-card">
-                    <span class="contact-icon">📱</span>
-                    <span class="contact-name">微信公众号</span>
+                    <span class="contact-detail">XiaoHuZi-design</span>
                 </a>
             </div>
         </section>
@@ -167,14 +446,14 @@
         <!-- 座右铭 -->
         <section class="quote-section">
             <blockquote class="quote-card">
-                <p>"代码改变世界，二次元拯救灵魂。"</p>
+                <p>"代码改变世界，二次元拯救灵魂，做永远热爱技术的追梦人！"</p>
                 <cite>—— 机械仔</cite>
             </blockquote>
         </section>
     </main>
 
     <footer class="about-footer">
-        <p>&copy; 2024 机械仔的小站 ❤️ 感谢你的访问~</p>
+        <p>&copy; 2025 机械仔的技术小站 ❤️ 二次元+技术=双倍快乐~</p>
     </footer>
 
     <script src="about.js"></script>
