@@ -53,6 +53,24 @@ function initCardSwiper() {
     });
 }
 
+// ===== Game 区域的开关逻辑 =====
+const gameToggle = document.getElementById('game-toggle');   // 上面的 Game 按钮
+const gameSection = document.getElementById('game-section'); // 下面的游戏区域
+const closeGameBtn = document.getElementById('close-game');  // 右上角的 ✕
+
+if (gameToggle && gameSection) {
+    gameToggle.addEventListener('click', (e) => {
+        e.preventDefault();               // 阻止 <a> 默认跳转
+        gameSection.classList.toggle('hidden');  // 显示 / 隐藏
+    });
+}
+
+if (closeGameBtn && gameSection) {
+    closeGameBtn.addEventListener('click', () => {
+        gameSection.classList.add('hidden');     // 关闭
+    });
+}
+
 // 添加星星
 function addStars() {
     const starsContainer = document.getElementById('stars-container');
