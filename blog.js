@@ -405,7 +405,8 @@ function parseMarkdown(content, filename) {
         date: new Date().toISOString().split('T')[0],
         tags: [],
         content: content,
-        excerpt: ''
+        excerpt: '',
+        wordCount: 0
     };
 
     // 解析Front Matter
@@ -432,6 +433,11 @@ function parseMarkdown(content, filename) {
     // 生成摘要
     const plainText = post.content.replace(/[#*`\[\]()]/g, '').trim();
     post.excerpt = plainText.substring(0, 150) + (plainText.length > 150 ? '...' : '');
+
+    // 计算字数（中文按字符计算，英文按单词计算）
+    const chineseChars = (post.content.match(/[\u4e00-\u9fa5]/g) || []).length;
+    const englishWords = (post.content.replace(/[\u4e00-\u9fa5]/g, '').match(/[a-zA-Z]+/g) || []).length;
+    post.wordCount = chineseChars + englishWords;
 
     return post;
 }
@@ -512,10 +518,25 @@ function showPostDetail(post) {
     postEditor.classList.add('hidden');
     postDetail.classList.remove('hidden');
 
+    // 计算预计阅读时间 假设普通人阅读速度为 300-500 字/分钟
+    const readingTime = Math.ceil(post.wordCount / 400); 
+
     // 渲染Markdown内容
+    // 在这里添加了字数统计显示 📝
+    // postContent.innerHTML = `
+    //     <h1>${escapeHtml(post.title)}</h1>
+    //     <div class="post-word-count" style="color: #666; font-size: 0.9em; margin-bottom: 15px;">
+    //         <span>📝 全文字数：${post.wordCount} 字</span>
+    //     </div>
+    //     ${marked.parse(post.content)}
+    // `;
     postContent.innerHTML = `
-        <h1>${escapeHtml(post.title)}</h1>
-        ${marked.parse(post.content)}
+    <h1>${escapeHtml(post.title)}</h1>
+    <div class="post-detail-info" style="color: #888; margin-bottom: 20px;">
+        <span>📝 字数：${post.wordCount} 字</span> | 
+        <span>⏱️ 预计阅读：${readingTime} 分钟</span>
+    </div>
+    ${marked.parse(post.content)}
     `;
 
     // 渲染元数据
