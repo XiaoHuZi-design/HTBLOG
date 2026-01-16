@@ -54,7 +54,7 @@ sudo nmcli networking off
 
 第一步，首先下载安装包，解压放到合适位置，
 
-![image-20241223201724205](assets\cartography安装包.png)
+![image-20241223201724205](assets/cartography安装包.png)
 
 第二步，右键打开终端运行下列命令安装依赖，
 
@@ -150,11 +150,11 @@ python-rosdep 已经是最新版 (0.23.1-1)。
 
 ```
 
-![image-20241224141153933](assets\error.png)
+![image-20241224141153933](assets/error.png)
 
 **没有报红，不出意外顺利安装！** 这里出意外了... ...
 
-![image-20241223212023449](assets\image-20241223212023449.png)
+![image-20241223212023449](assets/image-20241223212023449.png)
 
 下面看一下auto-carto-build.sh安装脚本，
 
@@ -338,9 +338,9 @@ ht_llibra@ht-llibra:~/carto_ws/cartographer_detailed_comments_ws$
 
 下图为之前在另一个虚拟机ubantu20.04，用的另一种教程编译的，可以用
 
-![image-20241224112258022](assets\image-20241224112258022.png)
+![image-20241224112258022](assets/image-20241224112258022.png)
 
-![image-20241224112454630](assets\image-20241224112454630.png)
+![image-20241224112454630](assets/image-20241224112454630.png)
 
 
 
@@ -386,13 +386,13 @@ rosdepc install --from-paths src -y --ignore-src
 
 需要改小点，改成4线程就可以
 
-![image-20241224145312074](assets\修改内核线程.png)
+![image-20241224145312074](assets/修改内核线程.png)
 
-![image-20241224145654757](assets\image-20241224145654757.png)
+![image-20241224145654757](assets/image-20241224145654757.png)
 
 从源头解决问题，咱用的虚拟机，重新设置一下，
 
-![image-20241224151320970](assets\虚拟机线程设置.png)
+![image-20241224151320970](assets/虚拟机线程设置.png)
 
 ---
 
@@ -402,11 +402,11 @@ rosdepc install --from-paths src -y --ignore-src
 
 首先在carto_ws下新建工作空间
 
-![image-20241224150332973](assets\image-20241224150332973.png)
+![image-20241224150332973](assets/image-20241224150332973.png)
 
 然后把cartographer_detailed_comments_ws里的cartographer_ros文件夹复制到src目录，
 
-![image-20241224150450684](assets\image-20241224150450684.png)
+![image-20241224150450684](assets/image-20241224150450684.png)
 
 在工作空间编译一下，
 
@@ -414,7 +414,7 @@ rosdepc install --from-paths src -y --ignore-src
 catkin_make
 ```
 
-![image-20241224151838035](assets\image-20241224151838035.png)
+![image-20241224151838035](assets/image-20241224151838035.png)
 
 编译成功。
 
@@ -430,11 +430,11 @@ source ~/carto_ws/cartographer_detailed_comments_ws/install_isolated/setup.bash
 
 下载数据集
 
-![image-20241224152143988](assets\数据集.png)
+![image-20241224152143988](assets/数据集.png)
 
 将三个数据集解压放于下图位置，
 
-![image-20241224153010196](assets\image-20241224153010196.png)
+![image-20241224153010196](assets/image-20241224153010196.png)
 
 
 
@@ -446,13 +446,13 @@ rospack profile //执行这个是为了避免找不到launch
 roslaunch cartographer_ros lx_rs16_2d_outdoor.launch
 ```
 
-![image-20241224153425255](assets\rospack_profile.png)
+![image-20241224153425255](assets/rospack_profile.png)
 
-![image-20241224154635215](assets\数据包1.png)
+![image-20241224154635215](assets/数据包1.png)
 
 这里两个红色报错是正常的，不影响，和每个人的电脑配置有关，
 
-![image-20241224185001913](assets\image-20241224185001913.png)
+![image-20241224185001913](assets/image-20241224185001913.png)
 
 整个地图由这些子图叠加而成。
 
@@ -542,7 +542,7 @@ gpg: WARNING: unsafe ownership on homedir '/home/ht_llibra/.gnupg'
 ht_llibra@ht-llibra:~/下载$ 
 ```
 
-![image-20241224172411993](assets\image-20241224172411993.png)
+![image-20241224172411993](assets/image-20241224172411993.png)
 
 安装成功。
 
@@ -564,15 +564,15 @@ rosrun map_server map_saver
 
 默认保存在当前目录。
 
-![image-20241224174056993](assets\image-20241224174056993.png)
+![image-20241224174056993](assets/image-20241224174056993.png)
 
-![image-20241224173938281](assets\数据包1地图.png)
+![image-20241224173938281](assets/数据包1地图.png)
 
-![image-20241224174146899](assets\image-20241224174146899.png)
+![image-20241224174146899](assets/image-20241224174146899.png)
 
 另一种方法，执行finish_slam_2d.sh脚本，
 
-![image-20241224174355480](assets\image-20241224174355480.png)
+![image-20241224174355480](assets/image-20241224174355480.png)
 
 ```sh
 #!/bin/bash
@@ -601,11 +601,11 @@ rosrun cartographer_ros cartographer_pbstream_to_ros_map \
 -map_filestem=$map_dir/$map_name
 ```
 
-![image-20241224175102107](assets\image-20241224175102107.png)
+![image-20241224175102107](assets/image-20241224175102107.png)
 
-![image-20241224175155202](assets\image-20241224175155202.png)
+![image-20241224175155202](assets/image-20241224175155202.png)
 
-![image-20241224184414614](assets\image-20241224184414614.png)
+![image-20241224184414614](assets/image-20241224184414614.png)
 
 
 
@@ -615,7 +615,7 @@ rosrun cartographer_ros cartographer_pbstream_to_ros_map \
  roslaunch cartographer_ros lx_rs16_2d_outdoor_localization.launch 
 ```
 
-![image-20241224190410622](assets\纯定位模式.png)
+![image-20241224190410622](assets/纯定位模式.png)
 
 这时候已经有了第一次建图的一个轨迹和地图
 
@@ -662,17 +662,17 @@ lx_rs16_2d_outdoor_localization.launch文件：
 
 在进行纯定位时，没有启动这样一个代码，就是没有生成map这个topic的地图，
 
-![image-20241224191856343](assets\子图.png)
+![image-20241224191856343](assets/子图.png)
 
-区别：![image-20241224192527591](assets\2d建图和纯定位.png)
+区别：![image-20241224192527591](assets/2d建图和纯定位.png)
 
 由于纯定位模式，默认配置是只保存三个子图啊，所以在这儿就最多只有三个子图，
 
-![image-20241224194152116](assets\纯定位默认子图.png)
+![image-20241224194152116](assets/纯定位默认子图.png)
 
 （不知道为啥我跑的在3个四个反复跳）
 
-![image-20241224195233333](assets\纯定位子图配置.png)
+![image-20241224195233333](assets/纯定位子图配置.png)
 
 然后我们看一下，通过rose topic list来可以获取到所有的topic的名字。
 
@@ -722,7 +722,7 @@ ht_llibra@ht-llibra:~/carto_ws/cartographer_detailed_comments_ws$ ./catkin_make.
 
 这时候再执行纯定位的launch，然后rostopic list发现就有/map话题了，
 
-![image-20241224200024055](assets\image-20241224200024055.png)
+![image-20241224200024055](assets/image-20241224200024055.png)
 
 看一下/map这个topic是谁发的，
 
@@ -741,11 +741,11 @@ Subscribers: None
 
 这有什么区别呢? 接下来咱把Submaps给关掉，添加一个显示地图的插件，添加一下/map这个topic，
 
-![image-20241224200645328](assets\image-20241224200645328.png)
+![image-20241224200645328](assets/image-20241224200645328.png)
 
 Alpha改为1会更白一些，可以发现这回地图是没有变化的，
 
-![image-20241224201015872](assets\纯定位map话题.png)
+![image-20241224201015872](assets/纯定位map话题.png)
 
 这个时候我们把Map取消，定义Submaps，会发现Submaps还是变化的（我的是没变化的，但看的视频在变换...）。
 
@@ -845,19 +845,19 @@ done
 
 可显示实时三维点云地图（报错打不开暂时没实现），
 
-![image-20241224203153138](assets\截图.png)
+![image-20241224203153138](assets/截图.png)
 
 
 
 保存3D地图，执行工作空间里的finish_slam_3s.sh，
 
-![image-20241224203717459](assets\image-20241224203717459.png)
+![image-20241224203717459](assets/image-20241224203717459.png)
 
 
 
 ### 2d栅格地图和3d点云地图
 
-![image-20241224204631363](assets\image-20241224204631363.png)
+![image-20241224204631363](assets/image-20241224204631363.png)
 
 **2D栅格地图**
 
@@ -865,13 +865,13 @@ done
 roslaunch cartographer_ros assets_writer_2d.launch
 ```
 
-![image-20241224204735173](assets\image-20241224204735173.png)
+![image-20241224204735173](assets/image-20241224204735173.png)
 
 目的是根据与pbstream文件和之前的bag文件来再生成一个map.pgm的地图图片，会在map文件夹
 
-![image-20241224205020351](assets\image-20241224205020351.png)
+![image-20241224205020351](assets/image-20241224205020351.png)
 
-![image-20241224205334692](assets\image-20241224205334692.png)
+![image-20241224205334692](assets/image-20241224205334692.png)
 
 可以看到最终生成的地图如上，由于是多线16线点云，还有打到地面上的点也一并生成了地图，所以这样这种方式生成的地图不可用。
 
@@ -897,17 +897,17 @@ sudo apt-get install pcl-tools
 pcl_viewer b3_1.pcd
 ```
 
-![image-20241224220041096](assets\临时1.png)
+![image-20241224220041096](assets/临时1.png)
 
 按一下4，会自动按照不同的高度来进行着色，
 
-![image-20241224220146126](assets\临时2.png)
+![image-20241224220146126](assets/临时2.png)
 
 
 
 下面看看2d和3d的lua文件分别是怎么设置的，
 
-![image-20241224210658311](assets\2d3dlua.png)
+![image-20241224210658311](assets/2d3dlua.png)
 
 
 
@@ -919,13 +919,13 @@ pcl_viewer b3_1.pcd
 roslaunch cartographer_ros landmark_mir_100.launch
 ```
 
-![image-20241225133029784](assets\landmarks1.png)
+![image-20241225133029784](assets/landmarks1.png)
 
-![image-20241225133218600](assets\landmarks1放大版.png)
+![image-20241225133218600](assets/landmarks1放大版.png)
 
 在views栏（没有就点击panels-->views）可以转换一下视角，可以看到一些小球，就是landmarks的一个可视化，
 
-![image-20241225133511764](assets\landmarks_view.png)
+![image-20241225133511764](assets/landmarks_view.png)
 
 
 
@@ -965,31 +965,31 @@ roslaunch cartographer_ros landmark_mir_100.launch
 
 *很简单的.*
 
-![image-20241225140455767](assets\image-20241225140455767.png)
+![image-20241225140455767](assets/image-20241225140455767.png)
 
-![image-20241225140556264](assets\image-20241225140556264.png)
+![image-20241225140556264](assets/image-20241225140556264.png)
 
 按空格停止播放，再按空格继续播放，停止后按s单步播放
 
-![image-20241225140959223](assets\image-20241225140959223.png)
+![image-20241225140959223](assets/image-20241225140959223.png)
 
-![image-20241225141206589](assets\image-20241225141206589.png)
+![image-20241225141206589](assets/image-20241225141206589.png)
 
-![image-20241225141900311](assets\image-20241225141900311.png)
-
-
+![image-20241225141900311](assets/image-20241225141900311.png)
 
 
 
-![image-20241225142235154](assets\image-20241225142235154.png)
 
-![image-20241225142448489](assets\image-20241225142448489.png)
+
+![image-20241225142235154](assets/image-20241225142235154.png)
+
+![image-20241225142448489](assets/image-20241225142448489.png)
 
 可以看到odom和机器人的一个相对位置是在发生变化的，即odom指向footprint的一个tf是发生变化的，它就叫TF（transform），机器人上几个相对不变的就是静态TF。
 
-![image-20241225144008928](assets\6线点云数据.png)
+![image-20241225144008928](assets/6线点云数据.png)
 
-![image-20241225144458743](D:\新桌面\笔记\BLOG-HT\slam\assets\image-20241225144458743.png)
+![image-20241225144458743](assets/image-20241225144458743.png)
 
 
 
@@ -1060,7 +1060,7 @@ launch 文件中需要如下几个设置
 
 然后我们针对刚才做可视化的这样一个bag来做一下适配，
 
-![image-20241225152821406](assets\image-20241225152821406.png)
+![image-20241225152821406](assets/image-20241225152821406.png)
 
 改一下这两个地方。
 
@@ -1068,7 +1068,7 @@ launch 文件中需要如下几个设置
 
 ### 第三步 配置 lua 文件
 
-![image-20241225153020997](assets\lua配置.png)
+![image-20241225153020997](assets/lua配置.png)
 
 新建一个test.lua文件，从backpack.lua文件复制
 
@@ -1127,9 +1127,9 @@ return options
 
 TF树最上面的一个是published_frame
 
-![image-20241225154435845](assets\image-20241225154435845.png)
+![image-20241225154435845](assets/image-20241225154435845.png)
 
-![image-20241225155106356](assets\image-20241225155106356.png)
+![image-20241225155106356](assets/image-20241225155106356.png)
 
 ​		多线点云会打到地面，如果你想这时候去建二维地图，但是你要使用这个全部的点云数据区建图呢，这个打到地面上的一圈一圈的点也会被建到地图里，这时候你就会发现地图上全是一圈一圈的印，那这个地图就没法使用，所以在你订阅多线点云数据的时候，这个值也要设置为大于0，那这里就出现一个矛盾：当你既有单线又有多线的时候，这个min_z就需要有一定的考量了，你是要地面，还是要单线，你要是想把地面过滤掉，你单线也会同时过滤掉。这里我们先把min_z设置为-0.1。
 
@@ -1143,9 +1143,9 @@ TF树最上面的一个是published_frame
 
 由于设置的min_z为-0.1，可以发现点云没有打在地上的或者说很少，因为这个雷达是装在高处的，这个z坐标是相对于雷达自身的，所以它这个点就会很少出现在这个雷达下面，
 
-![image-20241225164007763](assets\image-20241225164007763.png)
+![image-20241225164007763](assets/image-20241225164007763.png)
 
-![image-20241225164457396](assets\image-20241225164457396.png)
+![image-20241225164457396](assets/image-20241225164457396.png)
 
 
 
@@ -1158,9 +1158,9 @@ TF树最上面的一个是published_frame
 
 重新编译一下，再次运行，可以发现这次终端不报错，说明原因就是之前说的同时订阅了单线和多线的原因。
 
-![image-20241225165520408](assets\image-20241225165520408.png)
+![image-20241225165520408](assets/image-20241225165520408.png)
 
-![image-20241225170020778](assets\image-20241225170020778.png)
+![image-20241225170020778](assets/image-20241225170020778.png)
 
 这个显示出来的点就是过滤掉的点，就是过滤之后的点会比之前高了。
 
