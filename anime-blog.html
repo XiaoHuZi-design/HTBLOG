@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="机械仔的二次元博客 - 分享技术、生活和动漫">
+    <title>二次元博客 ✿ 机械仔的小站</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/lib/core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/lib/languages/javascript.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+    <style>
+        /* 标签页导航 */
+        .tab-navigation {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-card, rgba(255, 255, 255, 0.95));
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            margin: -20px -20px 20px -20px;
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+            border-bottom: 2px solid var(--light-pink);
+            box-shadow: 0 2px 10px rgba(255, 107, 157, 0.1);
+        }
+
+        body.star-theme .tab-navigation {
+            background: rgba(26, 26, 58, 0.95);
+            border-color: #6a6aaa;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 10px 25px;
+            border: 2px solid var(--light-pink);
+            border-radius: 25px;
+            background: transparent;
+            color: var(--text-primary);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        body.star-theme .tab-btn {
+            border-color: #6a6aaa;
+            color: #e0e0ff;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--primary-pink);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(145deg, var(--primary-pink), var(--lavender));
+            border-color: var(--primary-pink);
+            color: var(--white);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 返回主页按钮 */
+        .back-home-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            padding: 10px 20px;
+            background: linear-gradient(145deg, var(--primary-pink), var(--lavender));
+            border: none;
+            border-radius: 25px;
+            color: var(--white);
+            font-size: 0.9rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-normal);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-home-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .back-home-btn {
+                top: 10px;
+                left: 10px;
+                padding: 8px 15px;
+                font-size: 0.8rem;
+            }
+
+            .tab-buttons {
+                gap: 5px;
+            }
+
+            .tab-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* 关于我链接区域 */
+        .about-link-section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .about-link-card {
+            background: var(--bg-card, rgba(255, 255, 255, 0.9));
+            border-radius: var(--radius-2xl, 25px);
+            padding: 50px;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-lg, 0 10px 30px rgba(255, 107, 157, 0.2));
+            border: 3px solid var(--light-pink);
+        }
+
+        body.star-theme .about-link-card {
+            background: rgba(26, 26, 58, 0.9);
+            border-color: #6a6aaa;
+        }
+
+        .about-link-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+
+        .about-link-title {
+            color: var(--primary-pink);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        body.star-theme .about-link-title {
+            color: #a8a8ff;
+        }
+
+        .about-link-desc {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* 写文章按钮（小型） */
+        .write-post-btn-small {
+            width: auto;
+            height: auto;
+            min-width: 42px;
+            min-height: 42px;
+            padding: 10px 18px;
+            background: linear-gradient(145deg, var(--primary-pink), var(--lavender));
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(255, 107, 157, 0.3);
+        }
+
+        .write-post-btn-small:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 157, 0.4);
+        }
+
+        /* 分页导航 */
+        .pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+
+        .pagination-btn {
+            padding: 10px 20px;
+            border: 2px solid var(--light-pink);
+            border-radius: 25px;
+            background: white;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            background: var(--primary-pink);
+            border-color: var(--primary-pink);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .pagination-pages {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .pagination-page {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--light-pink);
+            border-radius: 50%;
+            background: white;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pagination-page:hover {
+            border-color: var(--primary-pink);
+            transform: translateY(-2px);
+        }
+
+        .pagination-page.active {
+            background: linear-gradient(145deg, var(--primary-pink), var(--lavender));
+            border-color: var(--primary-pink);
+            color: white;
+        }
+
+        /* 博客文章卡片 - 3列布局 */
+        .blog-list-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        @media (max-width: 1024px) {
+            .blog-list-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blog-list-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 资源下载按钮和菜单 */
+        .resources-dropdown {
+            position: relative;
+        }
+
+        .resources-btn {
+            padding: 10px 18px;
+            background: linear-gradient(145deg, #6a9eff, #9ec5ff);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 8px rgba(106, 174, 255, 0.3);
+        }
+
+        .resources-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(106, 174, 255, 0.4);
+        }
+
+        .resources-menu {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            width: 320px;
+            max-height: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            border: 2px solid var(--light-pink);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        .resources-menu.active {
+            display: flex;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .resources-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #ffe6ea 0%, #fff5f8 100%);
+            border-bottom: 2px solid var(--light-pink);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .resources-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .resources-close:hover {
+            color: var(--primary-pink);
+        }
+
+        .resources-list {
+            padding: 15px;
+            overflow-y: auto;
+            max-height: 400px;
+        }
+
+        .resource-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: linear-gradient(135deg, #fff5f8 0%, #fff 100%);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 158, 204, 0.3);
+            margin-bottom: 10px;
+        }
+
+        .resource-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .resource-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(255, 105, 180, 0.2);
+            border-color: var(--primary-pink);
+        }
+
+        .resource-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .resource-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .resource-name {
+            display: block;
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .resource-meta {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        .resource-download {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .resource-item:hover .resource-download {
+            transform: translateY(2px);
+        }
+
+        /* 文件类型图标颜色 */
+        .resource-item[data-type="pdf"] .resource-icon { filter: hue-rotate(0deg); }
+        .resource-item[data-type="zip"] .resource-icon { filter: hue-rotate(45deg); }
+        .resource-item[data-type="md"] .resource-icon { filter: hue-rotate(90deg); }
+
+        /* 主题切换按钮 */
+        .theme-toggle-btn {
+            padding: 10px 18px;
+            background: linear-gradient(145deg, #8b5cf6, #a78bfa);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+        }
+
+        .theme-toggle-btn:hover {
+            transform: translateY(-2px) rotate(15deg);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+        }
+
+        /* 暗黑模式样式 */
+        body.dark-theme {
+            --bg-card: rgba(20, 20, 30, 0.9);
+            --text-primary: #e0e0ff;
+            --text-secondary: #a0a0c0;
+            --light-pink: #6a6aaa;
+            --primary-pink: #8b7cf8;
+            --lavender: #9d8fd1;
+        }
+
+        body.dark-theme .blog-header-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        body.dark-theme .blog-page-title {
+            color: #e0e0ff;
+        }
+
+        body.dark-theme .blog-page-subtitle {
+            color: #a0a0c0;
+        }
+
+        body.dark-theme .blog-stat {
+            background: rgba(106, 106, 170, 0.2);
+        }
+
+        body.dark-theme .blog-stat .stat-number {
+            color: #a8a8ff;
+        }
+
+        body.dark-theme .blog-stat .stat-label {
+            color: #c0c0e0;
+        }
+
+        body.dark-theme .tab-navigation {
+            background: rgba(20, 20, 30, 0.95);
+            border-color: #6a6aaa;
+        }
+
+        body.dark-theme .tab-btn {
+            border-color: #6a6aaa;
+            color: #e0e0ff;
+        }
+
+        body.dark-theme .tab-btn.active {
+            background: linear-gradient(145deg, #6a5acd, #7c6bd1);
+            border-color: #6a6aaa;
+        }
+
+        body.dark-theme .search-input {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: #6a6aaa;
+            color: #e0e0ff;
+        }
+
+        body.dark-theme .search-input::placeholder {
+            color: #8080a0;
+        }
+
+        body.dark-theme .resources-menu {
+            background: rgba(20, 20, 30, 0.95);
+            border-color: #6a6aaa;
+        }
+
+        body.dark-theme .resources-header {
+            background: rgba(106, 106, 170, 0.2);
+            border-color: #6a6aaa;
+        }
+
+        body.dark-theme .resource-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(106, 106, 170, 0.3);
+        }
+
+        body.dark-theme .resource-name {
+            color: #e0e0ff;
+        }
+
+        body.dark-theme .pagination-btn,
+        body.dark-theme .pagination-page {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: #6a6aaa;
+            color: #e0e0ff;
+        }
+
+        body.dark-theme .pagination-page.active {
+            background: linear-gradient(145deg, #6a5acd, #7c6bd1);
+            border-color: #6a6aaa;
+        }
+
+        /* 星空主题 + 暗黑模式联动 */
+        body.star-theme .theme-toggle-btn {
+            background: linear-gradient(145deg, #f59e0b, #fbbf24);
+        }
+
+        body.dark-theme .theme-icon::before {
+            content: '🌙';
+        }
+
+        body.dark-theme .theme-icon::after {
+            content: '☀️';
+        }
+
+        @keyframes themeIconSwitch {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(0.8); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        .theme-toggle-btn:active .theme-icon {
+            animation: themeIconSwitch 0.5s ease;
+        }
+
+        /* 番剧推荐样式 */
+        .anime-section {
+            padding: 20px 0;
+        }
+
+        .anime-filters {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid var(--light-pink);
+            border-radius: 25px;
+            background: transparent;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary-pink);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(145deg, var(--primary-pink), var(--lavender));
+            border-color: var(--primary-pink);
+            color: white;
+        }
+
+        .anime-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .anime-card {
+            background: var(--bg-card, rgba(255, 255, 255, 0.9));
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(255, 107, 157, 0.15);
+            border: 2px solid var(--light-pink);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .anime-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(255, 107, 157, 0.25);
+        }
+
+        .anime-cover {
+            position: relative;
+            width: 100%;
+            padding-top: 140%;
+            overflow: hidden;
+        }
+
+        .anime-cover img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .anime-card:hover .anime-cover img {
+            transform: scale(1.05);
+        }
+
+        .anime-status {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            backdrop-filter: blur(5px);
+        }
+
+        .anime-status.watching {
+            background: linear-gradient(145deg, #10b981, #34d399);
+            color: white;
+        }
+
+        .anime-status.completed {
+            background: linear-gradient(145deg, #6366f1, #818cf8);
+            color: white;
+        }
+
+        .anime-status.plan {
+            background: linear-gradient(145deg, #f59e0b, #fbbf24);
+            color: white;
+        }
+
+        .anime-rating {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #ffd700;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .anime-info {
+            padding: 15px;
+        }
+
+        .anime-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .anime-meta {
+            display: flex;
+            gap: 10px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .anime-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .anime-tag {
+            padding: 3px 10px;
+            background: linear-gradient(135deg, #ffe6ea 0%, #fff5f8 100%);
+            border-radius: 12px;
+            font-size: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .anime-review {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(255, 107, 157, 0.05);
+            border-radius: 10px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* 暗黑模式适配 */
+        body.dark-theme .anime-card {
+            background: rgba(30, 30, 45, 0.9);
+            border-color: #6a6aaa;
+        }
+
+        body.dark-theme .anime-tag {
+            background: rgba(106, 106, 170, 0.2);
+        }
+
+        body.dark-theme .anime-review {
+            background: rgba(106, 106, 170, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .anime-list {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 15px;
+            }
+        }
+
+        /* 博客内容两栏布局 */
+        .blog-content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 30px;
+        }
+
+        .blog-main-column {
+            min-width: 0;
+        }
+
+        /* 统计侧边栏 */
+        .stats-sidebar {
+            position: sticky;
+            top: 20px;
+            align-self: start;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .stats-card {
+            background: var(--bg-card, rgba(255, 255, 255, 0.9));
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(255, 107, 157, 0.15);
+            border: 2px solid var(--light-pink);
+        }
+
+        .stats-title {
+            color: var(--primary-pink);
+            font-size: 1.1rem;
+            margin: 0 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 107, 157, 0.2);
+        }
+
+        /* 访问统计 */
+        .stats-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            background: linear-gradient(135deg, #fff5f8 0%, #fff 100%);
+            border-radius: 12px;
+        }
+
+        .stat-icon {
+            font-size: 1.5rem;
+        }
+
+        .stat-info {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-pink);
+        }
+
+        /* 热门文章 */
+        .popular-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .popular-post-item {
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+            background: linear-gradient(135deg, #fff5f8 0%, #fff 100%);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 158, 204, 0.3);
+        }
+
+        .popular-post-item:hover {
+            transform: translateX(5px);
+            border-color: var(--primary-pink);
+        }
+
+        .popular-post-rank {
+            font-size: 1.2rem;
+            font-weight: 600;
+            min-width: 24px;
+            text-align: center;
+        }
+
+        .rank-1 { color: #ffd700; }
+        .rank-2 { color: #c0c0c0; }
+        .rank-3 { color: #cd7f32; }
+
+        .popular-post-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .popular-post-title {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 4px;
+        }
+
+        .popular-post-meta {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* 暗黑模式适配 */
+        body.dark-theme .stats-card {
+            background: rgba(30, 30, 45, 0.9);
+            border-color: #6a6aaa;
+        }
+
+        body.dark-theme .stat-item,
+        body.dark-theme .popular-post-item {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        body.dark-theme .stats-title {
+            border-color: #6a6aaa;
+        }
+
+        body.dark-theme .popular-post-title {
+            color: #e0e0ff;
+        }
+
+        /* 响应式 */
+        @media (max-width: 1024px) {
+            .blog-content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-sidebar {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body class="sakura-theme">
+    <div id="sakura-container"></div>
+    <div id="stars-container"></div>
+
+    <!-- 返回主页按钮 -->
+    <button class="back-home-btn" onclick="window.location.href='index.html'">
+        <span>🏠</span> 返回主页
+    </button>
+
+    <main class="site-main">
+        <!-- 页面标题 -->
+        <div class="blog-header-section">
+            <div class="blog-header-content">
+                <h1 class="blog-page-title">📚 机械仔的二次元空间</h1>
+                <p class="blog-page-subtitle">博客 · 笔记 · 关于我</p>
+                <div class="blog-stats">
+                    <div class="blog-stat">
+                        <span class="stat-number" id="post-count">0</span>
+                        <span class="stat-label">篇文章</span>
+                    </div>
+                    <div class="blog-stat">
+                        <span class="stat-number" id="note-count">0</span>
+                        <span class="stat-label">篇笔记</span>
+                    </div>
+                    <div class="blog-stat">
+                        <span class="stat-number" id="total-words">0</span>
+                        <span class="stat-label">总字数</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 标签页导航 -->
+        <div class="tab-navigation">
+            <div class="tab-buttons">
+                <a href="blog.html" class="write-post-btn-small" title="写文章">✨</a>
+                <button class="tab-btn active" data-tab="blog">
+                    <span>📚</span> 博客文章
+                </button>
+                <button class="tab-btn" data-tab="notes">
+                    <span>📝</span> 我的笔记
+                </button>
+                <button class="tab-btn" data-tab="anime">
+                    <span>🎬</span> 番剧推荐
+                </button>
+                <button class="tab-btn" data-tab="about">
+                    <span>👤</span> 关于我
+                </button>
+                <div class="resources-dropdown">
+                    <button class="resources-btn" id="resources-btn">
+                        <span>📦</span> 资源
+                    </button>
+                    <div class="resources-menu" id="resources-menu">
+                        <div class="resources-header">
+                            <span>📦 资源下载</span>
+                            <button class="resources-close" id="resources-close">×</button>
+                        </div>
+                        <div class="resources-list" id="resources-list">
+                            <!-- 资源项通过 JS 动态加载 -->
+                        </div>
+                    </div>
+                </div>
+                <button class="theme-toggle-btn" id="theme-toggle" title="切换主题">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- 博客文章标签页 -->
+        <div class="tab-content active" id="tab-blog">
+            <div class="blog-content-wrapper">
+                <!-- 左侧：搜索、标签和文章列表 -->
+                <div class="blog-main-column">
+                    <!-- 搜索和标签过滤 -->
+                    <section class="filter-section">
+                        <div class="search-box">
+                            <input type="text" id="search-input" placeholder="搜索文章标题、内容或标签...">
+                            <span class="search-icon">🔍</span>
+                        </div>
+                        <div class="tags-filter" id="tags-filter"></div>
+                    </section>
+
+            <!-- 博客文章列表 -->
+            <section class="blog-section">
+                <div class="loading-state" id="loading-state">
+                    <div class="loading-anime">
+                        <span>正在加载文章</span>
+                        <div class="loading-dots">
+                            <span>.</span><span>.</span><span>.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-list-container" id="blog-list-container" style="display: none;"></div>
+
+                <div class="empty-state" id="empty-state" style="display: none;">
+                    <div class="empty-state-icon">📝</div>
+                    <h3>暂无文章</h3>
+                    <p>前往管理页面写文章吧~</p>
+                    <a href="blog.html" class="btn btn-primary">✨ 写文章</a>
+                </div>
+            </section>
+
+            <!-- 樱花分隔线 -->
+            <div class="sakura-divider">
+                <span class="divider-sakura">🌸</span>
+                <span class="divider-sakura">✿</span>
+                <span class="divider-sakura">🌸</span>
+            </div>
+
+            <!-- 动漫角色画廊 -->
+            <section class="gallery-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="title-icon">🎨</span>
+                        动漫角色收藏
+                        <span class="title-decoration">❀</span>
+                    </h2>
+                </div>
+
+                <div class="gallery-grid" id="gallery-grid">
+                    <div class="character-card" data-character="1">
+                        <div class="card-inner">
+                            <div class="card-image">
+                                <img src="https://picsum.photos/300/400?random=1" alt="角色1">
+                                <div class="card-overlay">
+                                    <button class="view-btn">🔍 查看</button>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <h3 class="character-name">初音未来</h3>
+                                <p class="character-source">VOCALOID</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="character-card" data-character="2">
+                        <div class="card-inner">
+                            <div class="card-image">
+                                <img src="https://picsum.photos/300/400?random=2" alt="角色2">
+                                <div class="card-overlay">
+                                    <button class="view-btn">🔍 查看</button>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <h3 class="character-name">雷姆</h3>
+                                <p class="character-source">Re:从零开始的异世界生活</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="character-card" data-character="3">
+                        <div class="card-inner">
+                            <div class="card-image">
+                                <img src="https://picsum.photos/300/400?random=3" alt="角色3">
+                                <div class="card-overlay">
+                                    <button class="view-btn">🔍 查看</button>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <h3 class="character-name">三笠</h3>
+                                <p class="character-source">进击的巨人</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="character-card" data-character="4">
+                        <div class="card-inner">
+                            <div class="card-image">
+                                <img src="https://picsum.photos/300/400?random=4" alt="角色4">
+                                <div class="card-overlay">
+                                    <button class="view-btn">🔍 查看</button>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <h3 class="character-name">绫波丽</h3>
+                                <p class="character-source">新世纪福音战士</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="character-card" data-character="5">
+                        <div class="card-inner">
+                            <div class="card-image">
+                                <img src="https://picsum.photos/300/400?random=5" alt="角色5">
+                                <div class="card-overlay">
+                                    <button class="view-btn">🔍 查看</button>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <h3 class="character-name">渡边曜</h3>
+                                <p class="character-source">Love Live! Sunshine!!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="character-card" data-character="6">
+                        <div class="card-inner">
+                            <div class="card-image">
+                                <img src="https://picsum.photos/300/400?random=6" alt="角色6">
+                                <div class="card-overlay">
+                                    <button class="view-btn">🔍 查看</button>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <h3 class="character-name">樱岛麻衣</h3>
+                                <p class="character-source">青春猪头少年</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 樱花分隔线 -->
+            <div class="sakura-divider">
+                <span class="divider-sakura">🌸</span>
+                <span class="divider-sakura">✿</span>
+                <span class="divider-sakura">🌸</span>
+            </div>
+
+            <!-- 好友评价区 -->
+            <section class="testimonials-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="title-icon">💬</span>
+                        伙伴们的评价
+                        <span class="title-decoration">❀</span>
+                    </h2>
+                </div>
+
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=friend1" alt="好友头像" class="testimonial-avatar">
+                            <div class="testimonial-author">
+                                <h4 class="author-name">小明同学</h4>
+                                <span class="testimonial-date">2026-01-20</span>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"这个网站太可爱了！二次元风格满满，每次来都觉得很治愈 ~"</p>
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=friend2" alt="好友头像" class="testimonial-avatar">
+                            <div class="testimonial-author">
+                                <h4 class="author-name">动漫迷</h4>
+                                <span class="testimonial-date">2026-01-18</span>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"角色收藏 gallery 很用心，樱花飘落效果超级赞！"</p>
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=friend3" alt="好友头像" class="testimonial-avatar">
+                            <div class="testimonial-author">
+                                <h4 class="author-name">旅行者</h4>
+                                <span class="testimonial-date">2026-01-15</span>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"在这里找到了很多有趣的游戏和内容，网站越做越好啦！"</p>
+                        <div class="testimonial-rating">⭐⭐⭐⭐</div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=friend4" alt="好友头像" class="testimonial-avatar">
+                            <div class="testimonial-author">
+                                <h4 class="author-name">Coding Cat</h4>
+                                <span class="testimonial-date">2026-01-12</span>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"作为开发者，这个网站的交互体验做得很棒，学习了！"</p>
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 樱花分隔线 -->
+            <div class="sakura-divider">
+                <span class="divider-sakura">🌸</span>
+                <span class="divider-sakura">✿</span>
+                <span class="divider-sakura">🌸</span>
+            </div>
+
+            <!-- 访客留言区 -->
+            <section class="guestbook-section">
+                <div class="guestbook-card">
+                    <div class="guestbook-icon">💌</div>
+                    <h2 class="guestbook-title">留下你的足迹</h2>
+                    <p class="guestbook-desc">想说什么？欢迎给我留言 ~ 任何想法都可以！</p>
+                    <a href="https://ngl.link/ht43131" target="_blank" class="guestbook-btn">
+                        <span>✏️</span> 写下留言
+                    </a>
+                    <p class="guestbook-note">匿名留言 • 支持文字和图片</p>
+                </div>
+            </section>
+                </div>
+
+                <!-- 右侧：统计侧边栏 -->
+                <aside class="stats-sidebar">
+                    <!-- 访问统计 -->
+                    <div class="stats-card">
+                        <h3 class="stats-title">📊 访问统计</h3>
+                        <div class="stats-content">
+                            <div class="stat-item">
+                                <span class="stat-icon">📅</span>
+                                <div class="stat-info">
+                                    <span class="stat-label">今日访问</span>
+                                    <span class="stat-value" id="today-visits">0</span>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-icon">📈</span>
+                                <div class="stat-info">
+                                    <span class="stat-label">总访问量</span>
+                                    <span class="stat-value" id="total-visits">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 热门文章排行 -->
+                    <div class="stats-card">
+                        <h3 class="stats-title">🔥 热门文章</h3>
+                        <div class="popular-posts" id="popular-posts">
+                            <!-- JS 动态加载 -->
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+
+        <!-- 笔记本标签页 -->
+        <div class="tab-content" id="tab-notes">
+            <div class="notes-link-section">
+                <div class="about-link-card">
+                    <div class="about-link-icon">📝</div>
+                    <h2 class="about-link-title">我的笔记本</h2>
+                    <p class="about-link-desc">记录学习笔记、生活随笔和工作备忘</p>
+                    <a href="notes/notes.html" class="btn btn-primary">
+                        <span>🚀</span> 前往笔记本
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 番剧推荐标签页 -->
+        <div class="tab-content" id="tab-anime">
+            <div class="anime-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="title-icon">🎬</span>
+                        番剧推荐
+                        <span class="title-decoration">✨</span>
+                    </h2>
+                </div>
+
+                <!-- 番剧分类筛选 -->
+                <div class="anime-filters">
+                    <button class="filter-btn active" data-filter="all">全部</button>
+                    <button class="filter-btn" data-filter="watching">追番中</button>
+                    <button class="filter-btn" data-filter="completed">已完结</button>
+                    <button class="filter-btn" data-filter="plan">计划补番</button>
+                </div>
+
+                <!-- 番剧列表容器 -->
+                <div class="anime-list" id="anime-list">
+                    <!-- 通过 JS 动态加载 -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 关于我标签页 -->
+        <div class="tab-content" id="tab-about">
+            <div class="about-link-section">
+                <div class="about-link-card">
+                    <div class="about-link-icon">👤</div>
+                    <h2 class="about-link-title">关于我</h2>
+                    <p class="about-link-desc">查看我的完整介绍、技能树、项目经历和联系方式</p>
+                    <a href="abouts/about.html" class="btn btn-primary">
+                        <span>🚀</span> 前往关于我页面
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 文章详情模态框 -->
+    <div class="post-modal" id="post-modal">
+        <div class="modal-overlay" id="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">✕</button>
+            <div class="modal-scroll">
+                <article class="post-modal-article" id="post-modal-content"></article>
+                <div class="post-modal-meta" id="post-modal-meta"></div>
+                <div class="comment-section">
+                    <h3>💬 评论区</h3>
+                    <div id="gitalk-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 灯箱模态框 -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightbox-close">✕</button>
+        <button class="lightbox-prev" id="lightbox-prev">❮</button>
+        <button class="lightbox-next" id="lightbox-next">❯</button>
+        <div class="lightbox-content">
+            <img src="" alt="放大图片" class="lightbox-image" id="lightbox-image">
+            <div class="lightbox-info">
+                <h3 class="lightbox-name" id="lightbox-name"></h3>
+                <p class="lightbox-source" id="lightbox-source"></p>
+            </div>
+        </div>
+    </div>
+
+    <button class="back-to-top" id="back-to-top" title="回到顶部">
+        <span>↑</span>
+    </button>
+
+    <script src="posts-index.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/blog.js"></script>
+    <script>
+        // 资源配置 - 方便添加新资源
+        const RESOURCES = [
+            { name: '四足机器人控制算法', url: 'resources/《四足机器人控制算法》杭州宇树科技有限公司【2023】.pdf', type: 'pdf', size: '117MB', icon: '🤖' },
+            { name: '控制之美（第2册）', url: 'resources/控制之美-2册.zip', type: 'zip', size: '66MB', icon: '📘' },
+            // 添加更多资源...
+            // { name: '资源名称', url: '资源路径', type: 'pdf/zip/md', size: '文件大小', icon: '图标' },
+        ];
+
+        // 番剧推荐配置
+        const ANIME_LIST = [
+            {
+                title: '孤独摇滚！',
+                cover: 'https://picsum.photos/300/420?random=101',
+                status: 'completed',
+                rating: '9.5',
+                year: '2022',
+                episodes: '12话',
+                tags: ['音乐', '校园', '喜剧'],
+                review: '一部非常优秀的音乐番，角色塑造和音乐制作都很棒！'
+            },
+            {
+                title: '进击的巨人 最终季',
+                cover: 'https://picsum.photos/300/420?random=102',
+                status: 'completed',
+                rating: '9.8',
+                year: '2023',
+                episodes: '28话',
+                tags: ['动作', '奇幻', '剧情'],
+                review: '史诗级的结局，埋下的伏笔全部回收，震撼！'
+            },
+            {
+                title: '葬送的芙莉莲',
+                cover: 'https://picsum.photos/300/420?random=103',
+                status: 'watching',
+                rating: '9.0',
+                year: '2024',
+                episodes: '连载中',
+                tags: ['奇幻', '冒险', '治愈'],
+                review: '芙莉莲的冒险之旅，世界观设定很精彩！'
+            },
+            {
+                title: '药屋少女的呢喃',
+                cover: 'https://picsum.photos/300/420?random=104',
+                status: 'watching',
+                rating: '8.8',
+                year: '2024',
+                episodes: '连载中',
+                tags: ['日常', '历史', '治愈'],
+                review: '宁静的日常番，画风唯美，节奏舒缓。'
+            },
+            {
+                title: '排球少年！！',
+                cover: 'https://picsum.photos/300/420?random=105',
+                status: 'plan',
+                rating: '9.2',
+                year: '2020',
+                episodes: '49话',
+                tags: ['运动', '热血', '校园'],
+                review: '经典运动番，热血沸腾！'
+            },
+            {
+                title: '鬼灭之刃',
+                cover: 'https://picsum.photos/300/420?random=106',
+                status: 'completed',
+                rating: '9.0',
+                year: '2019',
+                episodes: '26话',
+                tags: ['动作', '奇幻', '热血'],
+                review: '画面制作精良，战斗场景震撼。'
+            }
+        ];
+
+        // 标签页切换功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tabName = btn.dataset.tab;
+
+                    // 移除所有激活状态
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+
+                    // 添加激活状态
+                    btn.classList.add('active');
+                    document.getElementById('tab-' + tabName).classList.add('active');
+                });
+            });
+
+            // 更新笔记统计
+            updateNoteCount();
+
+            // 初始化资源菜单
+            initResourcesMenu();
+
+            // 初始化暗黑模式切换
+            initDarkMode();
+
+            // 初始化番剧推荐
+            initAnimeList();
+
+            // 初始化访问统计
+            initVisitStats();
+
+            // 初始化热门文章
+            initPopularPosts();
+        });
+
+        function updateNoteCount() {
+            const notes = JSON.parse(localStorage.getItem('notes') || '[]');
+            const noteCountEl = document.getElementById('note-count');
+            if (noteCountEl) {
+                noteCountEl.textContent = notes.length;
+            }
+        }
+
+        // 暗黑模式切换
+        function initDarkMode() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = themeToggle?.querySelector('.theme-icon');
+
+            // 加载保存的主题设置
+            const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (savedDarkMode) {
+                document.body.classList.add('dark-theme');
+                if (themeIcon) themeIcon.textContent = '☀️';
+            }
+
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    document.body.classList.toggle('dark-theme');
+                    const isDark = document.body.classList.contains('dark-theme');
+
+                    // 保存设置
+                    localStorage.setItem('darkMode', isDark);
+
+                    // 更新图标
+                    if (themeIcon) {
+                        themeIcon.textContent = isDark ? '☀️' : '🌙';
+                    }
+
+                    // 触发图标动画
+                    themeToggle.style.transform = 'rotate(360deg)';
+                    setTimeout(() => {
+                        themeToggle.style.transform = '';
+                    }, 300);
+                });
+            }
+        }
+
+        // 初始化资源菜单
+        function initResourcesMenu() {
+            const resourcesBtn = document.getElementById('resources-btn');
+            const resourcesMenu = document.getElementById('resources-menu');
+            const resourcesClose = document.getElementById('resources-close');
+            const resourcesList = document.getElementById('resources-list');
+
+            // 渲染资源列表
+            if (resourcesList && RESOURCES.length > 0) {
+                resourcesList.innerHTML = RESOURCES.map(resource => `
+                    <a href="${resource.url}" class="resource-item" data-type="${resource.type}" download>
+                        <span class="resource-icon">${resource.icon}</span>
+                        <div class="resource-info">
+                            <span class="resource-name">${resource.name}</span>
+                            <span class="resource-meta">${resource.type.toUpperCase()} • ${resource.size}</span>
+                        </div>
+                        <span class="resource-download">⬇️</span>
+                    </a>
+                `).join('');
+            }
+
+            // 打开菜单
+            if (resourcesBtn) {
+                resourcesBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    resourcesMenu.classList.toggle('active');
+                });
+            }
+
+            // 关闭按钮
+            if (resourcesClose) {
+                resourcesClose.addEventListener('click', () => {
+                    resourcesMenu.classList.remove('active');
+                });
+            }
+
+            // 点击外部关闭
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.resources-dropdown')) {
+                    resourcesMenu.classList.remove('active');
+                }
+            });
+        }
+
+        // 番剧推荐功能
+        function initAnimeList() {
+            const animeList = document.getElementById('anime-list');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+
+            // 渲染番剧列表
+            function renderAnime(filter = 'all') {
+                const filtered = filter === 'all'
+                    ? ANIME_LIST
+                    : ANIME_LIST.filter(anime => anime.status === filter);
+
+                animeList.innerHTML = filtered.map(anime => {
+                    const statusText = {
+                        'watching': '追番中',
+                        'completed': '已完结',
+                        'plan': '计划补番'
+                    };
+
+                    return `
+                        <div class="anime-card" data-status="${anime.status}">
+                            <div class="anime-cover">
+                                <img src="${anime.cover}" alt="${anime.title}">
+                                <span class="anime-status ${anime.status}">${statusText[anime.status]}</span>
+                                <span class="anime-rating">★ ${anime.rating}</span>
+                            </div>
+                            <div class="anime-info">
+                                <h3 class="anime-title">${anime.title}</h3>
+                                <div class="anime-meta">
+                                    <span>📅 ${anime.year}</span>
+                                    <span>📺 ${anime.episodes}</span>
+                                </div>
+                                <div class="anime-tags">
+                                    ${anime.tags.map(tag => `<span class="anime-tag">${tag}</span>`).join('')}
+                                </div>
+                                <p class="anime-review">${anime.review}</p>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            // 初始渲染
+            renderAnime();
+
+            // 筛选按钮事件
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    renderAnime(btn.dataset.filter);
+                });
+            });
+        }
+
+        // 访问统计功能
+        function initVisitStats() {
+            const todayVisitsEl = document.getElementById('today-visits');
+            const totalVisitsEl = document.getElementById('total-visits');
+
+            // 获取访问数据
+            let visitData = JSON.parse(localStorage.getItem('visitStats') || '{}');
+            const today = new Date().toDateString();
+
+            // 初始化今日访问
+            if (!visitData[today]) {
+                visitData[today] = 0;
+            }
+
+            if (!visitData.total) {
+                visitData.total = 0;
+            }
+
+            // 增加访问计数
+            visitData[today]++;
+            visitData.total++;
+
+            // 保存
+            localStorage.setItem('visitStats', JSON.stringify(visitData));
+
+            // 显示
+            if (todayVisitsEl) todayVisitsEl.textContent = visitData[today];
+            if (totalVisitsEl) totalVisitsEl.textContent = formatNumber(visitData.total);
+        }
+
+        // 热门文章功能
+        function initPopularPosts() {
+            const popularContainer = document.getElementById('popular-posts');
+
+            // 从 localStorage 获取文章点击数据
+            let postViews = JSON.parse(localStorage.getItem('postViews') || '{}');
+
+            // 为每个文章添加点击监听
+            document.addEventListener('click', (e) => {
+                const postCard = e.target.closest('.blog-post-card');
+                if (postCard) {
+                    const path = postCard.dataset.path;
+                    if (path) {
+                        postViews[path] = (postViews[path] || 0) + 1;
+                        localStorage.setItem('postViews', JSON.stringify(postViews));
+                        updatePopularPosts();
+                    }
+                }
+            });
+
+            updatePopularPosts();
+
+            function updatePopularPosts() {
+                // 按浏览量排序获取前5篇文章
+                const sortedPosts = Object.entries(postViews)
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 5);
+
+                if (sortedPosts.length === 0) {
+                    popularContainer.innerHTML = '<p style="text-align:center;color:var(--text-secondary);font-size:0.85rem;">暂无数据</p>';
+                    return;
+                }
+
+                popularContainer.innerHTML = sortedPosts.map(([path, views], index) => {
+                    const post = allPosts.find(p => p.path === path);
+                    if (!post) return '';
+
+                    return `
+                        <a href="javascript:void(0)" class="popular-post-item" data-path="${post.path}">
+                            <span class="popular-post-rank rank-${index + 1}">${index + 1}</span>
+                            <div class="popular-post-info">
+                                <div class="popular-post-title">${post.title}</div>
+                                <div class="popular-post-meta">👁️ ${views} 次浏览</div>
+                            </div>
+                        </a>
+                    `;
+                }).join('');
+
+                // 添加点击事件
+                popularContainer.querySelectorAll('.popular-post-item').forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const path = item.dataset.path;
+                        const post = allPosts.find(p => p.path === path);
+                        if (post) {
+                            openPostModal(post);
+                        }
+                    });
+                });
+            }
+
+            // 初始更新
+            setTimeout(updatePopularPosts, 1000);
+        }
+
+        // 格式化数字
+        function formatNumber(num) {
+            if (num >= 10000) return (num / 10000).toFixed(1) + 'w';
+            if (num >= 1000) return (num / 1000).toFixed(1) + 'k';
+            return num.toString();
+        }
+    </script>
+</body>
+</html>

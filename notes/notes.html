@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>笔记本 - 机械仔的小站</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="notes.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+</head>
+<body class="sakura-theme">
+    <div id="sakura-container"></div>
+    <div id="stars-container"></div>
+
+    <!-- 返回按钮 -->
+    <button class="back-btn" onclick="window.location.href='../anime-blog.html'">
+        <span>🌸</span> 返回二次元博客
+    </button>
+
+    <main class="notes-container">
+        <!-- 页面标题 -->
+        <header class="notes-header">
+            <h1>📝 我的笔记本</h1>
+            <div class="header-actions">
+                <input type="text" id="searchInput" class="search-input" placeholder="搜索笔记...">
+                <button class="icon-btn" onclick="searchNotes()" title="搜索">🔍</button>
+                <div class="header-divider"></div>
+                <div class="notes-stats-mini">
+                    <span class="stat-item">📝 <strong id="notesCount">0</strong></span>
+                </div>
+                <button class="header-btn" onclick="clearAllNotes()" title="清空所有笔记">🗑️</button>
+                <button class="header-btn" onclick="focusEditor()" title="新建笔记">✨ 新建</button>
+            </div>
+        </header>
+
+        <div class="notes-content">
+            <!-- 左侧：编辑器 -->
+            <section class="editor-section">
+                <div class="editor-card">
+                    <!-- 分类和标签 -->
+                    <div class="editor-meta">
+                        <select id="noteCategory" class="meta-select">
+                            <option value="默认">默认分类</option>
+                            <option value="工作">工作</option>
+                            <option value="生活">生活</option>
+                            <option value="学习">学习</option>
+                        </select>
+                        <input type="text" id="noteTags" class="meta-input" placeholder="添加标签 (逗号分隔)">
+                    </div>
+
+                    <!-- 编辑区 -->
+                    <textarea class="note-input" id="noteInput" placeholder="在这里写下你的想法...
+
+支持 Markdown 格式
+## 标题
+- 列表
+> 引用
+**粗体**"></textarea>
+
+                    <!-- 工具栏 -->
+                    <div class="editor-toolbar">
+                        <div class="markdown-tools">
+                            <button class="tool-btn" onclick="insertMarkdown('bold')" title="粗体">B</button>
+                            <button class="tool-btn" onclick="insertMarkdown('italic')" title="斜体">I</button>
+                            <button class="tool-btn" onclick="insertMarkdown('heading')" title="标题">H</button>
+                            <button class="tool-btn" onclick="insertMarkdown('link')" title="链接">🔗</button>
+                            <button class="tool-btn" onclick="insertMarkdown('image')" title="图片">🖼️</button>
+                            <button class="tool-btn" onclick="insertMarkdown('code')" title="代码">&lt;/&gt;</button>
+                            <button class="tool-btn" onclick="insertMarkdown('list')" title="列表">•</button>
+                        </div>
+                        <div class="action-tools">
+                            <button class="action-btn primary" onclick="saveNote()">
+                                <span>💾</span> 保存
+                            </button>
+                            <button class="action-btn" onclick="togglePreview()">
+                                <span>👁️</span> 预览
+                            </button>
+                            <button class="action-btn" onclick="importMarkdown()">
+                                <span>📥</span> 导入
+                            </button>
+                            <button class="action-btn" onclick="exportNotes()">
+                                <span>📤</span> 导出
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 预览区 -->
+                    <div class="preview-area" id="preview" style="display: none;">
+                        <div class="preview-header">
+                            <span>预览效果</span>
+                            <button class="close-btn" onclick="togglePreview()">×</button>
+                        </div>
+                        <div class="preview-content markdown-body"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 右侧区域 -->
+            <section class="right-section">
+                <!-- 笔记列表 -->
+                <div class="notes-grid" id="notesList"></div>
+
+                <!-- 笔记详情展开面板 -->
+                <div class="note-detail-empty" id="noteDetailEmpty">
+                    <div class="note-detail-empty-icon">📖</div>
+                    <div class="note-detail-empty-text">点击上方笔记查看详情</div>
+                </div>
+
+                <div class="note-detail-panel" id="noteDetailPanel">
+                    <div class="note-detail-header">
+                        <div class="note-detail-meta">
+                            <span class="note-detail-category" id="detailCategory">分类</span>
+                            <span class="note-detail-date" id="detailDate">日期</span>
+                            <div class="note-detail-tags" id="detailTags"></div>
+                        </div>
+                        <div class="note-detail-actions">
+                            <button class="note-detail-btn" onclick="editCurrentNote()">编辑</button>
+                            <button class="note-detail-btn" onclick="shareCurrentNote()">分享</button>
+                            <button class="note-detail-btn delete" onclick="deleteCurrentNote()">删除</button>
+                            <button class="note-detail-btn" onclick="closeDetailPanel()">关闭</button>
+                        </div>
+                    </div>
+                    <div class="note-detail-content markdown-body" id="detailContent"></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 导入预览模态框 -->
+        <div class="import-modal" id="importModal" style="display: none;">
+            <div class="import-modal-content">
+                <div class="import-modal-header">
+                    <h3>📄 导入的 Markdown 文件</h3>
+                    <button class="close-btn" onclick="closeImportModal()">×</button>
+                </div>
+                <div class="import-modal-body">
+                    <div class="import-info">
+                        <label>文件名：</label>
+                        <span id="importFileName"></span>
+                    </div>
+                    <div class="import-preview markdown-body" id="importPreview"></div>
+                </div>
+                <div class="import-modal-footer">
+                    <button class="action-btn" onclick="closeImportModal()">取消</button>
+                    <button class="action-btn primary" onclick="saveImportedNote()">
+                        <span>💾</span> 保存为笔记
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 评论区 -->
+    <div class="comments-section">
+        <div id="gitalk-container"></div>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script src="notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+</body>
+</html>

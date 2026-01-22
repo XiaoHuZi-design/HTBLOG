@@ -1,0 +1,426 @@
+/**
+ * ============================================
+ * 关于页面专用样式
+ * ============================================
+ */
+
+/* ==================== 关于页面头部 ==================== */
+.about-hero-section {
+    text-align: center;
+    padding: var(--spacing-2xl) var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.about-hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.about-avatar-wrapper {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto var(--spacing-lg);
+}
+
+.about-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--white);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    z-index: 1;
+}
+
+body.star-theme .about-avatar {
+    border-color: #6a6aaa;
+}
+
+.about-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: var(--spacing-sm);
+}
+
+.about-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.3rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.about-description {
+    max-width: 700px;
+    margin: 0 auto var(--spacing-lg);
+    color: var(--text-primary);
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.about-socials {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+/* ==================== 技能树 ==================== */
+.skills-section {
+    padding: 0 var(--spacing-md);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.skill-category {
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+    border: var(--border-card);
+}
+
+body.star-theme .skill-category {
+    background: var(--bg-card);
+    border-color: #6a6aaa;
+}
+
+.skill-category-title {
+    color: var(--primary-pink);
+    font-size: 1.3rem;
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+}
+
+body.star-theme .skill-category-title {
+    color: #a8a8ff;
+}
+
+.skill-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.skill-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.skill-name {
+    min-width: 100px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.skill-bar {
+    flex: 1;
+    height: 12px;
+    background: var(--pale-pink);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+body.star-theme .skill-bar {
+    background: #2a2a4a;
+}
+
+.skill-progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-pink), var(--lavender));
+    border-radius: 10px;
+    transition: width 1s ease;
+    animation: skill-fill 1.5s ease-out;
+}
+
+@keyframes skill-fill {
+    from { width: 0; }
+}
+
+/* ==================== 项目卡片 ==================== */
+.projects-section {
+    padding: 0 var(--spacing-md);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.project-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+    border: var(--border-card);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+body.star-theme .project-card {
+    background: var(--bg-card);
+    border-color: #6a6aaa;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.project-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.project-title {
+    color: var(--primary-pink);
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+body.star-theme .project-title {
+    color: #c8c8ff;
+}
+
+.project-description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-sm);
+}
+
+.project-tech {
+    display: flex;
+    gap: var(--spacing-xs);
+    flex-wrap: wrap;
+}
+
+.tech-tag {
+    padding: 4px 12px;
+    background: linear-gradient(145deg, var(--light-pink), var(--lavender-light));
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    color: var(--text-primary);
+}
+
+body.star-theme .tech-tag {
+    background: linear-gradient(145deg, #3a3a5a, #4a4a6a);
+    color: #e0e0ff;
+}
+
+/* ==================== 兴趣爱好 ==================== */
+.hobbies-section {
+    padding: 0 var(--spacing-md);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.hobbies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.hobby-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    border: var(--border-card);
+    transition: all var(--transition-normal);
+}
+
+body.star-theme .hobby-card {
+    background: var(--bg-card);
+    border-color: #6a6aaa;
+}
+
+.hobby-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+}
+
+.hobby-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.hobby-title {
+    color: var(--primary-pink);
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+body.star-theme .hobby-title {
+    color: #c8c8ff;
+}
+
+.hobby-desc {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* ==================== 联系方式 ==================== */
+.contact-section {
+    padding: 0 var(--spacing-md);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.contact-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-2xl);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-lg);
+    border: 3px solid var(--light-pink);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+body.star-theme .contact-card {
+    background: var(--bg-card);
+    border-color: #6a6aaa;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) 0;
+    border-bottom: 1px solid var(--light-pink);
+}
+
+body.star-theme .contact-item {
+    border-color: #6a6aaa;
+}
+
+.contact-item:last-child {
+    border-bottom: none;
+}
+
+.contact-icon {
+    font-size: 2rem;
+    min-width: 40px;
+}
+
+.contact-info {
+    flex: 1;
+}
+
+.contact-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.contact-value {
+    color: var(--primary-pink);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all var(--transition-normal);
+}
+
+.contact-value:hover {
+    color: var(--lavender);
+}
+
+body.star-theme .contact-value {
+    color: #a8a8ff;
+}
+
+/* ==================== 樱花分隔线 ==================== */
+.sakura-divider {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: var(--spacing-2xl) 0;
+}
+
+.divider-sakura {
+    font-size: 2rem;
+    animation: float-sakura 3s ease-in-out infinite;
+}
+
+.divider-sakura:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.divider-sakura:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@keyframes float-sakura {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(10deg); }
+}
+
+/* ==================== 响应式设计 ==================== */
+@media (max-width: 768px) {
+    .about-hero-section {
+        padding: var(--spacing-lg) var(--spacing-sm);
+    }
+
+    .about-avatar-wrapper {
+        width: 120px;
+        height: 120px;
+    }
+
+    .about-avatar {
+        width: 120px;
+        height: 120px;
+    }
+
+    .about-title {
+        font-size: 1.8rem;
+    }
+
+    .about-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .about-description {
+        padding: 0 var(--spacing-sm);
+    }
+
+    .about-socials {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hobbies-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact-card {
+        padding: var(--spacing-lg);
+    }
+
+    .contact-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+}
+
+@media (max-width: 480px) {
+    .hobbies-grid {
+        grid-template-columns: 1fr;
+    }
+}
