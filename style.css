@@ -701,12 +701,21 @@ body.night .anime-btn:hover {
 @media (max-width: 768px) {
     .menu-buttons {
         flex-direction: column;
-        gap: 15px;
+        gap: 12px;
+        width: calc(100% - 40px);
+        margin: 0 auto;
     }
 
     .menu-btn {
         width: 100%;
         justify-content: center;
+        padding: 14px 20px;
+        font-size: 1rem;
+        min-height: 50px;
+    }
+
+    .btn-icon {
+        font-size: 1.3rem;
     }
 
     .social-links {
@@ -715,11 +724,57 @@ body.night .anime-btn:hover {
     }
 
     .glow-text {
-        font-size: 2rem;
+        font-size: 1.8rem;
+    }
+
+    .subtitle {
+        font-size: 0.95rem;
     }
 
     .card-section {
         margin: 15px;
         width: calc(100% - 30px);
+    }
+
+    /* 游戏按钮移动端优化 - 使用网格布局 */
+    .game-buttons {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        width: calc(100% - 30px);
+        margin: 0 auto;
+    }
+
+    .game-buttons .menu-btn {
+        padding: 12px 8px;
+        font-size: 0.85rem;
+        min-height: 48px;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .game-buttons .btn-icon {
+        font-size: 1.5rem;
+    }
+
+    /* 只显示前6个游戏按钮，其余隐藏 */
+    .game-buttons .menu-btn:nth-child(n+7) {
+        display: none;
+    }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 380px) {
+    .game-buttons {
+        grid-template-columns: 1fr;
+    }
+
+    .menu-btn {
+        padding: 12px 16px;
+        font-size: 0.95rem;
+    }
+
+    .glow-text {
+        font-size: 1.5rem;
     }
 }

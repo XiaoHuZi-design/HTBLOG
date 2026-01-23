@@ -121,12 +121,17 @@
             }
 
             .tab-buttons {
-                gap: 5px;
+                gap: 8px;
+                padding: 0 10px;
+                overflow-x: auto;
             }
 
             .tab-btn {
-                padding: 8px 15px;
-                font-size: 0.9rem;
+                padding: 12px 16px;
+                font-size: 0.95rem;
+                min-height: 44px;  /* 确保手指容易点击 */
+                white-space: nowrap;
+                flex-shrink: 0;
             }
         }
 

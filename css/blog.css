@@ -888,6 +888,8 @@ body.star-theme .comment-section h3 {
 
     .blog-list-container {
         grid-template-columns: 1fr;
+        /* 移动端添加边缘间距，避免卡片贴边 */
+        padding: 0 5px;
     }
 
     .gallery-grid {
@@ -903,7 +905,16 @@ body.star-theme .comment-section h3 {
     }
 
     .modal-scroll {
-        padding: 60px 20px 20px;
+        padding: 70px 20px 30px;
+    }
+
+    .modal-close {
+        /* 确保关闭按钮在移动端更容易点击 */
+        width: 48px;
+        height: 48px;
+        top: 15px;
+        right: 15px;
+        font-size: 1.4rem;
     }
 
     .modal-post-title {
