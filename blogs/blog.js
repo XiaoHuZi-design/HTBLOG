@@ -409,8 +409,8 @@ function parseMarkdown(content, filename) {
         wordCount: 0
     };
 
-    // 解析Front Matter
-    const fmMatch = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+    // 兼容 Windows (\r\n) 和 Unix (\n) 换行符
+    const fmMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
     if (fmMatch) {
         const frontMatter = fmMatch[1];
         post.content = fmMatch[2];
@@ -426,21 +426,38 @@ function parseMarkdown(content, filename) {
         // 解析标签 - 支持多种格式
         // tags: ["tag1", "tag2", "tag3"]
         // tags: [tag1, tag2, tag3]
-        const tagsMatch = frontMatter.match(/tags:\s*(\[.+\])/);
+        const tagsMatch = frontMatter.match(/tags:\s*(\[[\s\S]*?\])/);
         if (tagsMatch) {
             try {
-                // 去掉方括号，分割并清理标签
+                // 尝试用 JSON.parse 解析（处理带引号的格式）
                 let tagsStr = tagsMatch[1].trim();
-                // 移除外层的方括号
-                tagsStr = tagsStr.slice(1, -1);
-                // 分割并清理
-                post.tags = tagsStr.split(',')
-                    .map(t => t.trim())
-                    .map(t => t.replace(/^["']|["']$/g, ''))
-                    .filter(t => t.length > 0);
+                // 将单引号转换为双引号，以便 JSON.parse 能正确解析
+                tagsStr = tagsStr.replace(/'/g, '"');
+                const parsed = JSON.parse(tagsStr);
+                if (Array.isArray(parsed)) {
+                    post.tags = parsed.map(t => String(t).trim()).filter(t => t.length > 0);
+                    console.log('标签解析成功:', post.title, post.tags);
+                } else {
+                    console.warn('解析结果不是数组:', parsed);
+                    post.tags = [];
+                }
             } catch (e) {
-                console.warn('标签解析失败:', e);
-                post.tags = [];
+                // JSON 解析失败，尝试简单的 split 方法
+                console.warn('JSON 解析失败，使用 split 方法:', e, '原始字符串:', tagsMatch[1]);
+                try {
+                    let tagsStr = tagsMatch[1].trim();
+                    // 移除外层的方括号
+                    tagsStr = tagsStr.slice(1, -1);
+                    // 分割并清理
+                    post.tags = tagsStr.split(',')
+                        .map(t => t.trim())
+                        .map(t => t.replace(/^["']|["']$/g, ''))
+                        .filter(t => t.length > 0);
+                    console.log('split 方法解析成功:', post.tags);
+                } catch (e2) {
+                    console.warn('标签解析失败:', e2);
+                    post.tags = [];
+                }
             }
         }
     }
