@@ -953,7 +953,7 @@
         <!-- 标签页导航 -->
         <div class="tab-navigation">
             <div class="tab-buttons">
-                <a href="blog.html" class="write-post-btn-small" title="写文章">✨</a>
+                <a href="blogs/blog.html" class="write-post-btn-small" title="写文章">✨</a>
                 <button class="tab-btn active" data-tab="blog">
                     <span>📚</span> 博客文章
                 </button>
@@ -1017,7 +1017,7 @@
                     <div class="empty-state-icon">📝</div>
                     <h3>暂无文章</h3>
                     <p>前往管理页面写文章吧~</p>
-                    <a href="blog.html" class="btn btn-primary">✨ 写文章</a>
+                    <a href="blogs/blog.html" class="btn btn-primary">✨ 写文章</a>
                 </div>
             </section>
 
@@ -1349,7 +1349,8 @@
     <script>
         // 资源配置 - 方便添加新资源
         const RESOURCES = [
-            { name: '四足机器人控制算法', url: 'resources/《四足机器人控制算法》杭州宇树科技有限公司【2023】.pdf', type: 'pdf', size: '117MB', icon: '🤖' },
+            { name: '理工科火热书籍汇总', url: 'https://kcnge36u6iwd.feishu.cn/wiki/SJfYwHqeIi3vItk7H4NcU96Enyc?fromScene=spaceOverview', type: 'link', size: '飞书文档', icon: '📚' },
+            { name: '四足机器人控制算法', url: 'https://kcnge36u6iwd.feishu.cn/wiki/SJfYwHqeIi3vItk7H4NcU96Enyc?fromScene=spaceOverview#share-VXiodLGMfo3aznxGoBhcAhZgnId', type: 'pdf', size: '117MB', icon: '🤖' },
             { name: '控制之美（第2册）', url: 'resources/控制之美-2册.zip', type: 'zip', size: '66MB', icon: '📘' },
             // 添加更多资源...
             // { name: '资源名称', url: '资源路径', type: 'pdf/zip/md', size: '文件大小', icon: '图标' },
@@ -1508,16 +1509,19 @@
 
             // 渲染资源列表
             if (resourcesList && RESOURCES.length > 0) {
-                resourcesList.innerHTML = RESOURCES.map(resource => `
-                    <a href="${resource.url}" class="resource-item" data-type="${resource.type}" download>
+                resourcesList.innerHTML = RESOURCES.map(resource => {
+                    const isExternalLink = resource.type === 'link';
+                    return `
+                    <a href="${resource.url}" class="resource-item" data-type="${resource.type}" ${isExternalLink ? 'target="_blank" rel="noopener noreferrer"' : 'download'}>
                         <span class="resource-icon">${resource.icon}</span>
                         <div class="resource-info">
                             <span class="resource-name">${resource.name}</span>
                             <span class="resource-meta">${resource.type.toUpperCase()} • ${resource.size}</span>
                         </div>
-                        <span class="resource-download">⬇️</span>
+                        <span class="resource-download">${isExternalLink ? '🔗' : '⬇️'}</span>
                     </a>
-                `).join('');
+                    `;
+                }).join('');
             }
 
             // 打开菜单

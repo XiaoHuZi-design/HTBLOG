@@ -49,8 +49,23 @@ async function loadLocalPosts() {
     allPosts = await Promise.all(
         LOCAL_POSTS.map(async (postInfo) => {
             try {
-                const response = await fetch(postInfo.path);
-                const content = await response.text();
+                // 首先尝试本地 fetch
+                let response, content;
+                try {
+                    response = await fetch(postInfo.path);
+                    content = await response.text();
+                } catch (localError) {
+                    // 本地 fetch 失败，回退到 GitHub API
+                    console.log(`本地加载失败，尝试 GitHub API: ${postInfo.path}`);
+                    const filename = postInfo.path.split('/').pop();
+                    const { owner, repo, branch, path } = CONFIG.GITHUB;
+                    const githubContent = await githubAPI(`/repos/${owner}/${repo}/contents/${path}/${filename}?ref=${branch}`);
+                    if (githubContent) {
+                        content = decodeBase64(githubContent.content);
+                    } else {
+                        throw new Error('GitHub API also failed');
+                    }
+                }
                 const parsed = parseMarkdown(content, postInfo.path.split('/').pop());
                 return {
                     ...parsed,
@@ -61,7 +76,7 @@ async function loadLocalPosts() {
                     filename: postInfo.path.split('/').pop()
                 };
             } catch (error) {
-                console.warn('加载文章失败:', postInfo.path);
+                console.warn('加载文章失败:', postInfo.path, error);
                 return null;
             }
         })

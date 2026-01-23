@@ -324,7 +324,7 @@ async function loadLatestPosts() {
 
         // 渲染文章卡片
         container.innerHTML = posts.map(post => `
-            <a href="blog.html" class="post-card">
+            <a href="blogs/blog.html" class="post-card">
                 <div class="post-cover">
                     <img src="https://picsum.photos/400/250?random=${hashCode(post.title)}" alt="${escapeHtml(post.title)}">
                 </div>
