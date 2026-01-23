@@ -703,14 +703,13 @@ body.night .anime-btn:hover {
         flex-wrap: wrap;
         justify-content: center;
         gap: 8px;
-        padding: 0 12px;
+        padding: 0 16px;
         width: 100%;
         box-sizing: border-box;
     }
 
     .menu-btn {
-        flex: 1 1 calc(50% - 4px);
-        min-width: 0;
+        flex: 0 0 calc(50% - 4px);
         justify-content: center;
         padding: 10px 12px;
         font-size: 0.85rem;
@@ -721,26 +720,30 @@ body.night .anime-btn:hover {
         font-size: 1.1rem;
     }
 
-    /* 隐藏B站、抖音、YouTube，只保留Link3 */
+    /* 隐藏B站、抖音、YouTube */
     .social-links a[href*="bilibili"],
     .social-links a[href*="douyin"],
     .social-links a[href*="youtube"] {
         display: none;
     }
 
+    /* Link3按钮样式统一为上面按钮的风格 */
     .social-links {
-        flex-wrap: wrap;
         justify-content: center;
         gap: 8px;
-        padding: 0 12px;
+        padding: 0 16px;
         width: 100%;
         box-sizing: border-box;
         margin-top: 20px;
     }
 
     .social-card {
-        flex: 0 0 auto;
-        padding: 10px 16px;
+        flex: 0 0 calc(50% - 4px);
+        justify-content: center;
+        padding: 10px 12px;
+        font-size: 0.85rem;
+        min-height: 44px;
+        border-radius: 25px;
     }
 
     .glow-text {
@@ -752,13 +755,18 @@ body.night .anime-btn:hover {
     }
 
     .card-section {
-        margin: 10px 12px;
-        width: calc(100% - 24px);
-        max-height: calc(100vh - 200px);
+        margin: 10px 16px;
+        width: calc(100% - 32px);
+        max-height: 70vh;
         overflow-y: auto;
+        box-sizing: border-box;
     }
 
-    /* 游戏按钮移动端 - 2列网格，不隐藏任何按钮 */
+    .card-swiper {
+        padding: 10px 0;
+    }
+
+    /* 游戏按钮移动端 - 2列网格 */
     .game-buttons {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
