@@ -888,8 +888,7 @@ body.star-theme .comment-section h3 {
 
     .blog-list-container {
         grid-template-columns: 1fr;
-        /* 移动端添加边缘间距，避免卡片贴边 */
-        padding: 0 5px;
+        padding: 0;
     }
 
     .gallery-grid {

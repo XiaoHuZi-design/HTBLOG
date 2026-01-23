@@ -744,6 +744,17 @@ body.night .anime-btn:hover {
         font-size: 0.85rem;
         min-height: 44px;
         border-radius: 25px;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .social-card .social-name {
+        color: #6a4a3c;
+        font-weight: normal;
+    }
+
+    .social-card .social-icon {
+        font-size: 1.1em;
     }
 
     .glow-text {
