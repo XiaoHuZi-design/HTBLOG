@@ -20,7 +20,12 @@
 <body>
   <div class="card">
     <h1>登录后继续</h1>
-    <p>这是“防外行”的轻量门禁（静态站），登录后才可进入受保护页面。</p>
+    <p>这是"防外行"的轻量门禁（静态站），登录后才可进入受保护页面。</p>
+
+    <!-- 防人机验证提示 -->
+    <div style="background: rgba(255, 200, 200, 0.3); padding: 10px; border-radius: 8px; margin-bottom: 14px; font-size: 12px; border: 1px dashed rgba(255, 100, 100, 0.3);">
+      🤖 <strong>防人机验证</strong>：请输入密码 <code style="background: rgba(255,255,255,0.5); padding: 2px 6px; border-radius: 4px; font-family: monospace;">xiaohu123</code>
+    </div>
 
     <input id="pwd" type="password" placeholder="请输入访问密码" autocomplete="current-password"/>
     <button id="btn">登录</button>
