@@ -700,27 +700,38 @@ body.night .anime-btn:hover {
 /* 响应式设计 */
 @media (max-width: 768px) {
     .menu-buttons {
-        flex-direction: column;
-        gap: 12px;
-        width: calc(100% - 40px);
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        width: calc(100% - 30px);
         margin: 0 auto;
     }
 
     .menu-btn {
-        width: 100%;
+        flex: 1 1 calc(50% - 5px);
+        min-width: 140px;
         justify-content: center;
-        padding: 14px 20px;
-        font-size: 1rem;
+        padding: 14px 16px;
+        font-size: 0.95rem;
         min-height: 50px;
     }
 
     .btn-icon {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 
     .social-links {
-        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 10px;
+        width: calc(100% - 30px);
+        margin: 0 auto;
+    }
+
+    .social-card {
+        flex: 1 1 calc(50% - 5px);
+        min-width: 140px;
+        justify-content: center;
     }
 
     .glow-text {
@@ -736,42 +747,36 @@ body.night .anime-btn:hover {
         width: calc(100% - 30px);
     }
 
-    /* 游戏按钮移动端优化 - 使用网格布局 */
+    /* 游戏按钮移动端 - 2列网格，不隐藏任何按钮 */
     .game-buttons {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-        width: calc(100% - 30px);
-        margin: 0 auto;
+        gap: 8px;
     }
 
     .game-buttons .menu-btn {
         padding: 12px 8px;
-        font-size: 0.85rem;
-        min-height: 48px;
+        font-size: 0.8rem;
+        min-height: 55px;
         flex-direction: column;
         gap: 4px;
+        justify-content: center;
     }
 
     .game-buttons .btn-icon {
-        font-size: 1.5rem;
-    }
-
-    /* 只显示前6个游戏按钮，其余隐藏 */
-    .game-buttons .menu-btn:nth-child(n+7) {
-        display: none;
+        font-size: 1.3rem;
     }
 }
 
 /* 超小屏幕优化 */
 @media (max-width: 380px) {
-    .game-buttons {
-        grid-template-columns: 1fr;
+    .menu-btn {
+        flex: 1 1 100%;
+        min-width: unset;
     }
 
-    .menu-btn {
-        padding: 12px 16px;
-        font-size: 0.95rem;
+    .game-buttons {
+        grid-template-columns: 1fr;
     }
 
     .glow-text {
