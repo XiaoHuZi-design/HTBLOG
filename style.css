@@ -702,69 +702,80 @@ body.night .anime-btn:hover {
     .menu-buttons {
         flex-wrap: wrap;
         justify-content: center;
-        gap: 10px;
-        width: calc(100% - 30px);
-        margin: 0 auto;
+        gap: 8px;
+        padding: 0 12px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .menu-btn {
-        flex: 1 1 calc(50% - 5px);
-        min-width: 140px;
+        flex: 1 1 calc(50% - 4px);
+        min-width: 0;
         justify-content: center;
-        padding: 14px 16px;
-        font-size: 0.95rem;
-        min-height: 50px;
+        padding: 10px 12px;
+        font-size: 0.85rem;
+        min-height: 44px;
     }
 
     .btn-icon {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+    }
+
+    /* 隐藏B站、抖音、YouTube，只保留Link3 */
+    .social-links a[href*="bilibili"],
+    .social-links a[href*="douyin"],
+    .social-links a[href*="youtube"] {
+        display: none;
     }
 
     .social-links {
         flex-wrap: wrap;
         justify-content: center;
-        gap: 10px;
-        width: calc(100% - 30px);
-        margin: 0 auto;
+        gap: 8px;
+        padding: 0 12px;
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: 20px;
     }
 
     .social-card {
-        flex: 1 1 calc(50% - 5px);
-        min-width: 140px;
-        justify-content: center;
+        flex: 0 0 auto;
+        padding: 10px 16px;
     }
 
     .glow-text {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
 
     .subtitle {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
     }
 
     .card-section {
-        margin: 15px;
-        width: calc(100% - 30px);
+        margin: 10px 12px;
+        width: calc(100% - 24px);
+        max-height: calc(100vh - 200px);
+        overflow-y: auto;
     }
 
     /* 游戏按钮移动端 - 2列网格，不隐藏任何按钮 */
     .game-buttons {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
+        gap: 6px;
     }
 
     .game-buttons .menu-btn {
-        padding: 12px 8px;
-        font-size: 0.8rem;
-        min-height: 55px;
+        padding: 10px 6px;
+        font-size: 0.75rem;
+        min-height: 50px;
         flex-direction: column;
-        gap: 4px;
+        gap: 3px;
         justify-content: center;
     }
 
     .game-buttons .btn-icon {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 }
 
