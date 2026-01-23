@@ -341,15 +341,18 @@ function openPostModal(post) {
 
     const readingTime = Math.ceil(post.wordCount / 400);
 
+    // 调试：检查 content 是否存在
+    const postContent = post.content || post.excerpt || '内容加载失败，请刷新页面重试~';
+
     content.innerHTML = `
         <h1 class="modal-post-title">${escapeHtml(post.title)}</h1>
         <div class="modal-post-info">
             <span>📅 ${post.date}</span>
-            <span>📝 ${post.wordCount} 字</span>
+            <span>📝 ${post.wordCount || 0} 字</span>
             <span>⏱️ 预计阅读 ${readingTime} 分钟</span>
         </div>
         <div class="modal-post-body markdown-body">
-            ${typeof marked !== 'undefined' ? marked.parse(post.content) : escapeHtml(post.content)}
+            ${typeof marked !== 'undefined' ? marked.parse(postContent) : escapeHtml(postContent)}
         </div>
     `;
 
