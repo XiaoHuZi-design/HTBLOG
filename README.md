@@ -10,7 +10,7 @@
 
 一个二次元风格的个人博客系统，支持 Markdown 文章、GitHub 存储、Gitalk 评论等功能。
 
-[在线预览](https://xiaohuzi-design.github.io/) | [快速开始](#-快速开始) | [功能特性](#-特性)
+[在线预览](https://ht-libra.top) | [快速开始](#-快速开始) | [功能特性](#-特性)
 
 </div>
 
@@ -20,6 +20,8 @@
 
 ![预览1](预览1.png)
 ![预览2](预览2.png)
+![预览3](预览3.png)
+![预览4](预览4.png)
 
 ---
 
@@ -387,7 +389,7 @@ tags: ["标签1", "标签2", "标签3"]
 ## 📮 联系方式
 
 - GitHub: [@XiaoHuZi-design](https://github.com/XiaoHuZi-design)
-- 博客: [机械仔的小站](https://xiaohuzi-design.github.io/)
+- 博客: [机械仔的小站](https://ht-libra.top)
 
 ---
 

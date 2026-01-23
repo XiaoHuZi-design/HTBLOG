@@ -36,86 +36,6 @@ async function initBlogSystem() {
 }
 
 async function loadPostsFromGitHub() {
-    // 优先使用本地文章索引
-    if (typeof LOCAL_POSTS !== 'undefined' && LOCAL_POSTS.length > 0) {
-        return await loadLocalPosts();
-    }
-
-    // 回退到 GitHub API
-    return await loadGitHubAPIPosts();
-}
-
-async function loadLocalPosts() {
-    allPosts = await Promise.all(
-        LOCAL_POSTS.map(async (postInfo) => {
-            let content = null;
-            let wordCount = 0;
-            let excerpt = '';
-
-            try {
-                // 首先尝试本地 fetch
-                try {
-                    const response = await fetch(postInfo.path);
-                    if (response.ok) {
-                        content = await response.text();
-                    } else {
-                        throw new Error(`HTTP ${response.status}`);
-                    }
-                } catch (localError) {
-                    // 本地 fetch 失败，回退到 GitHub API
-                    console.log(`本地加载失败，尝试 GitHub API: ${postInfo.path}`);
-                    const filename = postInfo.path.split('/').pop();
-                    const { owner, repo, branch, path } = CONFIG.GITHUB;
-                    try {
-                        const githubContent = await githubAPI(`/repos/${owner}/${repo}/contents/${path}/${filename}?ref=${branch}`);
-                        if (githubContent && githubContent.content) {
-                            content = decodeBase64(githubContent.content);
-                        }
-                    } catch (githubError) {
-                        console.warn(`GitHub API 加载失败: ${postInfo.path}`, githubError);
-                    }
-                }
-
-                // 解析内容
-                if (content) {
-                    const parsed = parseMarkdown(content, postInfo.path.split('/').pop());
-                    wordCount = parsed.wordCount;
-                    excerpt = parsed.excerpt;
-                }
-            } catch (error) {
-                console.warn('加载文章内容失败:', postInfo.path, error);
-            }
-
-            // 始终返回文章，即使内容加载失败
-            return {
-                title: postInfo.title,
-                date: postInfo.date,
-                tags: postInfo.tags,
-                path: postInfo.path,
-                filename: postInfo.path.split('/').pop(),
-                content: content || `# ${postInfo.title}\n\n文章内容加载失败，请稍后重试~`,
-                excerpt: excerpt || '点击查看详情...',
-                wordCount: wordCount || 0
-            };
-        })
-    );
-
-    if (allPosts.length === 0) {
-        showEmpty();
-        return;
-    }
-
-    allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-    allTags = new Set();
-    allPosts.forEach(post => {
-        post.tags.forEach(tag => allTags.add(tag));
-    });
-
-    filteredPosts = [...allPosts];
-}
-
-async function loadGitHubAPIPosts() {
     const { owner, repo, branch, path } = CONFIG.GITHUB;
     const endpoint = `/repos/${owner}/${repo}/contents/${path}?ref=${branch}`;
 
@@ -356,18 +276,15 @@ function openPostModal(post) {
 
     const readingTime = Math.ceil(post.wordCount / 400);
 
-    // 调试：检查 content 是否存在
-    const postContent = post.content || post.excerpt || '内容加载失败，请刷新页面重试~';
-
     content.innerHTML = `
         <h1 class="modal-post-title">${escapeHtml(post.title)}</h1>
         <div class="modal-post-info">
             <span>📅 ${post.date}</span>
-            <span>📝 ${post.wordCount || 0} 字</span>
+            <span>📝 ${post.wordCount} 字</span>
             <span>⏱️ 预计阅读 ${readingTime} 分钟</span>
         </div>
         <div class="modal-post-body markdown-body">
-            ${typeof marked !== 'undefined' ? marked.parse(postContent) : escapeHtml(postContent)}
+            ${typeof marked !== 'undefined' ? marked.parse(post.content) : escapeHtml(post.content)}
         </div>
     `;
 
@@ -535,9 +452,21 @@ function showEmpty() {
     if (emptyState) emptyState.style.display = 'block';
 }
 
-// 复用 main.js 中的工具函数
-function githubAPI(endpoint) {
-    return window.githubAPI ? window.githubAPI(endpoint) : null;
+// GitHub API（直接实现，不依赖 main.js）
+async function githubAPI(endpoint) {
+    const url = `https://api.github.com${endpoint}`;
+
+    const response = await fetch(url, {
+        headers: {
+            'Accept': 'application/vnd.github.v3+json'
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error(`GitHub API error: ${response.status}`);
+    }
+
+    return response.json();
 }
 
 function decodeBase64(str) {
