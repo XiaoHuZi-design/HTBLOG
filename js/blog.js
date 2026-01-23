@@ -48,42 +48,57 @@ async function loadPostsFromGitHub() {
 async function loadLocalPosts() {
     allPosts = await Promise.all(
         LOCAL_POSTS.map(async (postInfo) => {
+            let content = null;
+            let wordCount = 0;
+            let excerpt = '';
+
             try {
                 // 首先尝试本地 fetch
-                let response, content;
                 try {
-                    response = await fetch(postInfo.path);
-                    content = await response.text();
+                    const response = await fetch(postInfo.path);
+                    if (response.ok) {
+                        content = await response.text();
+                    } else {
+                        throw new Error(`HTTP ${response.status}`);
+                    }
                 } catch (localError) {
                     // 本地 fetch 失败，回退到 GitHub API
                     console.log(`本地加载失败，尝试 GitHub API: ${postInfo.path}`);
                     const filename = postInfo.path.split('/').pop();
                     const { owner, repo, branch, path } = CONFIG.GITHUB;
-                    const githubContent = await githubAPI(`/repos/${owner}/${repo}/contents/${path}/${filename}?ref=${branch}`);
-                    if (githubContent) {
-                        content = decodeBase64(githubContent.content);
-                    } else {
-                        throw new Error('GitHub API also failed');
+                    try {
+                        const githubContent = await githubAPI(`/repos/${owner}/${repo}/contents/${path}/${filename}?ref=${branch}`);
+                        if (githubContent && githubContent.content) {
+                            content = decodeBase64(githubContent.content);
+                        }
+                    } catch (githubError) {
+                        console.warn(`GitHub API 加载失败: ${postInfo.path}`, githubError);
                     }
                 }
-                const parsed = parseMarkdown(content, postInfo.path.split('/').pop());
-                return {
-                    ...parsed,
-                    title: postInfo.title,
-                    date: postInfo.date,
-                    tags: postInfo.tags,
-                    path: postInfo.path,
-                    filename: postInfo.path.split('/').pop()
-                };
+
+                // 解析内容
+                if (content) {
+                    const parsed = parseMarkdown(content, postInfo.path.split('/').pop());
+                    wordCount = parsed.wordCount;
+                    excerpt = parsed.excerpt;
+                }
             } catch (error) {
-                console.warn('加载文章失败:', postInfo.path, error);
-                return null;
+                console.warn('加载文章内容失败:', postInfo.path, error);
             }
+
+            // 始终返回文章，即使内容加载失败
+            return {
+                title: postInfo.title,
+                date: postInfo.date,
+                tags: postInfo.tags,
+                path: postInfo.path,
+                filename: postInfo.path.split('/').pop(),
+                content: content || `# ${postInfo.title}\n\n文章内容加载失败，请稍后重试~`,
+                excerpt: excerpt || '点击查看详情...',
+                wordCount: wordCount || 0
+            };
         })
     );
-
-    // 过滤掉加载失败的文章
-    allPosts = allPosts.filter(post => post !== null);
 
     if (allPosts.length === 0) {
         showEmpty();

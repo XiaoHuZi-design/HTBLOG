@@ -370,44 +370,66 @@ async function loadLocalPosts() {
         return;
     }
 
-    try {
-        currentPosts = await Promise.all(
-            LOCAL_POSTS.map(async (post) => {
+    currentPosts = await Promise.all(
+        LOCAL_POSTS.map(async (post) => {
+            let content = null;
+            let wordCount = 0;
+            let excerpt = '';
+
+            try {
+                // 首先尝试本地加载
                 try {
                     // 修复路径：从 blogs/ 目录访问根目录的 posts/
                     const postPath = post.path.startsWith('../') ? post.path : '../' + post.path;
                     const response = await fetch(postPath);
-                    if (!response.ok) throw new Error('文件不存在');
-                    const content = await response.text();
-                    const parsed = parseMarkdown(content, post.path.split('/').pop());
-                    return {
-                        ...parsed,
-                        path: post.path,
-                        sha: null  // 本地文章没有sha
-                    };
-                } catch (e) {
-                    // 如果获取失败，使用索引中的元数据
-                    return {
-                        title: post.title,
-                        date: post.date,
-                        tags: post.tags,
-                        content: '# ' + post.title + '\n\n文章加载失败，请检查文件路径。',
-                        excerpt: '文章加载失败...',
-                        path: post.path,
-                        sha: null
-                    };
+                    if (response.ok) {
+                        content = await response.text();
+                    } else {
+                        throw new Error(`HTTP ${response.status}`);
+                    }
+                } catch (localError) {
+                    // 本地加载失败，回退到 GitHub API
+                    console.log(`本地加载失败，尝试 GitHub API: ${post.path}`);
+                    const filename = post.path.split('/').pop();
+                    const { owner, repo, branch, path } = DEFAULT_REPO;
+                    try {
+                        const githubContent = await publicGithubAPI(`/repos/${owner}/${repo}/contents/${path}/${filename}?ref=${branch}`);
+                        if (githubContent && githubContent.content) {
+                            content = decodeBase64(githubContent.content);
+                        }
+                    } catch (githubError) {
+                        console.warn(`GitHub API 加载失败: ${post.path}`, githubError);
+                    }
                 }
-            })
-        );
 
-        // 按日期排序
-        currentPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+                // 解析内容
+                if (content) {
+                    const parsed = parseMarkdown(content, post.path.split('/').pop());
+                    wordCount = parsed.wordCount;
+                    excerpt = parsed.excerpt;
+                }
+            } catch (error) {
+                console.warn('加载文章内容失败:', post.path, error);
+            }
 
-        renderPosts(currentPosts);
-    } catch (error) {
-        console.error('本地加载失败:', error);
-        showEmptyState('加载失败，请刷新页面重试~');
-    }
+            // 始终返回文章，即使内容加载失败
+            return {
+                title: post.title,
+                date: post.date,
+                tags: post.tags,
+                path: post.path,
+                content: content || `# ${post.title}\n\n文章加载失败，请稍后重试~`,
+                excerpt: excerpt || '点击查看详情...',
+                wordCount: wordCount || 0,
+                sha: null
+            };
+        })
+    );
+
+    // 按日期排序
+    currentPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    renderPosts(currentPosts);
 }
 
 // 解析Markdown文章（支持Front Matter）
