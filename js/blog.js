@@ -593,9 +593,25 @@ function parseMarkdown(content, filename) {
         const dateMatch = frontMatter.match(/date:\s*(.+)/);
         if (dateMatch) post.date = dateMatch[1].trim();
 
-        const tagsMatch = frontMatter.match(/tags:\s*\[([^\]]+)\]/);
+        // 解析 tags，支持多种格式
+        // tags: ["tag1", "tag2", "tag3"]
+        // tags: [tag1, tag2, tag3]
+        const tagsMatch = frontMatter.match(/tags:\s*(\[.+\])/);
         if (tagsMatch) {
-            post.tags = tagsMatch[1].split(',').map(t => t.trim().replace(/^["']|["']$/g, ''));
+            try {
+                // 去掉方括号，分割并清理标签
+                let tagsStr = tagsMatch[1].trim();
+                // 移除外层的方括号
+                tagsStr = tagsStr.slice(1, -1);
+                // 分割并清理
+                post.tags = tagsStr.split(',')
+                    .map(t => t.trim())
+                    .map(t => t.replace(/^["']|["']$/g, ''))
+                    .filter(t => t.length > 0);
+            } catch (e) {
+                console.warn('标签解析失败:', e);
+                post.tags = [];
+            }
         }
     }
 

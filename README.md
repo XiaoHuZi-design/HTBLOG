@@ -21,6 +21,8 @@
 
 ![预览1](预览1.png)
 ![预览2](预览2.png)
+![预览3](预览3.png)
+![预览4](预览4.png)
 
 ---
 
@@ -45,6 +47,15 @@
 - 💬 **Gitalk 评论系统** - GitHub 登录评论
 - 📱 **响应式设计** - 适配各种设备
 - 🌓 **暗黑模式** - 护眼的夜间阅读体验
+- 🔄 **GitHub API 自动重试** - 网络问题自动重试机制
+- 🎬 **番剧推荐** - 可跳转链接的番剧卡片展示
+
+#### 管理页面 (`blogs/blog.html`)
+- ✏️ **在线写文章** - 直接在浏览器中写文章
+- 📤 **一键发布** - 保存到 GitHub 仓库
+- ✏️ **编辑文章** - 修改已发布的文章
+- 🗑️ **删除文章** - 删除不需要的文章
+- 🔐 **Token 管理** - 安全的本地存储
 
 #### 资源下载
 - 📦 **资源管理** - PDF、ZIP 等文件下载
@@ -82,6 +93,11 @@
 │   └── game.html               # 五子棋游戏
 │
 ├── 📂 功能模块
+│   ├── blogs/                  # 博客管理模块
+│   │   ├── blog.html           # 博客管理页面
+│   │   ├── blog.js             # 博客逻辑
+│   │   └── blog.css            # 博客样式
+│   │
 │   ├── abouts/                 # 个人简历模块
 │   │   ├── about.html
 │   │   ├── about.css
@@ -122,7 +138,7 @@
 │   │   ├── auth-guard.js       # 认证守卫
 │   │   └── login.js            # 登录逻辑
 │   │
-│   ├── posts-index.js          # 文章索引配置
+│   ├── posts-index.js          # 文章索引配置（已废弃，改用 GitHub API）
 │   ├── welcome.js              # 首页交互
 │   ├── kbn.js                  # 看板娘脚本
 │   └── script.js               # 通用脚本
@@ -212,22 +228,6 @@ const CONFIG = {
 };
 ```
 
-### 文章索引配置
-
-编辑 `posts-index.js` 添加新文章：
-
-```javascript
-const LOCAL_POSTS = [
-    {
-        path: 'posts/your-article.md',
-        title: '文章标题',
-        date: '2024-01-15',
-        tags: ['标签1', '标签2', '标签3']
-    },
-    // 添加更多文章...
-];
-```
-
 ### 资源下载配置
 
 编辑 `anime-blog.html` 中的 `RESOURCES` 数组：
@@ -245,13 +245,42 @@ const RESOURCES = [
 ];
 ```
 
+### 番剧推荐配置
+
+编辑 `anime-blog.html` 中的 `ANIME_LIST` 数组：
+
+```javascript
+const ANIME_LIST = [
+    {
+        title: '番剧名称',
+        cover: '封面图片URL',
+        rating: '评分',
+        tags: ['标签1', '标签2'],
+        description: '简介描述',
+        link: 'https://bgm.tv/subject/xxx'  // 可选：番剧链接
+    },
+    // 添加更多番剧...
+];
+```
+
 ---
 
 ## 📝 写文章
 
-### 文章格式
+### 方式一：直接在 GitHub 上写
 
-在 `posts/` 目录创建 `.md` 文件：
+1. 在 `posts/` 目录创建 `.md` 文件
+2. 推送到 GitHub 仓库
+3. 刷新博客页面即可看到
+
+### 方式二：使用管理页面写文章
+
+1. 访问 `blogs/blog.html`
+2. 点击 **⚙️ 设置** 按钮
+3. 填写 GitHub Token（需要有仓库写入权限）
+4. 点击 **✨ 写新文章** 即可在线编写
+
+### 文章格式
 
 ```markdown
 ---
@@ -351,19 +380,43 @@ tags: ["标签1", "标签2", "标签3"]
 
 ## 🔄 更新日志
 
-### v2.0 (2024-01)
+### v2.0 (2025-01)
 - ✨ 新增 `anime-blog.html` 主博客页面
 - 🎨 全新二次元风格设计
 - 📦 新增资源下载功能
-- 🔧 优化文章加载机制（本地 + GitHub API 双重回退）
+- 🔧 优化文章加载机制（直接使用 GitHub API）
 - 🌙 新增暗黑模式
 - 📱 优化响应式布局
+- 🎬 新增番剧推荐卡片（支持链接跳转）
+- 🔄 添加 GitHub API 自动重试机制
+- 🏷️ 修复标签解析问题（支持多种格式）
+- ✏️ 新增博客管理页面（在线写文章）
 
 ### v1.0
 - 🎉 初始版本发布
 - 📝 基础博客功能
 - 🌸 樱花主题
 - 💬 Gitalk 评论
+
+---
+
+## 🔒 安全说明
+
+### GitHub Token 使用
+
+本项目的博客管理功能使用 GitHub Token 进行文章管理：
+
+- Token 仅保存在用户浏览器的 **localStorage** 中
+- 不会上传到服务器或暴露在代码中
+- 请勿分享你的 Token 给他人
+- 建议使用最小权限的 Token（只需 repo 权限）
+
+### Gitalk 配置
+
+Gitalk 使用 GitHub OAuth App 进行评论：
+
+- Client ID 可以公开
+- Client Secret 建议通过后端代理（本项目中为演示直接使用）
 
 ---
 
