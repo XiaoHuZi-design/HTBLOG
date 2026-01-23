@@ -30,20 +30,76 @@ async function initBlogSystem() {
         showLoading(false);
     } catch (error) {
         console.error('加载失败:', error);
-        showEmpty();
         showLoading(false);
+
+        // 检查是否是网络问题
+        if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+            showNetworkError();
+        } else {
+            showEmpty();
+        }
     }
 }
 
-async function loadPostsFromGitHub() {
-    const { owner, repo, branch, path } = CONFIG.GITHUB;
-    const endpoint = `/repos/${owner}/${repo}/contents/${path}?ref=${branch}`;
+function showNetworkError() {
+    const container = document.getElementById('blog-list-container');
+    const emptyState = document.getElementById('empty-state');
 
-    const files = await githubAPI(endpoint);
-    if (!files) {
+    if (container) container.style.display = 'none';
+
+    // 显示网络错误提示
+    const loadingState = document.getElementById('loading-state');
+    if (loadingState) {
+        loadingState.style.display = 'none';
+    }
+
+    // 创建网络错误提示
+    let errorDiv = document.getElementById('network-error');
+    if (!errorDiv) {
+        errorDiv = document.createElement('div');
+        errorDiv.id = 'network-error';
+        errorDiv.style.cssText = 'text-align: center; padding: 60px 20px;';
+        document.querySelector('.blog-section')?.appendChild(errorDiv);
+    }
+
+    errorDiv.innerHTML = `
+        <div style="font-size: 48px; margin-bottom: 20px;">🌐</div>
+        <h3>网络连接失败</h3>
+        <p style="color: #666; margin: 15px 0;">无法连接到 GitHub API，可能是网络问题</p>
+        <p style="color: #888; font-size: 14px;">请尝试：</p>
+        <ul style="color: #888; font-size: 14px; list-style: none; padding: 0;">
+            <li>✓ 刷新页面重试</li>
+            <li>✓ 检查网络连接</li>
+            <li>✓ 稍后再试</li>
+        </ul>
+        <button onclick="location.reload()" style="margin-top: 20px; padding: 10px 20px; background: #ff6b9d; color: white; border: none; border-radius: 8px; cursor: pointer;">
+            🔄 重新加载
+        </button>
+    `;
+}
+
+async function loadPostsFromGitHub() {
+    // 检查 CONFIG 是否可用
+    if (typeof CONFIG === 'undefined' || !CONFIG.GITHUB) {
+        console.error('CONFIG.GITHUB 未定义，请检查 js/main.js 是否正确加载');
         showEmpty();
         return;
     }
+
+    const { owner, repo, branch, path } = CONFIG.GITHUB;
+    console.log('正在从 GitHub 加载文章:', { owner, repo, branch, path });
+
+    const endpoint = `/repos/${owner}/${repo}/contents/${path}?ref=${branch}`;
+    console.log('API endpoint:', endpoint);
+
+    const files = await githubAPI(endpoint);
+    if (!files) {
+        console.error('GitHub API 返回空数据');
+        showEmpty();
+        return;
+    }
+
+    console.log('获取到文件列表:', files.length, '个文件');
 
     const mdFiles = files.filter(f => f.name.endsWith('.md'));
 
@@ -452,21 +508,49 @@ function showEmpty() {
     if (emptyState) emptyState.style.display = 'block';
 }
 
-// GitHub API（直接实现，不依赖 main.js）
-async function githubAPI(endpoint) {
+// GitHub API（直接实现，带重试机制）
+async function githubAPI(endpoint, retries = 3) {
     const url = `https://api.github.com${endpoint}`;
 
-    const response = await fetch(url, {
-        headers: {
-            'Accept': 'application/vnd.github.v3+json'
+    for (let i = 0; i < retries; i++) {
+        try {
+            console.log(`GitHub API 请求 (${i + 1}/${retries}):`, url);
+
+            const response = await fetch(url, {
+                headers: {
+                    'Accept': 'application/vnd.github.v3+json'
+                }
+            });
+
+            if (!response.ok) {
+                const error = await response.json().catch(() => ({ message: 'Unknown error' }));
+                console.error(`GitHub API 错误 (${response.status}):`, error.message);
+
+                // 如果是速率限制，等待后重试
+                if (response.status === 403 && error.message.includes('API rate limit')) {
+                    console.warn('GitHub API 速率限制，等待 2 秒后重试...');
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    continue;
+                }
+
+                throw new Error(`GitHub API error: ${response.status} - ${error.message}`);
+            }
+
+            const data = await response.json();
+            console.log('GitHub API 响应成功');
+            return data;
+
+        } catch (error) {
+            console.error(`请求失败 (${i + 1}/${retries}):`, error.message);
+
+            if (i === retries - 1) {
+                throw error;
+            }
+
+            // 等待后重试
+            await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1)));
         }
-    });
-
-    if (!response.ok) {
-        throw new Error(`GitHub API error: ${response.status}`);
     }
-
-    return response.json();
 }
 
 function decodeBase64(str) {
