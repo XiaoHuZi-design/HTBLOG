@@ -446,6 +446,10 @@ function openPostModal(post) {
     } else {
         // Markdown文件：使用marked解析（兼容在线编辑）
         renderedContent = typeof marked !== 'undefined' ? marked.parse(post.content) : escapeHtml(post.content);
+
+        // 修正 Markdown 中的图片路径
+        renderedContent = renderedContent.replace(/src="assets\//g, 'src="posts/assets/');
+        renderedContent = renderedContent.replace(/src='assets\//g, "src='posts/assets/");
     }
 
     content.innerHTML = `

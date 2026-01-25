@@ -674,13 +674,19 @@ function showPostDetail(post) {
         postContent.innerHTML = contentToRender;
     } else {
         // Markdown文件：使用marked解析（兼容在线编辑）
+        let mdHtml = marked.parse(post.content);
+
+        // 修正 Markdown 中的图片路径
+        mdHtml = mdHtml.replace(/src="assets\//g, 'src="posts/assets/');
+        mdHtml = mdHtml.replace(/src='assets\//g, "src='posts/assets/");
+
         postContent.innerHTML = `
             <h1>${escapeHtml(post.title)}</h1>
             <div class="post-detail-info" style="color: #888; margin-bottom: 20px;">
                 <span>📝 字数：${post.wordCount} 字</span> |
                 <span>⏱️ 预计阅读：${readingTime} 分钟</span>
             </div>
-            ${marked.parse(post.content)}
+            ${mdHtml}
         `;
     }
 
