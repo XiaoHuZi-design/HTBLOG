@@ -1,0 +1,530 @@
+<!DOCTYPE html><html><head>
+      <title>SLAM仿真（gazebo）</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\LingJiaXiaoHu\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.20\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="差速小车">差速小车 </h1>
+<p>赵虚左ros1仿真环境上修改</p>
+<hr>
+<h2 id="gmapping建图与导航">Gmapping建图与导航 </h2>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch nav_demo nav01_slam.launch
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746371799961-7af95c91-5bef-4640-a9c4-73515a0cf9ea.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch urdf02_gazebo demo03_env.launch
+roslaunch nav_demo nav07_slam_auto.launch
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746368117750-d7ae0874-ed55-42ac-aea9-0a9f607148ac.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746368138949-e0cf60bf-a670-4faf-9cd6-ea5ac91783ec.png" alt=""></p>
+<hr>
+<h2 id="cartographer建图与导航">cartographer建图与导航 </h2>
+<h3 id="一-小吃">一、小吃 </h3>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>&lt;<span class="token tag">!--</span>
+  Copyright 2016 The Cartographer Authors
+
+  Licensed under the Apache License<span class="token punctuation">,</span> Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http<span class="token punctuation">:</span>//www.apache.org/licenses/LICENSE<span class="token punctuation">-</span><span class="token number">2.0</span>
+
+  Unless required by applicable law or agreed to in writing<span class="token punctuation">,</span> software
+  distributed under the License is distributed on an "AS IS" BASIS<span class="token punctuation">,</span>
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND<span class="token punctuation">,</span> either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+<span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span>
+
+&lt;<span class="token tag">!--</span> 请复制该文件到cartographer_ros/cartographer_ros/launch中使用 <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span>
+&lt;launch<span class="token punctuation">&gt;</span>
+
+  &lt;param name="/use_sim_time" value="true" /<span class="token punctuation">&gt;</span>
+
+  &lt;node name="cartographer_node" pkg="cartographer_ros" type="cartographer_node" args="  
+            <span class="token punctuation">-</span>configuration_directory $(find cartographer_ros)/configuration_files  
+            <span class="token punctuation">-</span>configuration_basename rplidar.lua" output="screen"<span class="token punctuation">&gt;</span>
+    &lt;remap from="scan" to="scan" /<span class="token punctuation">&gt;</span>
+  &lt;/node<span class="token punctuation">&gt;</span>
+  &lt;node name="cartographer_occupancy_grid_node" pkg="cartographer_ros" type="cartographer_occupancy_grid_node" /<span class="token punctuation">&gt;</span>
+
+  &lt;node name="rviz" pkg="rviz" type="rviz" required="true" args="<span class="token punctuation">-</span>d $(find cartographer_ros)/configuration_files/demo_2d.rviz" /<span class="token punctuation">&gt;</span>
+&lt;/launch<span class="token punctuation">&gt;</span>
+</code></pre><pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>&lt;<span class="token tag">!--</span> 集成 SLAM 与导航 实现机器人自主移动的地图构建 <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span>
+&lt;launch<span class="token punctuation">&gt;</span>
+    &lt;<span class="token tag">!--</span> 仿真 <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span><span class="token scalar string">
+    &lt;include file="$(find urdf02_gazebo)/launch/demo03_env.launch"/&gt;
+    &lt;!-- SLAM --&gt;
+    &lt;include file="$(find cartographer_ros)/launch/cartographer_demo_rplidar.launch"/&gt;
+    &lt;!-- 导航中的 move_base --&gt;
+    &lt;include file="$(find nav_demo)/launch/nav05_path.launch"/&gt;</span>
+
+&lt;/launch<span class="token punctuation">&gt;</span>
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746369016397-7ce51f00-c15d-42d6-b2a3-00f3896ae21e.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746373402345-4761118d-c14a-4b46-8adc-63df34dbc716.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch nav_demo nav08_cartographer_move_base.launch
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+</code></pre><p>建图没效果，只是不报错， ... (<font style="color:#DF2A3F;">文件放错位置并且没有编译</font>）</p>
+<hr>
+<h3 id="二-正餐">二、正餐 </h3>
+<p><a href="https://blog.csdn.net/weixin_64037619/article/details/131330983">Ubuntu20安装并使用Cartographer建图导航_libabsl-dev-CSDN博客</a></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746422191957-9fede424-7bc2-44a3-962a-8cea4c3881fa.png" alt="">参考博客新建两个，放入对应目录，编译，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746422274448-72d363bd-c8db-4c71-a2e9-997c80afea5b.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>catkin_make_isolated <span class="token punctuation">-</span><span class="token punctuation">-</span>install <span class="token punctuation">-</span><span class="token punctuation">-</span>use<span class="token punctuation">-</span>ninja
+可能报错：rm <span class="token punctuation">-</span>rf /home/teng/cartographer_ws/build_isolated/cartographer_ros
+source ~/cartographer_ws/install_isolated/setup.bash
+</code></pre><pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch urdf02_gazebo demo03_env.launch
+roslaunch cartographer_ros demo01.launch  不知道什么问题报错：不能启动move_base导航建图
+rviz
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746424279820-5969b4b1-715d-4147-b1e7-6baf543ba85b.png" alt=""></p>
+<p>建图没问题，但是机器人坐标系一直闪红，<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746425016304-8ba311f8-84d8-4b06-8cf4-9e6d397666b2.png" alt=""></p>
+<p>Map改成base_footprint坐标系,机器人坐标系不闪红，但是Map地图闪红。</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>rosrun rqt_tf_tree rqt_tf_tree
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746424799363-56f6c2cb-5f17-4e88-b9d4-44a982d473fe.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>rm <span class="token punctuation">-</span>rf /home/teng/cartographer_ws/build_isolated/cartographer_ros
+catkin_make_isolated <span class="token punctuation">-</span><span class="token punctuation">-</span>install <span class="token punctuation">-</span><span class="token punctuation">-</span>use<span class="token punctuation">-</span>ninja
+source ~/cartographer_ws/install_isolated/setup.bash
+roslaunch urdf02_gazebo demo03_env.launch
+roslaunch cartographer_ros demo01_rviz.launch 把不需要的默认组件移除
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746431454876-12201e0b-190d-4305-b6e6-33d1c9ea369a.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch nav_demo nav02_map_save.launch
+或 rosrun map_server map_saver
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746426387408-100548c3-bb7e-46f8-acd5-1ca365a05514.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>1、首先进入cartographer工作空间下，然后刷新环境变量，然后执行下面语句，完成轨迹<span class="token punctuation">,</span> 停止进一步的数据
+    rosservice call /finish_trajectory 0
+2、将当前地图信息保存为后缀名为.pbstream
+    rosservice call /write_state "<span class="token punctuation">{</span><span class="token key atrule">filename</span><span class="token punctuation">:</span> <span class="token string">'&lt;绝对路径存放地图信息&gt;/&lt;地图保存的名字&gt;.pbstream'</span><span class="token punctuation">}</span>"
+3、将后缀名为.pbstream的地图信息，转化成ros地图信息
+    rosrun cartographer_ros cartographer_pbstream_to_ros_map <span class="token punctuation">-</span>map_filestem=&lt;保存地图的绝对路径<span class="token punctuation">&gt;</span>/&lt;地图命名<span class="token punctuation">&gt;</span> <span class="token punctuation">-</span>pbstream_filename=&lt;存放pbstream地图的绝对路径<span class="token punctuation">&gt;</span>/&lt;filename<span class="token punctuation">&gt;</span>.pbstream <span class="token punctuation">-</span>resolution=0.05
+</code></pre><h1 id="阿克曼小车">阿克曼小车 </h1>
+<p><a href="https://www.bilibili.com/video/BV1ku411r7wG/?spm_id_from=333.999.0.0&amp;vd_source=ddf5e64a1dfd3bc5bcc336b44c063a29">阿克曼移动机器人gazebo仿真项目开源_哔哩哔哩_bilibili</a></p>
+<p><a href="https://blog.csdn.net/qq_48427527/article/details/124571312?spm=1001.2014.3001.5502">阿克曼结构移动机器人的gazebo仿真（九）_带有velodyne模型的gazebo akerman机器人-CSDN博客</a></p>
+<p><a href="https://github.com/Lord-Z/ackermann_gazebo">https://github.com/Lord-Z/ackermann_gazebo</a></p>
+<p>racebot</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746377636422-8983e454-ceb1-41ce-96e2-03ab5e4f7fd1.png" alt=""></p>
+<p>tianracer</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746378348989-c9555d78-030c-4ff5-9fd8-32105d5a296e.png" alt=""></p>
+<hr>
+<h3 id="font-stylecolorrgb31-35-40racebot建图-racebot-slamfont"><font style="color:rgb(31, 35, 40);">racebot建图 (racebot slam)</font> </h3>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>roslaunch racebot_gazebo racebot.launch
+roslaunch racebot_gazebo gmapping.launch
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746376951992-18a634e3-a366-4630-b30e-4032a9ad96c6.png" alt=""></p>
+<h3 id="font-stylecolorrgb31-35-40tianracer建图tianracer-slamfont"><font style="color:rgb(31, 35, 40);">tianracer建图(tianracer slam)</font> </h3>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>roslaunch racebot_gazebo tianracer.launch
+roslaunch racebot_gazebo gmapping.launch
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+</code></pre><p>就车模型不一样。</p>
+<hr>
+<h3 id="font-stylecolorrgb31-35-40racebot导航racebot-navigationfont"><font style="color:rgb(31, 35, 40);">racebot导航(racebot navigation)</font> </h3>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>roslaunch racebot_gazebo tianracer.launch
+roslaunch racebot_gazebo navigation.launch
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746377412916-7d11644c-37f9-42fb-b20e-12d4b7ce99eb.png" alt=""></p>
+<h3 id="font-stylecolorrgb31-35-40racebot一键导航racebot-one-launch-file-to-navigationfont"><font style="color:rgb(31, 35, 40);">racebot一键导航(racebot one launch file to navigation)</font> </h3>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>roslaunch racebot_gazebo teb_demo.launch
+</code></pre><h3 id="font-stylecolorrgb31-35-40tianracer一键导航tianracer-one-launch-file-to-navigationfont"><font style="color:rgb(31, 35, 40);">tianracer一键导航(tianracer one launch file to navigation)</font> </h3>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>roslaunch racebot_gazebo tianracer_teb_demo.launch
+</code></pre><p>一样的，只是将两个文件一起打开。</p>
+<hr>
+<h3 id="font-stylecolorrgb31-35-40racebot导航建图racebot-navislamfont"><font style="color:rgb(31, 35, 40);">racebot导航建图(racebot navi&amp;slam)</font> </h3>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>roslaunch racebot_gazebo racebot.launch
+roslaunch racebot_gazebo slam_navi.launch
+</code></pre><h3 id="font-stylecolorrgb31-35-40tianracer导航建图tianracer-navislamfont"><font style="color:rgb(31, 35, 40);">tianracer导航建图(tianracer navi&amp;slam)</font> </h3>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>roslaunch racebot_gazebo tianracer.launch
+roslaunch racebot_gazebo slam_navi.launch
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746378452135-dfa857cc-0ddf-44b5-8ef7-0da437a957b8.png" alt=""></p>
+<h1 id="b站机器人工匠阿杰">B站机器人工匠阿杰 </h1>
+<h2 id="初试">初试 </h2>
+<p>安装仿真环境：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746433090112-ea9084b9-aabd-48d2-b705-1a9fcafe674c.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746433396780-fe4c86ce-a2d7-47a4-a323-e483ff19d865.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746433401546-5eb114c7-9835-4467-8904-6714143af3e6.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746433223648-d35aaf35-7cd7-44cf-9efa-9986f89fb8f1.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746433182560-71d1d9d0-50d6-42b8-b8b7-39be1b6cd502.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>catkin_make
+source ./devel/setup.bash
+</code></pre><pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch wpr_simulation wpb_stage_robocup.launch
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746433779716-05ecc9a0-fec7-471b-a89a-d6e711260911.png" alt=""></p>
+<h2 id="进阶">进阶 </h2>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746433521923-302b8d64-8828-458c-9741-608b63ad6148.png" alt=""></p>
+<h1 id="视觉slam仿真">视觉SLAM仿真 </h1>
+<h2 id="初试-1">初试 </h2>
+<p>以差速小车环境为例子，启动仿真环境，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746437582574-ef9d688e-f465-487b-b9ad-dacde6892034.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>rostopic echo /camera/camera_info
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746436961887-8eeb7091-d251-4fe3-b159-7f3e8af1ffb9.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746437002099-a9284e27-87da-49b7-ae20-fe03afbe173c.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746436885062-c4b0d320-e250-4dde-8d75-df79d07890b6.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch urdf02_gazebo demo03_env_camera.launch
+rosrun ORB_SLAM2 Mono Vocabulary/ORBvoc.txt Examples/ROS/ORB_SLAM2/Asus_r.yaml
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746435987441-d13fa88d-5d76-4cd3-9799-8a609646f843.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746435111094-a19567c2-fcfb-4df0-8b9a-ecdad958d06a.png" alt=""></p>
+<p>可能特征点太少了。</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch urdf02_gazebo demo03_env_camera.launch
+rosrun ORB_SLAM2 RGBD Vocabulary/ORBvoc.txt Examples/ROS/ORB_SLAM2/Asus_r.yaml
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746436026923-b10dcb65-ac2f-4bb2-9032-d5c3dd0b1e65.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746437935746-f7faf735-b854-40b1-bba1-5338d448e6ca.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746438147771-8bf6b034-3124-4303-a6a3-6738db8b6ee0.png" alt=""></p>
+<p>估计就是特征点太少了。</p>
+<hr>
+<p>换个世界环境，使用赵老师的box_house.world，该墙壁具有纹理特征，特征点比较多，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746439577527-7cd8b282-8f26-4413-a940-65a30aa7421c.png" alt=""></p>
+<hr>
+<p>再换个world环境，<a href="https://blog.csdn.net/qinqinxiansheng/article/details/115266992">gazebo+ORB-SLAM仿真教程_把lvisam运用到gazebo-CSDN博客</a></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>rosrun image_view image_view image<span class="token punctuation">:</span>=/camera/depth/image_raw
+rosrun image_view image_view image<span class="token punctuation">:</span>=/camera/rgb/image_raw
+</code></pre><p>只加载world会打不开，直接拷贝这个仿真功能包，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746442099231-ea810799-84f9-4fa2-a220-a77065c09563.png" alt=""></p>
+<p>可能报错，将xacro.py改成xacro，</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>catkin_make
+roslaunch robot_sim_demo robot_spawn.launch
+</code></pre><p>可能报错，因为这个仿真环境用到<code>yocs_cmd_vel_mux</code> ROS 包，主要用于多路复用（mux）多个速度指令（<code>cmd_vel</code>）源。它的核心功能是根据优先级选择并发布一个最终的速度指令，供机器人底盘或运动控制器使用。</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>sudo apt<span class="token punctuation">-</span>get update
+sudo apt<span class="token punctuation">-</span>get install ros<span class="token punctuation">-</span>noetic<span class="token punctuation">-</span>yocs<span class="token punctuation">-</span>cmd<span class="token punctuation">-</span>vel<span class="token punctuation">-</span>mux
+</code></pre><p>... ...</p>
+<p>可能包含很多皮肤，因此ROS-Academy.world和small-house.world一样单纯加载world有问题。</p>
+<hr>
+<h2 id="进阶-1">进阶 </h2>
+<p><a href="https://developer.aliyun.com/article/1292872">ubuntu 16.04+ros kinetic + gazebo+ aws-robotics 室内环境导航仿真-阿里云开发者社区</a></p>
+<p><a href="https://github.com/aws-robotics/aws-robomaker-small-house-world">GitHub - aws-robotics/aws-robomaker-small-house-world: A house world with multiple rooms and furniture for AWS RoboMaker and Gazebo simulations.</a></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>cd nav_ws/src
+git clone https<span class="token punctuation">:</span>//github.com/aws<span class="token punctuation">-</span>robotics/aws<span class="token punctuation">-</span>robomaker<span class="token punctuation">-</span>small<span class="token punctuation">-</span>house<span class="token punctuation">-</span>world
+</code></pre><pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>catkin_make
+source ./devel/setup.bash
+roslaunch aws_robomaker_small_house_world view_small_house.launch
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746445583954-4f4d2669-0c7d-4bc3-a983-12be03fa8181.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>&lt;launch<span class="token punctuation">&gt;</span>
+    &lt;param name="robot_description" command="$(find xacro)/xacro $(find urdf02_gazebo)/urdf/car_camera.urdf.xacro"/<span class="token punctuation">&gt;</span>
+
+    &lt;include file="$(find gazebo_ros)/launch/empty_world.launch"<span class="token punctuation">&gt;</span>
+        &lt;<span class="token tag">!--</span> &lt;arg name="world_name" value="$(find urdf02_gazebo)/gazebo_models/worlds/house2.world" /<span class="token punctuation">&gt;</span> <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span><span class="token scalar string">
+        &lt;!-- &lt;arg name="world_name" value="$(find urdf02_gazebo)/gazebo_models/worlds/box_house.world" /&gt; --&gt;
+        &lt;!-- &lt;arg name="world_name" value="$(find aws-robomaker-small-house-world)/worlds/small_house.world" /&gt; --&gt;
+        &lt;arg name="world_name" value="/home/teng/Dy_Nav/Gazebo_env/nav_ws/src/aws-robomaker-small-house-world/worlds/small_house.world" /&gt;</span>
+    &lt;/include<span class="token punctuation">&gt;</span>
+
+    &lt;node name="car" pkg="gazebo_ros" type="spawn_model" args="<span class="token punctuation">-</span>urdf <span class="token punctuation">-</span>model car <span class="token punctuation">-</span>param robot_description"/<span class="token punctuation">&gt;</span>
+
+
+    &lt;node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/<span class="token punctuation">&gt;</span>
+
+    &lt;node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen"<span class="token punctuation">&gt;</span>
+        &lt;param name="publish_frequency" type="double" value="50.0" /<span class="token punctuation">&gt;</span>
+    &lt;/node<span class="token punctuation">&gt;</span>
+&lt;/launch<span class="token punctuation">&gt;</span>
+</code></pre><p>可能找不到aws-robomaker-small-house-world包，需要使用绝对路径。</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch urdf02_gazebo demo03_env_camera.launch
+rosrun ORB_SLAM2 RGBD Vocabulary/ORBvoc.txt Examples/ROS/ORB_SLAM2/Asus_r.yaml
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746450330725-541710c5-dfa5-4338-bf50-3c86c19572f2.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746450558073-4e46cc89-3257-46e7-b31f-9c137b0d465c.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746451874665-c037f002-3b45-45fd-86e0-01a732d64dfe.png" alt=""></p>
+<p><font style="color:#DF2A3F;">ORB-SLAM 在某个时刻未识别到特征点后，下一时刻停止识别的问题！</font></p>
+<p>可能原因：</p>
+<p>（1）地图初始化失败‌：在系统初始化阶段，如果无法检测到足够的特征点或无法建立初始地图，ORB-SLAM 会停止工作。</p>
+<p>（2）特征点数量不足或质量差‌：场景特征不丰富（如纯白色墙壁、光滑表面等），导致 ORB 特征提取算法无法检测到足够的特征点。</p>
+<p>（3）跟踪丢失（Tracking Lost）：当连续帧之间无法匹配足够的特征点时，ORB-SLAM 会认为跟踪丢失，从而停止识别。</p>
+<h2 id="新地图">新地图 </h2>
+<p>自建：post_office_play.world</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1747231263018-af4ec084-1ccc-4187-820d-eac209f96571.png" alt=""></p>
+<p>地图：apartment.world</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1747398798677-fcea8d84-238b-47eb-a482-b24f30fab3ff.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch urdf02_gazebo demo03_env_camera.launch
+rosrun ORB_SLAM2 RGBD Vocabulary/ORBvoc.txt Examples/ROS/ORB_SLAM2/Asus_r.yaml
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1747401799875-84ef1c4d-163e-4dcc-8c2d-420345e3ae8c.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1747401727586-40337676-3825-4dd5-81b4-cc50a8067959.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1747401767951-df3eb3ec-1387-46a8-b911-2a903fe5dfc0.png" alt=""></p>
+<p><font style="color:#DF2A3F;">这次地图特征点多，走的很远，但是后续还是一没识别到特征点算法就中断！</font></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1747402262273-ca20b8b1-bbec-4aa7-a650-2f86efb5c253.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code><span class="token punctuation">[</span>pcl<span class="token punctuation">:</span><span class="token punctuation">:</span>VoxelGrid<span class="token punctuation">:</span><span class="token punctuation">:</span>applyFilter<span class="token punctuation">]</span> Leaf size is too small for the input dataset. Integer indices would overflow.show global map<span class="token punctuation">,</span> size=1701560
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1747451321195-7ecb4a8a-46b3-4083-bdda-5af294e3caea.png" alt=""></p>
+<hr>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>pcl_viewer vslam_final.pcd
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1747402385865-9bd8f429-bbf9-49f4-a9d4-03038b93fee9.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch publish_pointcloud demo.launch
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1747402796771-ac52d0a0-4b87-4461-9fb3-d121ca153af6.png" alt=""></p>
+<p><font style="color:#DF2A3F;">改坐标系为camera(要保持一致）</font>，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1747404725723-545ae21c-8d66-4849-8f88-cb176b1e6150.png" alt=""></p>
+<p><font style="color:#DF2A3F;">很明显不对，地面变成了障碍，而且发现点云与栅格平面的距离不均匀，呈现越来越大的趋势，不知道什么原因</font>。</p>
+<h1 id="font-stylecolorrgb34-34-38深度图像转激光数据font"><font style="color:rgb(34, 34, 38);">深度图像转激光数据</font> </h1>
+<p><a href="https://blog.csdn.net/qq_22701545/article/details/115743013">7.3.8 深度图像转激光数据_深度相机转多线激光雷达-CSDN博客</a></p>
+<p><a href="https://blog.csdn.net/weixin_42990464/article/details/136940853">深度图转2D激光扫描技术详解-CSDN博客</a></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>sudo apt<span class="token punctuation">-</span>get install ros<span class="token punctuation">-</span>noetic<span class="token punctuation">-</span>depthimage<span class="token punctuation">-</span>to<span class="token punctuation">-</span>laserscan
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746506899883-9761b57c-3c1c-4392-b0a5-3816e8165081.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>&lt;launch<span class="token punctuation">&gt;</span>
+    &lt;node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan" ns="i2l"<span class="token punctuation">&gt;</span>
+        &lt;remap from="image" to="/camera/depth/image_raw" /<span class="token punctuation">&gt;</span>
+        &lt;param name="output_frame_id" value="camera"  /<span class="token punctuation">&gt;</span>
+    &lt;/node<span class="token punctuation">&gt;</span>
+&lt;/launch<span class="token punctuation">&gt;</span>
+</code></pre><pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>&lt;<span class="token tag">!--</span>
+	Sample launch file for depthimage_to_laserscan
+	As of September 2nd 2021.
+<span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span>
+
+&lt;launch<span class="token punctuation">&gt;</span>
+
+  &lt;<span class="token tag">!--</span> Depth Image to Laser Scan Node <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span><span class="token scalar string">
+  &lt;node name="depthimage_to_laserscan" pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" args=""&gt;</span>
+
+    <span class="token key atrule">&lt;remap from="image"       to="/camera/depth/image_rect_raw"/&gt; &lt;!-- change here for your camera depth topic name. Default</span><span class="token punctuation">:</span> "/camera/depth/image_raw" <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span>
+
+    &lt;remap from="camera_info" to="/camera/color/camera_info"/<span class="token punctuation">&gt;</span> 
+    <span class="token key atrule">&lt;!-- the remap for camera_info by default uses the same path as the one given to the image topic. Default</span><span class="token punctuation">:</span> "&lt;path_to_image_topic<span class="token punctuation">&gt;</span>/camera_info<span class="token punctuation">&gt;</span>" <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span>
+
+    <span class="token key atrule">&lt;!-- PARAMETERS</span><span class="token punctuation">:</span> <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span><span class="token scalar string">
+    &lt;!-- These are the default values. --&gt; 
+    &lt;param name="scan_height"     type="int"    value="1"/&gt; &lt;!-- default: 1 pixel. Number of pixel rows used to generate laser scan. --&gt;
+    &lt;param name="scan_time"       type="double" value="0.033"/&gt; &lt;!-- default:0.033, 30 FPS . Time between scans. --&gt;
+    &lt;param name="range_min"       type="double" value="0.4"/&gt; &lt;!--default:0.45m. Ranges less than this are considered -Inf. --&gt;
+    &lt;param name="range_max"       type="double" value="10.0"/&gt; &lt;!--default: 10m. Ranges less than this are considered +Inf. --&gt;
+    &lt;param name="output_frame_id" type="str"    value="camera_depth_frame"/&gt; &lt;!--default: camera_depth_frame. Frame id of the laser scan. --&gt;</span>
+	
+  &lt;/node<span class="token punctuation">&gt;</span>
+	
+&lt;/launch<span class="token punctuation">&gt;</span>
+</code></pre><pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch urdf02_gazebo demo05_image2laser.launch
+</code></pre><h1 id="velodyne-simulator-插件">Velodyne Simulator 插件 </h1>
+<p><a href="https://blog.csdn.net/gitblog_01106/article/details/142839370">Velodyne Simulator 开源项目教程-CSDN博客</a></p>
+<p><a href="https://github.com/lmark1/velodyne_simulator">GitHub - lmark1/velodyne_simulator: URDF description and Gazebo plugins to simulate Velodyne laser scanners - fork from BitBucket: https://bitbucket.org/DataspeedInc/velodyne_simulator</a></p>
+<p><a href="https://gitcode.com/gh_mirrors/ve/velodyne_simulator/">GitCode - 全球开发者的开源社区,开源代码托管平台</a></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746500723450-22267176-6c29-4ebd-80d5-d3658e212fff.png" alt=""></p>
+<h2 id="仿真环境">仿真环境 </h2>
+<p>编译项目</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>git clone https<span class="token punctuation">:</span>//github.com/lmark1/velodyne_simulator.git 或
+git clone https<span class="token punctuation">:</span>//gitcode.com/gh_mirrors/ve/velodyne_simulator.git
+
+cd ackerman_ws
+catkin_make
+source devel/setup.bash
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746500224480-5efa7c52-6674-4cc2-aeb9-244e2fa74d20.png" alt=""></p>
+<p>启动一个包含 Velodyne 激光扫描仪的 Gazebo 仿真环境</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch velodyne_description example.launch
+roslaunch velodyne_description example.launch gpu<span class="token punctuation">:</span>=true  启用GPU加速
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746500606653-6f54843b-4192-43f2-b00f-0f8b26a836dc.png" alt=""></p>
+<p>把racer.xacro复制一个命名racer_VLP16.xacro,并将VLP16雷达加入到我们的小车模型xacro参数文件，<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746504063876-bdb06959-54bd-4960-a50f-bb657f1b3865.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746503756113-64c6d1f7-4138-4531-9e5a-cbf9c35caabc.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746503837064-ffa9ee75-609d-48ef-9db4-25520816297a.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>  &lt;xacro<span class="token punctuation">:</span>include filename="$(find racebot_description)/urdf/ackermann/racecar.gazebo" /<span class="token punctuation">&gt;</span>
+
+  &lt;xacro<span class="token punctuation">:</span>arg name="gpu" default="false"/<span class="token punctuation">&gt;</span>
+  &lt;xacro<span class="token punctuation">:</span>property name="gpu" value="$(arg gpu)" /<span class="token punctuation">&gt;</span>
+  
+  &lt;xacro<span class="token punctuation">:</span>include filename="$(find velodyne_description)/urdf/VLP<span class="token punctuation">-</span>16.urdf.xacro"/<span class="token punctuation">&gt;</span>
+  &lt;xacro<span class="token punctuation">:</span>VLP<span class="token punctuation">-</span>16 parent="base_link" name="velodyne" topic="/velodyne_points" hz="10" samples="440" gpu="$<span class="token punctuation">{</span>gpu<span class="token punctuation">}</span>"<span class="token punctuation">&gt;</span>
+    &lt;origin xyz="0 0 0.4" rpy="0 0 0" /<span class="token punctuation">&gt;</span>
+  &lt;/xacro<span class="token punctuation">:</span>VLP<span class="token punctuation">-</span>16<span class="token punctuation">&gt;</span>
+
+  &lt;xacro<span class="token punctuation">:</span>include filename="$(find velodyne_description)/urdf/HDL<span class="token punctuation">-</span>32E.urdf.xacro"/<span class="token punctuation">&gt;</span>
+  &lt;xacro<span class="token punctuation">:</span>HDL<span class="token punctuation">-</span>32E parent="base_link" name="velodyne2" topic="/velodyne_points2" hz="10" samples="220" gpu="$<span class="token punctuation">{</span>gpu<span class="token punctuation">}</span>"<span class="token punctuation">&gt;</span>
+    &lt;origin xyz="0 0 0.6" rpy="0 0 0" /<span class="token punctuation">&gt;</span>
+  &lt;/xacro<span class="token punctuation">:</span>HDL<span class="token punctuation">-</span>32E<span class="token punctuation">&gt;</span>
+</code></pre><pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch racebot_gazebo racebot_VLP16.launch
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746503928333-370c2c03-54e1-4b6c-b179-c5c7d67592ba.png" alt=""></p>
+<p>把原有的二维雷达和HDL-32E雷达注释掉，并调整一下VLP16的位置，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746504291406-5cbe28fb-5cf6-49f3-b064-e25fec9c0fbf.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746504483232-715d2157-cf8a-4b1f-817d-e9a925b9b288.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746504556524-eab87318-502f-4ec3-86f5-b6dcf4b31b66.png" alt=""></p>
+<p>调整z轴的位置，从0.4米调整为0.1米，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746504755627-0ccb6567-12b0-468c-8ec2-1291ea55ec75.png" alt=""></p>
+<hr>
+<p><a href="https://t11n5ozh20.feishu.cn/docx/OxBRdgrJronAz4xX7yUc6j8unCc">小车算法验证仿真平台</a>  该代码没开放下载</p>
+<h2 id="2d地图构建八叉树地图">2d地图构建八叉树地图 </h2>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>sudo apt<span class="token punctuation">-</span>get install ros<span class="token punctuation">-</span>noetic<span class="token punctuation">-</span>octomap<span class="token punctuation">-</span>ros
+sudo apt<span class="token punctuation">-</span>get install ros<span class="token punctuation">-</span>noetic<span class="token punctuation">-</span>octomap<span class="token punctuation">-</span>msgs
+sudo apt<span class="token punctuation">-</span>get install ros<span class="token punctuation">-</span>noetic<span class="token punctuation">-</span>octomap<span class="token punctuation">-</span>server
+sudo apt<span class="token punctuation">-</span>get install ros<span class="token punctuation">-</span>noetic<span class="token punctuation">-</span>octomap<span class="token punctuation">-</span>rviz<span class="token punctuation">-</span>plugins
+</code></pre><p>新建两个launch文件，</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>sudo apt<span class="token punctuation">-</span>get install ros<span class="token punctuation">-</span>noetic<span class="token punctuation">-</span>pointcloud<span class="token punctuation">-</span>to<span class="token punctuation">-</span>laserscan
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746518940489-cd76be41-737a-4799-ae73-db84777d3f6e.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>&lt;launch<span class="token punctuation">&gt;</span>
+    &lt;<span class="token tag">!--</span> transform pointCloud2 to laserScan <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span><span class="token scalar string">
+    &lt;node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="face_pointcloud_to_laserscan" 
+        respawn="false" output="screen"&gt;
+        &lt;remap from="cloud_in" to="/velodyne_points"/&gt;
+        &lt;rosparam&gt;
+            transform_tolerance: 0.01
+            min_height: 0.0
+            max_height: 1.0</span>
+
+            <span class="token key atrule">angle_min</span><span class="token punctuation">:</span> <span class="token number">-3.14159</span>
+            <span class="token key atrule">angle_max</span><span class="token punctuation">:</span> <span class="token number">3.14159</span>
+            <span class="token key atrule">angle_increment</span><span class="token punctuation">:</span> <span class="token number">0.0175</span>
+            <span class="token key atrule">scan_time</span><span class="token punctuation">:</span> <span class="token number">0.3333</span>
+            <span class="token key atrule">range_min</span><span class="token punctuation">:</span> <span class="token number">0.05</span>
+            <span class="token key atrule">range_max</span><span class="token punctuation">:</span> <span class="token number">25</span>
+            <span class="token key atrule">use_inf</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+
+            <span class="token comment"># Concurrency level, affects number of pointclouds queued for processing and number of threads used</span>
+            <span class="token comment"># 0 : Detect number of cores</span>
+            <span class="token comment"># 1 : Single threaded</span>
+            <span class="token comment"># 2-&gt;inf : Parallelism level</span>
+            <span class="token key atrule">concurrency_level</span><span class="token punctuation">:</span> <span class="token number">1</span>
+        &lt;/rosparam<span class="token punctuation">&gt;</span>
+        &lt;<span class="token tag">!--</span> &lt;rosparam file="$(find unitree_move_base)/config/pointCloud_to_laserScan_params.yaml" command="load" /<span class="token punctuation">&gt;</span> <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span><span class="token scalar string">
+    &lt;/node&gt;</span>
+&lt;/launch<span class="token punctuation">&gt;</span>
+</code></pre><pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>&lt;launch<span class="token punctuation">&gt;</span>
+  &lt;node pkg="octomap_server" type="octomap_server_node" name="octomap_server"<span class="token punctuation">&gt;</span>
+
+    &lt;<span class="token tag">!--</span> resolution in meters per pixel <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span><span class="token scalar string">
+    &lt;param name="resolution" value="0.1" /&gt;</span>
+
+    &lt;<span class="token tag">!--</span> name of the fixed frame<span class="token punctuation">,</span> needs to be "/map" for SLAM <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span><span class="token scalar string">
+    &lt;param name="frame_id" type="string" value="map" /&gt;</span>
+
+    &lt;<span class="token tag">!--</span> max range / depth resolution of the kinect in meter <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span><span class="token scalar string">
+    &lt;param name="sensor_model/max_range" value="1000.0" /&gt;
+    &lt;param name="latch" value="true" /&gt;</span>
+
+    &lt;<span class="token tag">!--</span> max/min height for occupancy map<span class="token punctuation">,</span> should be in meters <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span><span class="token scalar string">
+    &lt;param name="pointcloud_max_z" value="3" /&gt;
+    &lt;param name="pointcloud_min_z" value="0" /&gt;</span>
+
+    &lt;<span class="token tag">!--</span> topic from where pointcloud2 messages are subscribed <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span><span class="token scalar string">
+    &lt;remap from="/cloud_in" to="/velodyne_points" /&gt;</span>
+ 
+  &lt;/node<span class="token punctuation">&gt;</span>
+  &lt;<span class="token tag">!--</span> 发布一个雷达body到机器人足端body_foot的静态映射 <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span><span class="token scalar string">
+  &lt;!--&lt;node pkg="tf2_ros" type="static_transform_publisher" name="tf_pub_1" args="-0.10 -0.11 0 0 0 0 base_link base_footprint" /&gt;--&gt;
+  &lt;!-- 发布一个雷达初始位置camera_init到base的静态映射 --&gt;
+  &lt;!--&lt;node pkg="tf2_ros" type="static_transform_publisher" name="tf_pub_2" args="0 0 0 0 0 0 camera_init odom" /&gt;--&gt;</span>
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746505175398-3a86abe9-761e-4576-ad11-50090ee1508e.png" alt=""></p>
+<h3 id="三维激光雷达">三维激光雷达 </h3>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch racebot_gazebo racebot_VLP16.launch  三维激光雷达
+roslaunch racebot_gazebo gmapping.launch
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+roslaunch racebot_gazebo octomaptransform.launch
+
+<span class="token comment">#保存八叉树地图</span>
+rosrun octomap_server octomap_saver <span class="token punctuation">-</span>f octomap.bt
+<span class="token comment">#保存2d地图</span>
+rosrun map_server map_saver map<span class="token punctuation">:</span>=/projected_map <span class="token punctuation">-</span>f 2d
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746507380124-35f67d7a-5ae2-4b5c-9a2e-295b902fb308.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746507855453-f8a5fea9-28ee-4840-812c-ca613eb28564.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746508161694-86e5549e-5808-4cf2-9171-41a904bc94cd.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746508395692-7e68b063-a005-422f-ad2c-39a148f36b85.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746508243281-008db066-f2b7-456a-aa16-1eadfa263bca.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746508271362-abdcb196-3d41-4bcc-9d7a-afcbd3034d2a.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746508304504-1f61e72c-35c7-4ad5-aa31-cef931b5e24f.png" alt=""></p>
+<p>建图有圈，怀疑是把地面给建了，需要过滤一下地面。</p>
+<hr>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch racebot_gazebo pointCloud2LaserScan.launch
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746519103248-d18594f9-4f82-4c18-b342-8e95bca1edfe.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>rosrun map_server map_saver map<span class="token punctuation">:</span>=/map <span class="token punctuation">-</span>f 2d
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746519886751-43787905-d590-4fdd-b03f-8b81a7f21168.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch racebot_gazebo octomaptransform.launch
+rosrun map_server map_saver map<span class="token punctuation">:</span>=/projected_map <span class="token punctuation">-</span>f 2d
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746520193249-0640a03f-2c51-4a90-bc96-7ab3ed9aec13.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746520148382-5fcad45e-9a0a-4f4e-a0c8-7cda428053a4.png" alt=""></p>
+<h3 id="二维激光雷达">二维激光雷达 </h3>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch racebot_gazebo racebot.launch  二维激光雷达
+roslaunch racebot_gazebo gmapping.launch
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+roslaunch racebot_gazebo octomaptransform.launch
+
+<span class="token comment">#保存2d地图</span>
+rosrun map_server map_saver map<span class="token punctuation">:</span>=/projected_map <span class="token punctuation">-</span>f 2d
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746509009011-fe56b404-8ec0-4b0a-a553-3b8c81c69b36.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746509402086-de0b450a-4db6-4e47-99da-5b191a0f1373.png" alt=""></p>
+<p>注释xacro中的激光雷达，使用深度图像转激光数据进行建图，</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>&lt;launch<span class="token punctuation">&gt;</span>
+    &lt;node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan" ns="i2l"<span class="token punctuation">&gt;</span>
+        &lt;<span class="token tag">!--</span> &lt;remap from="image" to="/camera/depth/image_raw" /<span class="token punctuation">&gt;</span>
+        &lt;param name="output_frame_id" value="camera"  /<span class="token punctuation">&gt;</span> <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span>
+
+         &lt;remap from="image" to="/real_sense/depth/image_raw" /<span class="token punctuation">&gt;</span>
+        &lt;param name="output_frame_id" value="real_sense"  /<span class="token punctuation">&gt;</span>
+    &lt;/node<span class="token punctuation">&gt;</span>
+&lt;/launch<span class="token punctuation">&gt;</span>
+</code></pre><pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch racebot_gazebo depthimage_to_laserscan.launch
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746513035284-497f7d54-8509-4c93-a161-629fdd91689c.png" alt=""></p>
+<p>运行了gmapping建图，不知道为啥栅格地图不显示,</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746514924532-51bd13e8-606d-489f-8667-be046bd0b1dd.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746515388946-bb5fb052-3efc-4b79-b656-08f512625707.png" alt=""></p>
+<p><strong><font style="color:#DF2A3F;">不要给/scan消息重新命名就可以接收到/map，最后收/scan而不是/i2l/scan</font></strong></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>&lt;<span class="token tag">!--</span>
+	Sample launch file for depthimage_to_laserscan
+	As of September 2nd 2021.
+<span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span>
+
+&lt;launch<span class="token punctuation">&gt;</span>
+
+  &lt;<span class="token tag">!--</span> Depth Image to Laser Scan Node <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span><span class="token scalar string">
+  &lt;node name="depthimage_to_laserscan" pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" args=""&gt;</span>
+
+    <span class="token key atrule">&lt;remap from="image"       to="/real_sense/depth/image_raw"/&gt; &lt;!-- change here for your camera depth topic name. Default</span><span class="token punctuation">:</span> "/camera/depth/image_raw" <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span>
+
+    &lt;remap from="camera_info" to="/camera/color/camera_info"/<span class="token punctuation">&gt;</span> 
+    <span class="token key atrule">&lt;!-- the remap for camera_info by default uses the same path as the one given to the image topic. Default</span><span class="token punctuation">:</span> "&lt;path_to_image_topic<span class="token punctuation">&gt;</span>/camera_info<span class="token punctuation">&gt;</span>" <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span>
+
+    <span class="token key atrule">&lt;!-- PARAMETERS</span><span class="token punctuation">:</span> <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span><span class="token scalar string">
+    &lt;!-- These are the default values. --&gt; 
+    &lt;param name="scan_height"     type="int"    value="1"/&gt; &lt;!-- default: 1 pixel. Number of pixel rows used to generate laser scan. --&gt;
+    &lt;param name="scan_time"       type="double" value="0.033"/&gt; &lt;!-- default:0.033, 30 FPS . Time between scans. --&gt;
+    &lt;param name="range_min"       type="double" value="0.4"/&gt; &lt;!--default:0.45m. Ranges less than this are considered -Inf. --&gt;
+    &lt;param name="range_max"       type="double" value="10.0"/&gt; &lt;!--default: 10m. Ranges less than this are considered +Inf. --&gt;
+    &lt;param name="output_frame_id" type="str"    value="real_sense"/&gt; &lt;!--default: camera_depth_frame. Frame id of the laser scan. --&gt;</span>
+	
+  &lt;/node<span class="token punctuation">&gt;</span>
+	
+&lt;/launch<span class="token punctuation">&gt;</span>
+
+&lt;<span class="token tag">!--</span> &lt;remap from="image" to="/camera/depth/image_raw" /<span class="token punctuation">&gt;</span>
+        &lt;param name="output_frame_id" value="camera"  /<span class="token punctuation">&gt;</span> <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span>
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746517503481-b5a7c3ef-9ab7-4609-9780-7b21eeefde6a.png" alt=""></p>
+<h2 id="3d地图构建八叉树地图">3d地图构建八叉树地图 </h2>
+<p>可使用cartographer, fast-lio等3D建图方法，</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>&lt;launch<span class="token punctuation">&gt;</span>
+  &lt;node pkg="octomap_server" type="octomap_server_node" name="octomap_server"<span class="token punctuation">&gt;</span>
+
+    &lt;<span class="token tag">!--</span> resolution in meters per pixel <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span><span class="token scalar string">
+    &lt;param name="resolution" value="0.1" /&gt;</span>
+
+    &lt;<span class="token tag">!--</span> name of the fixed frame<span class="token punctuation">,</span> needs to be "/map" for SLAM <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span><span class="token scalar string">
+    &lt;param name="frame_id" type="string" value="odom" /&gt;</span>
+
+    &lt;<span class="token tag">!--</span> max range / depth resolution of the kinect in meter <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span><span class="token scalar string">
+    &lt;param name="sensor_model/max_range" value="1000.0" /&gt;
+    &lt;param name="latch" value="true" /&gt;</span>
+
+    &lt;<span class="token tag">!--</span> max/min height for occupancy map<span class="token punctuation">,</span> should be in meters <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span><span class="token scalar string">
+    &lt;param name="pointcloud_max_z" value="3" /&gt;
+    &lt;param name="pointcloud_min_z" value="0" /&gt;</span>
+
+    &lt;<span class="token tag">!--</span> topic from where pointcloud2 messages are subscribed <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span><span class="token scalar string">
+    &lt;remap from="/cloud_in" to="/velodyne_points" /&gt;</span>
+ 
+  &lt;/node<span class="token punctuation">&gt;</span>
+  &lt;<span class="token tag">!--</span> 发布一个雷达body到机器人足端body_foot的静态映射 <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span><span class="token scalar string">
+  &lt;!--&lt;node pkg="tf2_ros" type="static_transform_publisher" name="tf_pub_1" args="-0.10 -0.11 0 0 0 0 base_link base_footprint" /&gt;--&gt;
+  &lt;!-- 发布一个雷达初始位置camera_init到odom的静态映射 --&gt;
+  &lt;node pkg="tf2_ros" type="static_transform_publisher" name="tf_pub_2" args="0 0 0 0 0 0 camera_init odom" /&gt;</span>
+</code></pre><hr>
+<p>其他参考：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/395515892">手把手教你Velodyne Lidar仿真+3D建图</a></p>
+<p><a href="https://github.com/COONEO/neor_mini">GitHub - COONEO/neor_mini: ROS-based Ackerman-like unmanned car.</a></p>
+<h1 id="宇树机械狗go2">宇树机械狗go2 </h1>
+<p><a href="https://www.guyuehome.com/detail?id=1880175119840628737">古月居 - ROS机器人知识分享社区</a></p>
+<p><a href="https://t11n5ozh20.feishu.cn/docx/V7lddCvm0oVF0ixvqqJcEPoDnze">宇树机器狗go2—路径规划</a></p>
+<p><a href="https://github.com/davidakhihiero/FAST_LIO_LOCALIZATION-ROS-NOETIC">GitHub - davidakhihiero/FAST_LIO_LOCALIZATION-ROS-NOETIC: A simple localization framework that can re-localize in built maps based on FAST-LIO. This fork works with ROS Noetic (and Python3)</a></p>
+<p><a href="https://github.com/SteveMacenski/slam_toolbox/tree/noetic-devel">GitHub - SteveMacenski/slam_toolbox at noetic-devel</a></p>
+<h2 id="go2仿真环境">go2仿真环境 </h2>
+<h2 id="fast_lio建图">Fast_LIO建图 </h2>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

@@ -1,0 +1,679 @@
+<!DOCTYPE html><html><head>
+      <title>ORB-SLAM2_ORB-SLAM3_数据集_相机_稠密地图_八叉树地图</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\LingJiaXiaoHu\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.20\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h2 id="一-orbslam3_dense无ros">一、ORBSLAM3_Dense（无ROS） </h2>
+<p><font style="color:rgb(31, 35, 40);">ORBSLAM3_Dense 是一个支持深度相机、双目相机稠密重建的SLam二次开发项目，并且对于针孔相机和鱼眼相机传感器类型也是支持稠密重建。该项目不仅使用了PCL建立三维稠密点云图，还在双目没有提供视差图时采用了ELas算法计算双目视差图，以达到快速开始使用的目的。</font></p>
+<p>详解：<a href="https://zhuanlan.zhihu.com/p/694281711">https://zhuanlan.zhihu.com/p/694281711</a></p>
+<p>代码：<a href="https://github.com/5p6/ORBSLAM3_Dense">https://github.com/5p6/ORBSLAM3_Dense</a></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>sh build.sh
+</code></pre><p>报错修改：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1745897402452-ad3552a0-1838-4b30-a180-9fd2d74fb2af.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1745897410711-be0bab5e-6b2b-4d92-9023-0787fc79fcc4.png" alt=""></p>
+<p>准备好自己的数据集，</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>./MyExample/rgbd_slam <span class="token punctuation">-</span>r /home/teng/dynamic_slam/ORB_SLAM3/Datasets/TUM/rgbd_dataset_freiburg3_walking_xyz
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1745897699819-48cc6f4a-0f2f-4aba-864c-b4dec8b54365.png" alt=""></p>
+<p>没有实现Ros部分。</p>
+<h2 id="二-orb_slam3_detailed_comments-dense_map_new可回环">二、ORB_SLAM3_detailed_comments-dense_map_new（可回环） </h2>
+<p><a href="https://blog.csdn.net/l741299292/article/details/81984649">ORB-SLAM 2+3 rgbd稠密地图 （地图可回环）_orbslam3稠密建图-CSDN博客</a></p>
+<p><a href="https://github.com/electech6/ORB_SLAM3_detailed_comments/tree/dense_map_new">https://github.com/electech6/ORB_SLAM3_detailed_comments/tree/dense_map_new</a></p>
+<h3 id="非ros部分数据集">非Ros部分（数据集） </h3>
+<p><font style="color:#DF2A3F;">ubantu20.04配置文件改c++14，以及一些库版本对应自己的，比如pcl和opencv，</font></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746004671148-cab54179-8812-408e-b09b-d734f1dd21f7.png" alt=""></p>
+<p>改了c++14后编译成功，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746004902539-b03cab70-614c-4990-8f8c-67f35676a6e3.png" alt=""></p>
+<p>运行数据集，</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>./Examples/RGB<span class="token punctuation">-</span>D/rgbd_tum Vocabulary/ORBvoc.txt Examples/RGB<span class="token punctuation">-</span>D/TUM3.yaml /home/teng/dynamic_slam/ORB_SLAM3/Datasets/TUM/rgbd_dataset_freiburg3_walking_xyz /home/teng/dynamic_slam/ORB_SLAM3/Datasets/TUM/rgbd_dataset_freiburg3_walking_xyz/associations.txt
+</code></pre><p>出现段错误闪退，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746005125470-04e062a3-45b8-4653-b764-9fec58f0669f.png" alt=""></p>
+<p>。。。莫名其妙的问题，不知道怎么解决</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746081065029-d4f0aeae-5ee5-4639-b357-faac9a50f21b.png" alt=""></p>
+<hr>
+<p><strong><font style="color:#DF2A3F;">将所有配置文件中的-march=native都删除掉，再次编译运行，成功！</font></strong></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746354131756-89234c9d-8e85-436d-a348-85090c0d61e9.png" alt=""></p>
+<p>发现不能保存地图以及保存关键帧数据文件，中断后什么也没保存，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746356038323-dd6b30c7-f5a1-44f8-9a6a-db9ae50b86a9.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746357368836-0260c9da-ebb2-4d3c-ab8c-0afd4d66adc9.png" alt=""></p>
+<p>地图可以保存了，关键帧txt文件还是没有保存，改了绝对路径也不行。</p>
+<p><a href="https://blog.csdn.net/qq_41873211/article/details/116059484">运行ORB_SLAM2无法自动生成轨迹（KeyFrameTrajectory.txt）文件问题的解决-CSDN博客</a></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746357658312-58aa9985-17eb-4ee7-8615-c7604f1715be.png" alt=""></p>
+<p>取消system.cc中这一段注释，在编译运行，没效果。</p>
+<p><strong><font style="color:#DF2A3F;">！！！</font></strong></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746361559362-6718a00d-4ac7-466f-b59d-52c74bd1c7a5.png" alt=""></p>
+<p>还是没效果。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746363951484-f6f84c64-85e0-414e-8b4a-9276af97732c.png" alt=""></p>
+<p>去掉这个睡眠时间，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746364136053-d35766c3-4f1e-4706-b97a-5adbbb1e5204.png" alt=""></p>
+<p>可以保存了，但是出现段错误。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746364385981-fab7d87b-ed19-48c2-97c1-5d7256869df8.png" alt=""></p>
+<p><font style="color:#DF2A3F;">改成睡眠1ms，没有段错误也可以保存。</font></p>
+<hr>
+<h3 id="ros部分相机">ROS部分（相机） </h3>
+<p>编译ros部分之前需要在ros部分<font style="color:rgb(77, 77, 77);">CMakeLists.txt中添加pcl相关库链接，以及改c++11为c++14，</font></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>find_package(Eigen3 3.1.0 REQUIRED)
+find_package(Pangolin REQUIRED)
+find_package(PCL REQUIRED)    //新增这一行
+ 
+include_directories(
+$<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span>
+$<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span>/../../../
+$<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span>/../../../include
+$<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span>/../../../include/CameraModels
+$<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span>/../../../Thirdparty/Sophus
+$<span class="token punctuation">{</span>Pangolin_INCLUDE_DIRS<span class="token punctuation">}</span>
+$<span class="token punctuation">{</span>PCL_INCLUDE_DIRS<span class="token punctuation">}</span>     //新增这一行
+)
+ 
+add_definitions(  $<span class="token punctuation">{</span>PCL_DEFINITIONS<span class="token punctuation">}</span> )     //新增这一行
+link_directories(  $<span class="token punctuation">{</span>PCL_LIBRARY_DIRS<span class="token punctuation">}</span> )  //新增这一行
+ 
+set(LIBS 
+$<span class="token punctuation">{</span>OpenCV_LIBS<span class="token punctuation">}</span> 
+$<span class="token punctuation">{</span>EIGEN3_LIBS<span class="token punctuation">}</span>
+$<span class="token punctuation">{</span>Pangolin_LIBRARIES<span class="token punctuation">}</span>
+$<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span>/../../../Thirdparty/DBoW2/lib/libDBoW2.so
+$<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span>/../../../Thirdparty/g2o/lib/libg2o.so
+$<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span>/../../../lib/libORB_SLAM3.so
+<span class="token punctuation">-</span>lboost_system
+)
+</code></pre><pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>export ROS_PACKAGE_PATH=$<span class="token punctuation">{</span>ROS_PACKAGE_PATH<span class="token punctuation">}</span><span class="token punctuation">:</span>/home/teng/Dy_Nav/ORB_SLAM3_detailed_comments<span class="token punctuation">-</span>dense_map_new/Examples/ROS
+可能已经存在ORB<span class="token punctuation">-</span>SLAM3的ros包，可以设置临时ROS_PACKAGE_PATH进行编译
+export ROS_PACKAGE_PATH=/home/teng/Dy_Nav/ORB_SLAM3_detailed_comments<span class="token punctuation">-</span>dense_map_new/Examples/ROS/ORB_SLAM3<span class="token punctuation">:</span>$ROS_PACKAGE_PATH
+</code></pre><pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>chmod +x build_ros.sh
+./build_ros.sh
+</code></pre><pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>// D455 相机
+message_filters<span class="token punctuation">:</span><span class="token punctuation">:</span>Subscriber&lt;sensor_msgs<span class="token punctuation">:</span><span class="token punctuation">:</span>Image<span class="token punctuation">&gt;</span> rgb_sub(nh<span class="token punctuation">,</span> <span class="token string">"/camera/color/image_raw"</span><span class="token punctuation">,</span> 1);
+message_filters<span class="token punctuation">:</span><span class="token punctuation">:</span>Subscriber&lt;sensor_msgs<span class="token punctuation">:</span><span class="token punctuation">:</span>Image<span class="token punctuation">&gt;</span> depth_sub(nh<span class="token punctuation">,</span> <span class="token string">"/camera/aligned_depth_to_color/image_raw"</span><span class="token punctuation">,</span> 1);
+</code></pre><pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch realsense2_camera rs_rgbd.launch 
+roslaunch realsense2_camera rs_rgbd.launch align_depth<span class="token punctuation">:</span>=true
+rosrun ORB_SLAM3 RGBD Vocabulary/ORBvoc.txt Examples/ROS/ORB_SLAM3/MyD455.yaml  
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746360510070-2dce5276-1a35-4470-9851-1d5af837ea85.png" alt=""></p>
+<p>又出现段错误。</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>rosrun ORB_SLAM3 RGBD Vocabulary/ORBvoc.txt Examples/RGB<span class="token punctuation">-</span>D/RealSense_D435i.yaml
+</code></pre><pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code><span class="token key atrule">PointCloudMapping.Resolution</span><span class="token punctuation">:</span> <span class="token number">0.01</span>
+<span class="token key atrule">meank</span><span class="token punctuation">:</span> <span class="token number">50</span>
+<span class="token key atrule">thresh</span><span class="token punctuation">:</span> <span class="token number">2.0</span>
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746360929990-72a6ef42-5559-4f8b-b4bb-9098314e5904.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746361204624-e256a0fa-79ab-407d-9d15-fc6f8773b843.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746361040824-e55e501b-819a-478f-9ce1-fc00fff85b1f.png" alt=""></p>
+<h3 id="八叉树地图">八叉树地图 </h3>
+<p>详细步骤参考第四节，</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>source ./devel/setup.bash
+roslaunch publish_pointcloud demo.launch 
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746364808595-2f06dfa5-36f1-4405-a6ae-9a2902858fb0.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746365254944-59790077-922c-4b0a-b1e8-0e09519d8325.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746365009284-86b9680a-342b-41fc-9f22-b3b2c3cfd739.png" alt=""></p>
+<p>参考资料：<a href="https://blog.csdn.net/weixin_62952541/article/details/130043783">实测 （四）NVIDIA Xavier NX + D435i / 奥比中光Astrapro 相机+ ORB-SLAM 2 + 3 稠密回环建图_奥比中光+orb-slam3的稠密回环-CSDN博客</a></p>
+<h2 id="三-orb-slam2_rgbd_dense_map可回环">三、ORB-SLAM2_RGBD_DENSE_MAP（可回环） </h2>
+<p><a href="https://github.com/xiaobainixi/ORB-SLAM2_RGBD_DENSE_MAP">https://github.com/xiaobainixi/ORB-SLAM2_RGBD_DENSE_MAP</a></p>
+<p>参考资料：<a href="https://blog.csdn.net/weixin_62952541/article/details/130019883">实测 （二）NVIDIA Xavier NX + D435i / 奥比中光Astrapro 相机+ ORB-SLAM 2 + 3 稠密回环建图_realsense d435 奥比中光-CSDN博客</a></p>
+<h2 id="四-改高翔font-stylecolorrgb77-77-77orbslam2_with_pointcloud_map不可回环font">四、改高翔<font style="color:rgb(77, 77, 77);">ORBSLAM2_with_pointcloud_map（不可回环）</font> </h2>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>mkdir <span class="token punctuation">-</span>p orb2_ws/src
+cd orb2_ws
+catkin_make
+ 
+cd orb2_ws/src/
+git clone https<span class="token punctuation">:</span>//gitcode.com/gaoxiang12/ORBSLAM2_with_pointcloud_map.git
+ 
+cd ORB_SLAM2_modified
+chmod +x build.sh
+./build.sh
+</code></pre><h3 id="非ros部分">非Ros部分 </h3>
+<p>按照它<a href="https://blog.csdn.net/qq_45509667/article/details/138628381">https://blog.csdn.net/qq_45509667/article/details/138628381</a>改了错误1和错误2,非ros部分一次编译成功。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746105422612-1c06e1fe-e19b-4826-ba04-d966fed3fede.png" alt=""></p>
+<p>注意！编译成功后的可执行文件在bin目录。</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>./bin/rgbd_tum Vocabulary/ORBvoc.txt Examples/RGB<span class="token punctuation">-</span>D/TUM3.yaml /home/teng/dynamic_slam/ORB_SLAM3/Datasets/TUM/rgbd_dataset_freiburg3_walking_xyz /home/teng/dynamic_slam/ORB_SLAM3/Datasets/TUM/rgbd_dataset_freiburg3_walking_xyz/associations.txt
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746107616952-d11955c0-1162-402f-bfe7-7e86c5cf91e6.png" alt=""></p>
+<p>发现有毛病，看不到点云地图地图，只能看到坐标系... ...</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>PointCloudMapping.Resolution<span class="token punctuation">:</span><span class="token number">0.01</span>
+meank<span class="token punctuation">:</span><span class="token number">50</span>
+thresh<span class="token punctuation">:</span><span class="token number">2.0</span>
+</code></pre><p>然后将原本的可视化灰色点云地图改成可视化彩色点云地图并保存，</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>pcl_viewer vslam.pcd
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746109299363-38628b93-d6fd-48a9-8be8-bc3b4d183d1d.png" alt=""></p>
+<hr>
+<h3 id="ros部分">Ros部分 </h3>
+<p>编译ros部分之前，需要添加ROS包路径到环境变量，然后source ~/.bashrc一下，</p>
+<p><font style="color:#ECAA04;">接着</font><font style="color:#ECAA04;">进入/opt/ros/noetic/目录下会有一个文件setup.bash，在当前目录下打开一个终端执行：</font><font style="color:#ECAA04;">sudo vim setup.bash也添加ROS包路径，</font><font style="color:#ECAA04;">然后source setup.bash刷新一下，</font><font style="color:#ECAA04;">再编译。【没必要】</font></p>
+<p><font style="color:#DF2A3F;">可能会rosbuild报错，</font><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746110938914-565bee38-279b-4ad9-9a3e-15b7bbba7ce1.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>export ROS_PACKAGE_PATH=$<span class="token punctuation">{</span>ROS_PACKAGE_PATH<span class="token punctuation">}</span><span class="token punctuation">:</span>/home/teng/Dy_Nav/orb2_ws/src/ORB_SLAM2_modified/Examples/ROS
+</code></pre><pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>source /opt/ros/noetic/setup.bash
+source ~/Dy_Nav/orb2_ws/devel/setup.bash  <span class="token comment"># 如果你已经编译过工作空间</span>
+echo $ROS_PACKAGE_PATH
+</code></pre><p><font style="color:#DF2A3F;">发现还是rosbuild报错？！！</font></p>
+<p>问题解决：<a href="https://ask.csdn.net/questions/7447228">orb_slam2编译 ./build_ros.sh出现问题 很久没办法解决 请大家帮个忙谢谢！_编程语言-CSDN问答</a></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>鱼香一键安装rosdepc（安不上用热点）
+wget http<span class="token punctuation">:</span>//fishros.com/install <span class="token punctuation">-</span>O fishros <span class="token important">&amp;&amp;</span> . fishros
+sudo rosdepc init
+rosdepc update
+</code></pre><p>再次编译又报错，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746173511571-841cfffb-a04f-43ce-89c8-614238f3b5ef.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code><span class="token key atrule">ORB_SLAM2_modified/Examples/ROS/ORB_SLAM2/../../../include/pointcloudmapping.h:25:10</span><span class="token punctuation">:</span> <span class="token key atrule">fatal error</span><span class="token punctuation">:</span> <span class="token key atrule">pcl/common/transforms.h</span><span class="token punctuation">:</span> 没有那个文件或目录
+   25 <span class="token punctuation">|</span> <span class="token comment">#include &lt;pcl/common/transforms.h&gt;</span>
+      <span class="token punctuation">|</span>          ^~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+</code></pre><pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>find_package(OpenCV 3.4.5 QUIET) <span class="token comment">#改</span>
+find_package( PCL 1.10 REQUIRED )  <span class="token comment">#添加</span>
+
+include_directories(
+$<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span>
+$<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span>/../../../
+$<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span>/../../../include
+$<span class="token punctuation">{</span>Pangolin_INCLUDE_DIRS<span class="token punctuation">}</span>
+$<span class="token punctuation">{</span>PCL_INCLUDE_DIRS<span class="token punctuation">}</span>  <span class="token comment">#添加</span>
+)
+
+<span class="token comment">#添加</span>
+add_definitions( $<span class="token punctuation">{</span>PCL_DEFINITIONS<span class="token punctuation">}</span> )
+link_directories( $<span class="token punctuation">{</span>PCL_LIBRARY_DIRS<span class="token punctuation">}</span> )
+
+target_link_libraries(Mono
+$<span class="token punctuation">{</span>LIBS<span class="token punctuation">}</span>
+$<span class="token punctuation">{</span>PCL_LIBRARIES<span class="token punctuation">}</span>  <span class="token comment">#添加</span>
+)
+</code></pre><p>添加pcl库链接，并且将c++11改为c++14，再编译，</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code><span class="token key atrule">/usr/include/eigen3/Eigen/src/Core/util/Constants.h:162:37</span><span class="token punctuation">:</span> <span class="token key atrule">note</span><span class="token punctuation">:</span> declared here
+  162 <span class="token punctuation">|</span> EIGEN_DEPRECATED const unsigned int AlignedBit = 0x80;
+      <span class="token punctuation">|</span>                                     ^~~~~~~~~~
+<span class="token punctuation">[</span> 66%<span class="token punctuation">]</span> Linking CXX executable ../Mono
+<span class="token punctuation">[</span> 77%<span class="token punctuation">]</span> Linking CXX executable ../MonoAR
+<span class="token key atrule">/usr/bin/ld</span><span class="token punctuation">:</span> <span class="token key atrule">warning</span><span class="token punctuation">:</span> libopencv_imgproc.so.4.2<span class="token punctuation">,</span> needed by /opt/ros/noetic/lib/libcv_bridge.so<span class="token punctuation">,</span> may conflict with libopencv_imgproc.so.3.4
+<span class="token key atrule">/usr/bin/ld</span><span class="token punctuation">:</span> <span class="token key atrule">CMakeFiles/MonoAR.dir/src/AR/ViewerAR.cc.o</span><span class="token punctuation">:</span> undefined reference to symbol '_ZN2cv7putTextERKNS_17_InputOutputArrayERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS_6Point_IiEEidNS_7Scalar_IdEEiib'
+<span class="token key atrule">/usr/bin/ld</span><span class="token punctuation">:</span> <span class="token key atrule">/usr/lib/x86_64-linux-gnu/libopencv_imgproc.so.4.2.0</span><span class="token punctuation">:</span> <span class="token key atrule">error adding symbols</span><span class="token punctuation">:</span> DSO missing from command line
+<span class="token key atrule">collect2</span><span class="token punctuation">:</span> <span class="token key atrule">error</span><span class="token punctuation">:</span> ld returned 1 exit status
+make<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token important">***</span> <span class="token punctuation">[</span>CMakeFiles/MonoAR.dir/build.make<span class="token punctuation">:</span>252：../MonoAR<span class="token punctuation">]</span> 错误 1
+make<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token important">***</span> <span class="token punctuation">[</span>CMakeFiles/Makefile2<span class="token punctuation">:</span>487：CMakeFiles/MonoAR.dir/all<span class="token punctuation">]</span> 错误 2
+make<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token important">***</span> 正在等待未完成的任务<span class="token punctuation">...</span>.
+<span class="token key atrule">/usr/bin/ld</span><span class="token punctuation">:</span> <span class="token key atrule">warning</span><span class="token punctuation">:</span> libopencv_core.so.4.2<span class="token punctuation">,</span> needed by /opt/ros/noetic/lib/libcv_bridge.so<span class="token punctuation">,</span> may conflict with libopencv_core.so.3.4
+<span class="token punctuation">[</span> 77%<span class="token punctuation">]</span> Built target Mono
+<span class="token punctuation">[</span> 88%<span class="token punctuation">]</span> Linking CXX executable ../RGBD
+<span class="token punctuation">[</span>100%<span class="token punctuation">]</span> Linking CXX executable ../Stereo
+<span class="token key atrule">/usr/bin/ld</span><span class="token punctuation">:</span> <span class="token key atrule">warning</span><span class="token punctuation">:</span> libopencv_imgproc.so.4.2<span class="token punctuation">,</span> needed by /opt/ros/noetic/lib/libcv_bridge.so<span class="token punctuation">,</span> may conflict with libopencv_imgproc.so.3.4
+<span class="token key atrule">/usr/bin/ld</span><span class="token punctuation">:</span> <span class="token key atrule">warning</span><span class="token punctuation">:</span> libopencv_core.so.4.2<span class="token punctuation">,</span> needed by /opt/ros/noetic/lib/libcv_bridge.so<span class="token punctuation">,</span> may conflict with libopencv_core.so.3.4
+<span class="token key atrule">/usr/bin/ld</span><span class="token punctuation">:</span> <span class="token key atrule">CMakeFiles/Stereo.dir/src/ros_stereo.cc.o</span><span class="token punctuation">:</span> undefined reference to symbol '_ZNK2cv8FileNodecviEv'
+<span class="token key atrule">/usr/bin/ld</span><span class="token punctuation">:</span> <span class="token key atrule">/usr/lib/x86_64-linux-gnu/libopencv_core.so.4.2.0</span><span class="token punctuation">:</span> <span class="token key atrule">error adding symbols</span><span class="token punctuation">:</span> DSO missing from command line
+<span class="token key atrule">collect2</span><span class="token punctuation">:</span> <span class="token key atrule">error</span><span class="token punctuation">:</span> ld returned 1 exit status
+make<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token important">***</span> <span class="token punctuation">[</span>CMakeFiles/Stereo.dir/build.make<span class="token punctuation">:</span>182：../Stereo<span class="token punctuation">]</span> 错误 1
+make<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token important">***</span> <span class="token punctuation">[</span>CMakeFiles/Makefile2<span class="token punctuation">:</span>514：CMakeFiles/Stereo.dir/all<span class="token punctuation">]</span> 错误 2
+<span class="token key atrule">/usr/bin/ld</span><span class="token punctuation">:</span> <span class="token key atrule">warning</span><span class="token punctuation">:</span> libopencv_core.so.4.2<span class="token punctuation">,</span> needed by /opt/ros/noetic/lib/libcv_bridge.so<span class="token punctuation">,</span> may conflict with libopencv_core.so.3.4
+<span class="token punctuation">[</span>100%<span class="token punctuation">]</span> Built target RGBD
+<span class="token key atrule">make</span><span class="token punctuation">:</span> <span class="token important">***</span> <span class="token punctuation">[</span>Makefile<span class="token punctuation">:</span>130：all<span class="token punctuation">]</span> 错误 2
+teng@teng<span class="token punctuation">-</span>JiguangPro<span class="token punctuation">:</span>~/Dy_Nav/orb2_ws/src/ORB_SLAM2_modified$ 
+</code></pre><ul>
+<li>日志显示，你的系统中有两个不同版本的OpenCV库：<code>libopencv_imgproc.so.4.2</code> 和 <code>libopencv_imgproc.so.3.4</code>。</li>
+<li><code>/opt/ros/noetic/lib/libcv_bridge.so</code> 依赖于 <code>libopencv_imgproc.so.4.2</code>，但你的项目可能链接了 <code>libopencv_imgproc.so.3.4</code>。</li>
+</ul>
+<p><font style="color:#DF2A3F;">两者需要一致，于是改成opencv4.2.0.</font></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746174769388-358119cc-3d05-4b82-a79d-be2fa042900a.png" alt=""></p>
+<p>OK，编译成功，没有报错！</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746175054295-9b7effd5-abe7-4c64-923a-c6eb9845322e.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roscore
+rosrun ORB_SLAM2 RGBD Vocabulary/ORBvoc.txt Examples/RGB<span class="token punctuation">-</span>D/TUM3.yaml
+rosbag play xxx
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746175643362-8dd3687a-8f91-4f49-8895-536fa67bde9d.png" alt=""></p>
+<p><font style="color:#DF2A3F;">又出现段错误!</font></p>
+<p><a href="https://www.cnblogs.com/yepeichu/p/10896201.html">（十一）ORBSLAM2在ROS下运行 - 小C酱油兵 - 博客园</a></p>
+<p><a href="https://www.cnblogs.com/cv-pr/p/5366764.html">ROS知识(12)----cv_bridge依赖opencv版本的问题 - horsetail - 博客园</a></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>sudo apt<span class="token punctuation">-</span>get remove ros<span class="token punctuation">-</span>indigo<span class="token punctuation">-</span>cv<span class="token punctuation">-</span>bridge
+git clone https<span class="token punctuation">:</span>//github.com/ros<span class="token punctuation">-</span>perception/vision_opencv.git
+catkin_make <span class="token punctuation">-</span><span class="token punctuation">-</span>pkg cv_bridge
+</code></pre><hr>
+<p>前面我非Ros部分使用的opencv3.4.5编译的，Ros部分使用的opencv4.2.0编译的（不用这个默认版本会报错），</p>
+<p><strong><font style="color:#DF2A3F;">下面先不卸载，先全部使用默认的cv_bridge对应的opencv4.2.0版本试一试，</font></strong></p>
+<p><font style="color:#DF2A3F;">出现之前opencv3.4.5没发送生的报错</font>，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746177709100-6edc485e-b760-4e56-bcf4-3c52ac714aa7.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746178077043-1c638c2d-9c7e-41ea-b986-4d53b376e527.png" alt=""></p>
+<p><font style="color:#DF2A3F;">全部改掉后，编译成功！（前面opencv3.4.5没报错这个问题，说明还没有完全弃用）运行也成功。</font></p>
+<p>再次编译Ros部分，编译成功，并且没有警告冲突了，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746178970474-86049ca2-4d03-41d8-8f3d-447028126834.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roscore
+rosrun ORB_SLAM2 Stereo Vocabulary/ORBvoc.txt Examples/Stereo/EuRoC.yaml true
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746179118928-e0cbddb7-86d4-4149-bac5-1cd54ea67be1.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>rosbag play <span class="token punctuation">-</span><span class="token punctuation">-</span>pause MH_01_easy.bag /cam0/image_raw<span class="token punctuation">:</span>=/camera/left/image_raw /cam1/image_raw<span class="token punctuation">:</span>=/camera/right/image_raw
+</code></pre><pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code><span class="token key atrule">ORB Extractor Parameters</span><span class="token punctuation">:</span> 
+<span class="token punctuation">-</span> <span class="token key atrule">Number of Features</span><span class="token punctuation">:</span> <span class="token number">1200</span>
+<span class="token punctuation">-</span> <span class="token key atrule">Scale Levels</span><span class="token punctuation">:</span> <span class="token number">8</span>
+<span class="token punctuation">-</span> <span class="token key atrule">Scale Factor</span><span class="token punctuation">:</span> <span class="token number">1.2</span>
+<span class="token punctuation">-</span> <span class="token key atrule">Initial Fast Threshold</span><span class="token punctuation">:</span> <span class="token number">20</span>
+<span class="token punctuation">-</span> <span class="token key atrule">Minimum Fast Threshold</span><span class="token punctuation">:</span> <span class="token number">7</span>
+
+<span class="token key atrule">Depth Threshold (Close/Far Points)</span><span class="token punctuation">:</span> <span class="token number">3.85272</span>
+New map created with 638 points
+receive a keyframe<span class="token punctuation">,</span> id = 1
+generate point cloud for kf 1<span class="token punctuation">,</span> size=0
+terminate called after throwing an instance of 'pcl<span class="token punctuation">:</span><span class="token punctuation">:</span>IOException'
+  <span class="token key atrule">what()</span><span class="token punctuation">:</span>  <span class="token punctuation">:</span> <span class="token punctuation">[</span>pcl<span class="token punctuation">:</span><span class="token punctuation">:</span>PCDWriter<span class="token punctuation">:</span><span class="token punctuation">:</span>writeBinary<span class="token punctuation">]</span> Input point cloud has no data<span class="token tag">!</span>
+已放弃 (核心已转储)
+
+</code></pre><p>... ...</p>
+<p>没有有深度信息的rosbag数据包，故先测试单目和双目模式，（后续直接使用相机测试RGBD模式）</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>rosrun ORB_SLAM2 Stereo Vocabulary/ORBvoc.txt Examples/Stereo/EuRoC.yaml true
+rosbag play <span class="token punctuation">-</span><span class="token punctuation">-</span>pause MH_01_easy.bag /cam0/image_raw<span class="token punctuation">:</span>=/camera/left/image_raw /cam1/image_raw<span class="token punctuation">:</span>=/camera/right/image_raw
+</code></pre><pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>rosrun ORB_SLAM2 Mono Vocabulary/ORBvoc.txt Examples/Monocular/EuRoC.yaml
+rosbag play <span class="token punctuation">-</span><span class="token punctuation">-</span>pause MH_01_easy.bag /cam0/image_raw<span class="token punctuation">:</span>=/camera/image_raw  也闪退pcl报错
+</code></pre><pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>rosbag play dataset<span class="token punctuation">-</span>room1_512_16.bag /cam0/image_raw<span class="token punctuation">:</span>=/camera/image_raw 
+当前帧有显示，点云地图没有显示
+</code></pre><p><strong>禁用或修改点云保存逻辑</strong>‌（临时解决方案）</p>
+<p><a href="https://blog.csdn.net/tuck_frump/article/details/121018489">PCL存储点云错误pcl::IOException what() [pcl::PCDWriter::writeASCII] Could not open file for writing_vs pcl could not open file for writing-CSDN博客</a></p>
+<p><code>pcl::io::savePCDFileBinary("vslam.pcd", *globalMap);</code></p>
+<p>‌实时保存‌： 如果将 <code>savePCDFileBinary</code> 写在循环内，每次循环都会保存当前的全局点云地图到文件。这意味着每次有新的关键帧被处理并添加到全局地图后，地图都会被保存。</p>
+<p>‌最终保存‌： 如果将 <code>savePCDFileBinary</code> 写在循环外，通常意味着你只想在程序结束或某个特定条件满足时保存最终的全局点云地图。</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>void PointCloudMapping<span class="token punctuation">:</span><span class="token punctuation">:</span>viewer()
+<span class="token punctuation">{</span>
+    // 创建一个点云查看器，窗口标题为"viewer"
+    pcl<span class="token punctuation">:</span><span class="token punctuation">:</span>visualization<span class="token punctuation">:</span><span class="token punctuation">:</span>CloudViewer viewer("viewer");
+    // int saveInterval = 10; // 添加 每处理10个关键帧保存一次地图
+    // int frameCount = 0; //添加
+
+    // 进入一个无限循环，持续更新和显示点云地图，直到接收到关闭信号
+    while(1)
+    <span class="token punctuation">{</span>
+        <span class="token punctuation">{</span>
+            // 使用互斥锁保护对关闭标志的访问
+            unique_lock&lt;mutex<span class="token punctuation">&gt;</span> lck_shutdown( shutDownMutex );
+            // 如果关闭标志被设置为true，则退出循环
+            if (shutDownFlag)
+            <span class="token punctuation">{</span>
+                break;
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token punctuation">{</span>
+            // 使用互斥锁和条件变量等待关键帧的更新
+            unique_lock&lt;mutex<span class="token punctuation">&gt;</span> lck_keyframeUpdated( keyFrameUpdateMutex );
+            // 等待条件变量被通知，表示有新的关键帧添加
+            keyFrameUpdated.wait( lck_keyframeUpdated );
+        <span class="token punctuation">}</span>
+
+        // 关键帧已更新，获取当前关键帧的数量
+        size_t N=0;
+        <span class="token punctuation">{</span>
+            // 使用互斥锁保护对关键帧列表的访问
+            unique_lock&lt;mutex<span class="token punctuation">&gt;</span> lck( keyframeMutex );
+            N = keyframes.size(); // 获取当前关键帧的数量
+        <span class="token punctuation">}</span>
+
+        // 处理从lastKeyframeSize到N之间的所有新添加的关键帧
+        for ( size_t i=lastKeyframeSize; i&lt;N ; i++ )
+        <span class="token punctuation">{</span>
+            // 为每个新关键帧生成点云，并添加到全局点云地图中
+            PointCloud<span class="token punctuation">:</span><span class="token punctuation">:</span>Ptr p = generatePointCloud( keyframes<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> colorImgs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> depthImgs<span class="token punctuation">[</span>i<span class="token punctuation">]</span> );
+            <span class="token important">*globalMap</span> += <span class="token important">*p;</span> // 将生成的点云添加到全局点云地图中
+        <span class="token punctuation">}</span>
+
+        // 将当前的全局点云地图保存为二进制PCD文件
+        //pcl<span class="token punctuation">:</span><span class="token punctuation">:</span>io<span class="token punctuation">:</span><span class="token punctuation">:</span>savePCDFileBinary("vslam.pcd"<span class="token punctuation">,</span> <span class="token important">*globalMap);</span> // 添加 注意：这一步在每次循环中都会执行
+        // frameCount++;
+        // if (frameCount <span class="token punctuation">&gt;</span>= saveInterval)
+        // <span class="token punctuation">{</span>
+        //     pcl<span class="token punctuation">:</span><span class="token punctuation">:</span>io<span class="token punctuation">:</span><span class="token punctuation">:</span>savePCDFileBinary("vslam.pcd"<span class="token punctuation">,</span> <span class="token important">*globalMap);</span> // 条件保存
+        //     frameCount = 0; // 重置计数器
+        // <span class="token punctuation">}</span>
+
+        // 创建一个新的点云对象，用于存储滤波后的点云
+        PointCloud<span class="token punctuation">:</span><span class="token punctuation">:</span>Ptr tmp(new PointCloud());
+        // 使用体素滤波器对全局点云地图进行滤波
+        voxel.setInputCloud( globalMap );
+        voxel.filter( <span class="token important">*tmp</span> );
+        // 将滤波后的点云与全局点云地图交换，更新全局点云地图
+        globalMap<span class="token punctuation">-</span><span class="token punctuation">&gt;</span>swap( <span class="token important">*tmp</span> );
+
+        // 使用点云查看器显示更新后的全局点云地图
+        viewer.showCloud( globalMap );
+        // 打印当前全局点云地图中的点数
+        cout &lt;&lt; "show global map<span class="token punctuation">,</span> size=" &lt;&lt; globalMap<span class="token punctuation">-</span><span class="token punctuation">&gt;</span>points.size() &lt;&lt; endl;
+
+        // 更新最后处理的关键帧数量，以便在下一次循环中处理新添加的关键帧
+        lastKeyframeSize = N;
+    <span class="token punctuation">}</span>
+    // 如果只需要在程序结束时保存一次地图，可以在这里添加保存代码
+    pcl<span class="token punctuation">:</span><span class="token punctuation">:</span>io<span class="token punctuation">:</span><span class="token punctuation">:</span>savePCDFileBinary("vslam_final.pcd"<span class="token punctuation">,</span> <span class="token important">*globalMap);</span>
+<span class="token punctuation">}</span>
+</code></pre><p><font style="color:#DF2A3F;">这种方法可行，但是不显示三色彩色点云地图，中断后还是相同报错。（不可视化并保存地图就不会报错）</font></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>receive a keyframe<span class="token punctuation">,</span> id = 571
+generate point cloud for kf 571<span class="token punctuation">,</span> size=0
+show global map<span class="token punctuation">,</span> size=0
+receive a keyframe<span class="token punctuation">,</span> id = 572
+generate point cloud for kf 572<span class="token punctuation">,</span> size=0
+show global map<span class="token punctuation">,</span> size=0
+^Cshow global map<span class="token punctuation">,</span> size=0
+terminate called after throwing an instance of 'pcl<span class="token punctuation">:</span><span class="token punctuation">:</span>IOException'
+  <span class="token key atrule">what()</span><span class="token punctuation">:</span>  <span class="token punctuation">:</span> <span class="token punctuation">[</span>pcl<span class="token punctuation">:</span><span class="token punctuation">:</span>PCDWriter<span class="token punctuation">:</span><span class="token punctuation">:</span>writeBinary<span class="token punctuation">]</span> Input point cloud has no data<span class="token tag">!</span>
+已放弃 (核心已转储)
+</code></pre><p>双目：<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746253241817-f0ad0892-4914-493a-831d-308ae9efe9ac.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746254151852-eeaef642-66d0-4494-b8e8-a308c2b0bd48.png" alt=""></p>
+<p>单目：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746254521926-fc5dfd3c-7d2f-46dd-a13d-312bd24d9dec.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>PointCloudMapping.Resolution<span class="token punctuation">:</span><span class="token number">0.01</span>
+meank<span class="token punctuation">:</span><span class="token number">50</span>
+thresh<span class="token punctuation">:</span><span class="token number">2.0</span>
+</code></pre><p>还是没有变化。</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>void PointCloudMapping<span class="token punctuation">:</span><span class="token punctuation">:</span>viewer()
+<span class="token punctuation">{</span>
+    // 创建一个点云查看器，窗口标题为"viewer"
+    pcl<span class="token punctuation">:</span><span class="token punctuation">:</span>visualization<span class="token punctuation">:</span><span class="token punctuation">:</span>CloudViewer viewer("viewer");
+
+    // 进入一个无限循环，持续更新和显示点云地图，直到接收到关闭信号
+    while(1)
+    <span class="token punctuation">{</span>
+        <span class="token punctuation">{</span>
+            // 使用互斥锁保护对关闭标志的访问
+            unique_lock&lt;mutex<span class="token punctuation">&gt;</span> lck_shutdown(shutDownMutex);
+            // 如果关闭标志被设置为true，则退出循环
+            if (shutDownFlag)
+            <span class="token punctuation">{</span>
+                break;
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token punctuation">{</span>
+            // 使用互斥锁和条件变量等待关键帧的更新
+            unique_lock&lt;mutex<span class="token punctuation">&gt;</span> lck_keyframeUpdated(keyFrameUpdateMutex);
+            // 等待条件变量被通知，表示有新的关键帧添加
+            keyFrameUpdated.wait(lck_keyframeUpdated);
+        <span class="token punctuation">}</span>
+
+        // 关键帧已更新，获取当前关键帧的数量
+        size_t N = 0;
+        <span class="token punctuation">{</span>
+            // 使用互斥锁保护对关键帧列表的访问
+            unique_lock&lt;mutex<span class="token punctuation">&gt;</span> lck(keyframeMutex);
+            N = keyframes.size(); // 获取当前关键帧的数量
+        <span class="token punctuation">}</span>
+
+        // 处理从lastKeyframeSize到N之间的所有新添加的关键帧
+        for (size_t i = lastKeyframeSize; i &lt; N; i++)
+        <span class="token punctuation">{</span>
+            // 为每个新关键帧生成点云，并添加到全局点云地图中
+            PointCloud<span class="token punctuation">:</span><span class="token punctuation">:</span>Ptr p = generatePointCloud(keyframes<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> colorImgs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> depthImgs<span class="token punctuation">[</span>i<span class="token punctuation">]</span>);
+            if (p <span class="token tag">!=</span> nullptr) // 检查指针是否为空
+            <span class="token punctuation">{</span>
+                <span class="token important">*globalMap</span> += <span class="token important">*p;</span> // 将生成的点云添加到全局点云地图中
+            <span class="token punctuation">}</span>
+            else
+            <span class="token punctuation">{</span>
+                // 如果需要，可以在这里添加日志记录或错误处理
+                <span class="token key atrule">std::cerr &lt;&lt; "Warning</span><span class="token punctuation">:</span> Generated point cloud is null for keyframe " &lt;&lt; i &lt;&lt; std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl;
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        // 检查全局点云地图指针是否为空（通常不需要，但如果初始化可能为空则需要）
+        if (globalMap <span class="token tag">!=</span> nullptr)
+        <span class="token punctuation">{</span>
+            // 将当前的全局点云地图保存为二进制PCD文件
+            pcl<span class="token punctuation">:</span><span class="token punctuation">:</span>io<span class="token punctuation">:</span><span class="token punctuation">:</span>savePCDFileBinary("vslam.pcd"<span class="token punctuation">,</span> <span class="token important">*globalMap);</span> // 注意：这一步在每次循环中都会执行
+
+            // 创建一个新的点云对象，用于存储滤波后的点云
+            PointCloud<span class="token punctuation">:</span><span class="token punctuation">:</span>Ptr tmp(new PointCloud());
+            // 使用体素滤波器对全局点云地图进行滤波
+            voxel.setInputCloud(globalMap);
+            voxel.filter(<span class="token important">*tmp);</span>
+            // 将滤波后的点云与全局点云地图交换，更新全局点云地图
+            globalMap<span class="token punctuation">-</span><span class="token punctuation">&gt;</span>swap(<span class="token important">*tmp);</span>
+
+            // 使用点云查看器显示更新后的全局点云地图
+            viewer.showCloud(globalMap);
+            // 打印当前全局点云地图中的点数
+            cout &lt;&lt; "show global map<span class="token punctuation">,</span> size=" &lt;&lt; globalMap<span class="token punctuation">-</span><span class="token punctuation">&gt;</span>points.size() &lt;&lt; endl;
+        <span class="token punctuation">}</span>
+        else
+        <span class="token punctuation">{</span>
+            <span class="token key atrule">std::cerr &lt;&lt; "Error</span><span class="token punctuation">:</span> Global map pointer is null." &lt;&lt; std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl;
+            // 可以选择在这里添加退出逻辑或继续循环
+        <span class="token punctuation">}</span>
+
+        // 更新最后处理的关键帧数量，以便在下一次循环中处理新添加的关键帧
+        lastKeyframeSize = N;
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre><hr>
+<p><font style="color:#DF2A3F;">我猜测只有RGBD模式的点云地图可用。</font></p>
+<p>由于只能使用rosbag传入，下面下载一个RGBD数据集的bag文件进行试验，</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>rosbag play <span class="token punctuation">-</span><span class="token punctuation">-</span>pause rgbd_dataset_freiburg1_xyz.bag /camera/rgb/image_color<span class="token punctuation">:</span>=/camera/rgb/image_raw /camera/depth/image<span class="token punctuation">:</span>=/camera/depth_registered/image_raw
+rosbag play <span class="token punctuation">-</span><span class="token punctuation">-</span>pause rgbd_dataset_freiburg1_xyz.bag /camera/rgb/camera_info<span class="token punctuation">:</span>=/camera/rgb/image_raw /camera/depth/camera_info<span class="token punctuation">:</span>=/camera/depth_registered/image_raw
+</code></pre><p>还是一样的问题，说明不是数据集问题。</p>
+<hr>
+<h3 id="八叉树地图构建">八叉树地图构建 </h3>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>打开一个终端.(ctrl+alt+T)输入下面指令安装octomap.
+sudo apt<span class="token punctuation">-</span>get install ros<span class="token punctuation">-</span>noetic<span class="token punctuation">-</span>octomap<span class="token punctuation">-</span>ros <span class="token comment">#安装octomap</span>
+sudo apt<span class="token punctuation">-</span>get install ros<span class="token punctuation">-</span>noetic<span class="token punctuation">-</span>octomap<span class="token punctuation">-</span>msgs
+sudo apt<span class="token punctuation">-</span>get install ros<span class="token punctuation">-</span>noetic<span class="token punctuation">-</span>octomap<span class="token punctuation">-</span>server
+ 
+安装octomap 在 rviz 中的插件
+sudo apt<span class="token punctuation">-</span>get install ros<span class="token punctuation">-</span>noetic<span class="token punctuation">-</span>octomap<span class="token punctuation">-</span>rviz<span class="token punctuation">-</span>plugins
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746256937106-75828aae-4a68-4006-b4b3-9429c6e63c8b.png" alt=""><a href="https://github.com/RuPingCen/publish_pointcloud">GitHub - RuPingCen/publish_pointcloud: this code can be used for transfom the pointcloud into octomap</a></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>cd octomap_ws/src
+git clone https<span class="token punctuation">:</span>//github.com/RuPingCen/publish_pointcloud.git
+cd ..
+catkin_make
+</code></pre><p><font style="color:rgb(77, 77, 77);">进入 /src/publish_pointcloud/src下的publish_pointcloud.cpp，修改pcd文件路径，</font></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code><span class="token comment">#开一个终端启动ros</span>
+roscore
+<span class="token comment">#再开一个终端</span>
+rosrun publish_pointcloud publish_pointcloud
+<span class="token comment">#打开rviz</span>
+rviz
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746257910516-f451cc35-bc33-4c00-b13c-f858ba090b7d.png" alt=""></p>
+<p><font style="color:rgb(77, 77, 77);"> 点击add</font><code>&lt;font style="color:rgb(77, 77, 77);"&gt;，添加 "PointCloud2模块"&lt;/font&gt;</code></p>
+<p><code>&lt;font style="color:rgb(77, 77, 77);"&gt;设置topic为 "/pointcloud/output"&lt;/font&gt;</code></p>
+<p><code>&lt;font style="color:rgb(77, 77, 77);"&gt;设置FixedFram为"camera"（如果不能选就手动输入“camera”）&lt;/font&gt;</code></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746257623658-3f7f598b-c9a2-455d-9696-61144bd5471d.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch publish_pointcloud octomaptransform.launch
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746258581451-af411156-571b-4ebd-ad6f-9ed772b7ee84.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746258557059-b7237845-e7a1-4ffb-9713-a078f36f4289.png" alt=""></p>
+<p><font style="color:#DF2A3F;">有问题！发现是octomaptransform.launch中的frame_id的值写错了，应写camera而不是/camera。</font></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch publish_pointcloud demo.launch
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746273119154-42a3e01d-8c58-435f-bfe9-73a9da0b2556.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746276916901-02cf9ec3-1123-446c-a3ec-308966f47d9b.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>rosrun octomap_server octomap_saver /topic
+rosrun octomap_server octomap_saver <span class="token punctuation">-</span>f my_map.ot
+rosrun octomap_server octomap_saver <span class="token punctuation">-</span>f my_map.bt
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746274114241-34d2769f-4bf8-4d22-be1f-208ac7340aa4.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746275915532-34cdc77b-c355-4e90-8de5-b83261113bed.png" alt=""></p>
+<p>可能保存过程很慢。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746275177138-26447394-5aa7-4dbc-ac68-a8971d6d0608.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>sudo apt install octovis
+octovis my_map.ot
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746275152220-742baae7-31c7-4f8d-95a8-9d5f6ac23c50.png" alt=""></p>
+<p>在窗口按1可以进行颜色渲染，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746275590366-5fca5094-b61e-4b14-bc5e-43832d0a70e1.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>octovis my_map.bt
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746275771990-a6f011a5-e8a0-42ac-b82f-95c010afef6c.png" alt=""></p>
+<p>按1上色，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746275792857-55215eb6-874f-4242-857a-2767bb72c1a0.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>rosrun map_server map_saver <span class="token punctuation">-</span>f my_map 没效果
+</code></pre><hr>
+<p><a href="https://zhuanlan.zhihu.com/p/176507046">https://zhuanlan.zhihu.com/p/176507046</a>  <a href="https://blog.51cto.com/u_13157605/6038355">https://blog.51cto.com/u_13157605/6038355</a>  <a href="https://blog.51cto.com/u_13157605/6318627">https://blog.51cto.com/u_13157605/6318627</a>   <a href="https://developer.aliyun.com/article/855341">八叉树建立地图并实现路径规划导航（下）-阿里云开发者社区</a></p>
+<p><a href="https://blog.csdn.net/m0_73640344/article/details/145838920">ROS 八叉树地图构建详解：使用 octomap_server 实现增量式建图_octomap 建图-CSDN博客</a></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>git clone https<span class="token punctuation">:</span>//github.com/OctoMap/octomap_mapping.git
+roslaunch octomap_server octomap_mapping.launch
+</code></pre><h3 id="相机建图">相机建图 </h3>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>rs<span class="token punctuation">-</span>capture
+realsense<span class="token punctuation">-</span>viewer
+</code></pre><p>注意需要USB3，否则会数据传输不足。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746278292243-3f88d370-d11c-48ff-845e-2ec28f695efd.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746278413993-fb66de26-82fc-4611-913f-47234eb23801.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>rgbd可能报错：安装sudo apt<span class="token punctuation">-</span>get install ros<span class="token punctuation">-</span>noetic<span class="token punctuation">-</span>rgbd<span class="token punctuation">-</span>launch
+<span class="token comment"># 无点云</span>
+roslaunch realsense2_camera rs_camera.launch
+<span class="token comment"># 有点云生成</span>
+roslaunch realsense2_camera demo_pointcloud.launch
+<span class="token comment"># 生成对齐的深度图像</span>
+roslaunch realsense2_camera rs_rgbd.launch align_depth<span class="token punctuation">:</span>=true
+<span class="token comment">#其他使用说明见官方文档</span>
+https<span class="token punctuation">:</span>//github.com/IntelRealSense/realsense<span class="token punctuation">-</span>ros/tree/ros1<span class="token punctuation">-</span>legacy
+
+roslaunch realsense2_camera rs_camera.launch align_depth<span class="token punctuation">:</span>=true
+</code></pre><p>打开ros_rgbd.cc，修改相机话题，然后build_ros.sh，</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>// D455 相机
+message_filters<span class="token punctuation">:</span><span class="token punctuation">:</span>Subscriber&lt;sensor_msgs<span class="token punctuation">:</span><span class="token punctuation">:</span>Image<span class="token punctuation">&gt;</span> rgb_sub(nh<span class="token punctuation">,</span> <span class="token string">"/camera/color/image_raw"</span><span class="token punctuation">,</span> 1);
+message_filters<span class="token punctuation">:</span><span class="token punctuation">:</span>Subscriber&lt;sensor_msgs<span class="token punctuation">:</span><span class="token punctuation">:</span>Image<span class="token punctuation">&gt;</span> depth_sub(nh<span class="token punctuation">,</span> <span class="token string">"/camera/aligned_depth_to_color/image_raw"</span><span class="token punctuation">,</span> 1);
+// Astra pro 相机
+// message_filters<span class="token punctuation">:</span><span class="token punctuation">:</span>Subscriber&lt;sensor_msgs<span class="token punctuation">:</span><span class="token punctuation">:</span>Image<span class="token punctuation">&gt;</span> rgb_sub(nh<span class="token punctuation">,</span> <span class="token string">"/camera/rgb/image_raw"</span><span class="token punctuation">,</span> 1);
+// message_filters<span class="token punctuation">:</span><span class="token punctuation">:</span>Subscriber&lt;sensor_msgs<span class="token punctuation">:</span><span class="token punctuation">:</span>Image<span class="token punctuation">&gt;</span> depth_sub(nh<span class="token punctuation">,</span> <span class="token string">"/camera/depth/image"</span><span class="token punctuation">,</span> 1);
+</code></pre><p>新建一个相机参数配置文件MyD55.yaml，</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>rostopic echo /camera/color/camera_info
+</code></pre><pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code><span class="token directive important">%YAML:1.0</span>
+ 
+<span class="token comment">#--------------------------------------------------------------------------------------------</span>
+<span class="token comment"># Camera Parameters. Adjust them!</span>
+<span class="token comment">#--------------------------------------------------------------------------------------------</span>
+ 
+<span class="token comment"># Camera calibration and distortion parameters (OpenCV) </span>
+<span class="token key atrule">Camera.fx</span><span class="token punctuation">:</span> <span class="token number">910.099731</span>
+<span class="token key atrule">Camera.fy</span><span class="token punctuation">:</span> <span class="token number">909.994873</span>
+<span class="token key atrule">Camera.cx</span><span class="token punctuation">:</span> <span class="token number">639.493347</span>
+<span class="token key atrule">Camera.cy</span><span class="token punctuation">:</span> <span class="token number">359.377410</span>
+
+<span class="token key atrule">Camera.k1</span><span class="token punctuation">:</span> <span class="token number">0.0</span>
+<span class="token key atrule">Camera.k2</span><span class="token punctuation">:</span> <span class="token number">0.0</span>
+<span class="token key atrule">Camera.p1</span><span class="token punctuation">:</span> <span class="token number">0.0</span>
+<span class="token key atrule">Camera.p2</span><span class="token punctuation">:</span> <span class="token number">0.0</span>
+<span class="token key atrule">Camera.p3</span><span class="token punctuation">:</span> <span class="token number">0.0</span>
+
+<span class="token key atrule">Camera.width</span><span class="token punctuation">:</span> <span class="token number">640</span>
+<span class="token key atrule">Camera.height</span><span class="token punctuation">:</span> <span class="token number">480</span>
+<span class="token comment"># Camera frames per second </span>
+<span class="token key atrule">Camera.fps</span><span class="token punctuation">:</span> <span class="token number">30.0</span>
+
+<span class="token comment"># IR projector baseline times fx (aprox.)</span>
+<span class="token comment"># bf = baseline (in meters) * fx, D435i的 baseline = 50 mm </span>
+<span class="token key atrule">Camera.bf</span><span class="token punctuation">:</span> <span class="token number">50.0</span>
+ 
+<span class="token comment"># Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)</span>
+<span class="token key atrule">Camera.RGB</span><span class="token punctuation">:</span> <span class="token number">1</span>
+ 
+<span class="token comment"># Close/Far threshold. Baseline times.</span>
+<span class="token key atrule">ThDepth</span><span class="token punctuation">:</span> <span class="token number">40.0</span>
+ 
+<span class="token comment"># Deptmap values factor</span>
+<span class="token key atrule">DepthMapFactor</span><span class="token punctuation">:</span> <span class="token number">1000.0</span>
+ 
+<span class="token comment">#--------------------------------------------------------------------------------------------</span>
+<span class="token comment"># ORB Parameters</span>
+<span class="token comment">#--------------------------------------------------------------------------------------------</span>
+ 
+<span class="token comment"># ORB Extractor: Number of features per image</span>
+<span class="token key atrule">ORBextractor.nFeatures</span><span class="token punctuation">:</span> <span class="token number">1000</span>
+ 
+<span class="token comment"># ORB Extractor: Scale factor between levels in the scale pyramid 	</span>
+<span class="token key atrule">ORBextractor.scaleFactor</span><span class="token punctuation">:</span> <span class="token number">1.2</span>
+ 
+<span class="token comment"># ORB Extractor: Number of levels in the scale pyramid	</span>
+<span class="token key atrule">ORBextractor.nLevels</span><span class="token punctuation">:</span> <span class="token number">8</span>
+ 
+<span class="token comment"># ORB Extractor: Fast threshold</span>
+<span class="token comment"># Image is divided in a grid. At each cell FAST are extracted imposing a minimum response.</span>
+<span class="token comment"># Firstly we impose iniThFAST. If no corners are detected we impose a lower value minThFAST</span>
+<span class="token comment"># You can lower these values if your images have low contrast			</span>
+<span class="token key atrule">ORBextractor.iniThFAST</span><span class="token punctuation">:</span> <span class="token number">20</span>
+<span class="token key atrule">ORBextractor.minThFAST</span><span class="token punctuation">:</span> <span class="token number">7</span>
+ 
+<span class="token comment">#--------------------------------------------------------------------------------------------</span>
+<span class="token comment"># Viewer Parameters</span>
+<span class="token comment">#--------------------------------------------------------------------------------------------</span>
+<span class="token key atrule">Viewer.KeyFrameSize</span><span class="token punctuation">:</span> <span class="token number">0.05</span>
+<span class="token key atrule">Viewer.KeyFrameLineWidth</span><span class="token punctuation">:</span> <span class="token number">1</span>
+<span class="token key atrule">Viewer.GraphLineWidth</span><span class="token punctuation">:</span> <span class="token number">0.9</span>
+Viewer.PointSize<span class="token punctuation">:</span><span class="token number">2</span>
+<span class="token key atrule">Viewer.CameraSize</span><span class="token punctuation">:</span> <span class="token number">0.08</span>
+<span class="token key atrule">Viewer.CameraLineWidth</span><span class="token punctuation">:</span> <span class="token number">3</span>
+<span class="token key atrule">Viewer.ViewpointX</span><span class="token punctuation">:</span> <span class="token number">0</span>
+<span class="token key atrule">Viewer.ViewpointY</span><span class="token punctuation">:</span> <span class="token number">-0.7</span>
+<span class="token key atrule">Viewer.ViewpointZ</span><span class="token punctuation">:</span> <span class="token number">-1.8</span>
+<span class="token key atrule">Viewer.ViewpointF</span><span class="token punctuation">:</span> <span class="token number">500</span>
+ 
+<span class="token key atrule">PointCloudMapping.Resolution</span><span class="token punctuation">:</span> <span class="token number">0.01</span>
+<span class="token key atrule">meank</span><span class="token punctuation">:</span> <span class="token number">50</span>
+<span class="token key atrule">thresh</span><span class="token punctuation">:</span> <span class="token number">2.0</span>
+
+</code></pre><hr>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch realsense2_camera rs_rgbd.launch 
+roslaunch realsense2_camera rs_rgbd.launch align_depth<span class="token punctuation">:</span>=true
+rosrun ORB_SLAM2 RGBD Vocabulary/ORBvoc.txt Examples/ROS/ORB_SLAM2/MyD455.yaml
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746339647120-d0f466ac-2cec-42e1-aa8a-35230de4d29c.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746342261623-897e5ef4-3f79-4035-9ad6-3c5d242c21df.png" alt=""></p>
+<p>可能是默认分辨率太高问题。</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch realsense2_camera rs_camera.launch align_depth<span class="token punctuation">:</span>=true
+rosrun ORB_SLAM2 RGBD Vocabulary/ORBvoc.txt Examples/ROS/ORB_SLAM2/MyD455.yaml
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746340849388-d08547ae-28f4-4520-8549-da2c6ad2c8d6.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746340830321-b0a12c40-d83a-4a0a-937b-6bced58b3905.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746340728433-9d6c7f5f-a32a-43f8-bde9-ac57ef0f3b87.png" alt=""></p>
+<hr>
+<h3 id="转八叉树地图">转八叉树地图 </h3>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746347010192-155477fb-b414-4896-95ae-ef565b3bb721.png" alt=""></p>
+<p>发现点云与网格是垂直的，主要是因为相机坐标系定义为：z轴往前，x轴往左（不是常见的往右是因为我的图像采集时镜像了），y轴往下，RVIZ默认显示的是xy平面，改成显示xz平面就正常了，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746347893550-5c7a0c13-9a15-4cd4-b31b-22149e69f3a6.png" alt=""></p>
+<p><a href="https://blog.csdn.net/sylin211/article/details/93743724">使用octomap_server将点云地图转化为八叉树地图和占据栅格地图_深度图构建八叉树地图-CSDN博客</a></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746348678811-7721dcc6-6cdf-447b-bf25-18fe7db2cdd9.png" alt=""></p>
+<p><font style="color:#DF2A3F;">发现投影的栅格地图还是垂直，该方法不行，</font></p>
+<p>对点云坐标做变换，绕x轴旋转90度，将z轴指向上方，在将点云转变为ros信息之前使用pcl::transformPointCloud()函数将点云变换一下，</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code><span class="token comment">#include &lt;Eigen/Core&gt;          // 包含基本的Eigen矩阵和向量定义</span>
+<span class="token comment">#include &lt;Eigen/Geometry&gt;      // 包含旋转、平移等几何变换</span>
+<span class="token comment">#include &lt;pcl/common/transforms.h&gt;</span>
+
+	pcl<span class="token punctuation">:</span><span class="token punctuation">:</span>PointCloud&lt;pcl<span class="token punctuation">:</span><span class="token punctuation">:</span>PointXYZ<span class="token punctuation">&gt;</span> cloud;  
+	sensor_msgs<span class="token punctuation">:</span><span class="token punctuation">:</span>PointCloud2 output;  
+	pcl<span class="token punctuation">:</span><span class="token punctuation">:</span>io<span class="token punctuation">:</span><span class="token punctuation">:</span>loadPCDFile (path<span class="token punctuation">,</span> cloud);  
+	//点云旋转90度
+	Eigen<span class="token punctuation">:</span><span class="token punctuation">:</span>Affine3f transform = Eigen<span class="token punctuation">:</span><span class="token punctuation">:</span>Affine3f<span class="token punctuation">:</span><span class="token punctuation">:</span>Identity();
+    transform.rotate(Eigen<span class="token punctuation">:</span><span class="token punctuation">:</span>AngleAxisf(<span class="token punctuation">-</span>M_PI/2<span class="token punctuation">,</span> Eigen<span class="token punctuation">:</span><span class="token punctuation">:</span>Vector3f(1<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span>0)));
+    pcl<span class="token punctuation">:</span><span class="token punctuation">:</span>transformPointCloud(cloud<span class="token punctuation">,</span> cloud<span class="token punctuation">,</span> transform);
+	//。。。。
+	pcl<span class="token punctuation">:</span><span class="token punctuation">:</span>toROSMsg(cloud<span class="token punctuation">,</span>output);// 转换成ROS下的数据类型 最终通过topic发布
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746349995466-4a26261c-08c2-4136-9c7b-ce2b73854994.png" alt=""></p>
+<p>白色为可行区域，黑色为占据区域，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746351564984-1683896a-d587-45fc-ae43-9d6309a1dd2f.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746351489425-be196029-a464-4c87-b832-294eb38d56c0.png" alt=""></p>
+<p>想只保存网格地图，保存不了。</p>
+<p>参考资料：</p>
+<p><a href="https://blog.csdn.net/weixin_52379562/article/details/125940140">ORBSLAM2实验记录(1)——稠密建图_orbslam2稠密建图-CSDN博客</a></p>
+<p>修改：</p>
+<p><a href="https://blog.csdn.net/qq_45509667/article/details/138628381">Ubuntu20.04下ORB-SLAM2稠密建图+octomap生成八叉树地图（上）_orbslam2稠密建图-CSDN博客</a></p>
+<p><a href="https://blog.csdn.net/qq_45509667/article/details/138650779?spm=1001.2014.3001.5502">Ubuntu20.04下ORB-SLAM2稠密建图+octomap生成八叉树地图（下）_ubuntu20.04安装octomap-CSDN博客</a></p>
+<p><a href="https://blog.csdn.net/m0_60355964/article/details/124850849">用D435i跑高翔ORB_SLAM2稠密建图_orbslam2 高翔-CSDN博客</a></p>
+<p><a href="https://blog.csdn.net/crp997576280/article/details/74605766">Octomap 在ROS环境下实时显示_octomap在ros环境下实时显示-飞天熊猫-CSDN博客</a></p>
+<p><a href="https://github.com/OctoMap/octomap_mapping">GitHub - OctoMap/octomap_mapping: ROS stack for mapping with OctoMap, contains octomap_server package</a></p>
+<h2 id="五-orb-slam2在线构建稠密点云地图">五、ORB-SLAM2在线构建稠密点云地图 </h2>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>cd octomap_ws/src
+git clone <span class="token punctuation">-</span>b v1.0.0 https<span class="token punctuation">:</span>//github.com/RuPingCen/pointcloud_mapping.git
+cd ../
+catkin_make
+</code></pre><p>参考资料：</p>
+<p><a href="https://blog.csdn.net/crp997576280/article/details/88899163">ORB-SLAM2 在线构建稠密点云（一）_mbuseexact-CSDN博客</a></p>
+<p><a href="https://blog.csdn.net/crp997576280/article/details/104220926">ORB-SLAM2 在线构建稠密点云（二）_orb-slam net-CSDN博客</a></p>
+<p><a href="https://github.com/RuPingCen/ORB_SLAM2/tree/v1.0.0">GitHub - RuPingCen/ORB_SLAM2 at v1.0.0</a></p>
+<p><a href="https://github.com/RuPingCen/pointcloud_mapping">GitHub - RuPingCen/pointcloud_mapping: 利用位姿估计器输出的Tcw信息对图像帧进行拼接生成全局点云</a></p>
+<p><a href="https://blog.csdn.net/qq_36754438/article/details/113832949">ORB-SLAM2 在线构建稠密点云（室内RGBD篇）_orb-slam2 在线构建稠密点云(室内rgbd篇)-CSDN博客</a></p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

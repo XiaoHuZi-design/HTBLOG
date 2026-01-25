@@ -1,0 +1,1311 @@
+<!DOCTYPE html><html><head>
+      <title>欢乐斗地主</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\LingJiaXiaoHu\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.20\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h2 id="引言">引言 </h2>
+<p>码云：<a href="https://gitee.com/subingwen/landlords">https://gitee.com/subingwen/landlords</a></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1756542150420-101838e2-ebb3-44a5-9827-475d664fed11.png" alt=""></p>
+<hr>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1756557095659-5a16f8d5-9fd9-4546-9c1a-cf7f0e973e17.png" alt=""></p>
+<p>完成整个项目开发需要编写19个类。</p>
+<p><a href="https://www.yuque.com/attachments/yuque/0/2025/xmind/39216292/1757339651989-2ab0f15d-6a64-44c5-beac-733adf61b774.xmind">斗地主.xmind</a>  <a href="https://www.yuque.com/attachments/yuque/0/2025/pdf/39216292/1757339669429-ed01c47c-2be1-40ee-aa73-2433fafeb07f.pdf">斗地主-思维导图.pdf</a></p>
+<p><a href="https://www.yuque.com/attachments/yuque/0/2025/pdf/39216292/1757339676018-9aa79d4e-e137-4e40-998a-3ed696e43092.pdf">斗地主-流程图.pdf</a></p>
+<hr>
+<h1 id="第一阶段模块开发">第一阶段：模块开发 </h1>
+<h2 id="一-创建一个新项目">一、<strong>创建一个新项目</strong> </h2>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1756557730244-f3516c0c-5a4e-4637-8fa5-a73f462c0764.png" alt=""><!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1756557855224-c1bda0b5-6f40-482b-9fa3-6d7b40f60592.png" alt=""><!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1756557901972-7aa65ed1-4ef9-44d1-be30-90c39997db2a.png" alt=""></p>
+<h2 id="二-添加一个卡牌类">二、添加一个卡牌类 </h2>
+<p>鼠标右键项目名，Add New添加一个C++类</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1756558193258-5f9005c8-290e-4516-8886-c322e70c58f3.png" alt=""></p>
+<p>创建好后，首先需要再卡牌类里面添加两个枚举：卡牌花色和卡牌点数</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">CARD_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">CARD_H</span></span>
+
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Card</span>
+<span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token comment">// 花色</span>
+    <span class="token keyword keyword-enum">enum</span> <span class="token class-name">CardSuit</span>
+    <span class="token punctuation">{</span>
+        Suit_Begin<span class="token punctuation">,</span>
+        Diamond<span class="token punctuation">,</span> <span class="token comment">//方块</span>
+        Club<span class="token punctuation">,</span> <span class="token comment">//梅花</span>
+        Heart<span class="token punctuation">,</span> <span class="token comment">//红桃</span>
+        Spade<span class="token punctuation">,</span> <span class="token comment">//黑桃</span>
+        Suit_End
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token comment">// 点数</span>
+    <span class="token keyword keyword-enum">enum</span> <span class="token class-name">CardPoint</span>
+    <span class="token punctuation">{</span>
+        Card_Begin<span class="token punctuation">,</span>
+        Card_3<span class="token punctuation">,</span>
+        Card_4<span class="token punctuation">,</span>
+        Card_5<span class="token punctuation">,</span>
+        Card_6<span class="token punctuation">,</span>
+        Card_7<span class="token punctuation">,</span>
+        Card_8<span class="token punctuation">,</span>
+        Card_9<span class="token punctuation">,</span>
+        Card_10<span class="token punctuation">,</span>
+        Card_J<span class="token punctuation">,</span>
+        Card_Q<span class="token punctuation">,</span>
+        Card_K<span class="token punctuation">,</span>
+        Card_A<span class="token punctuation">,</span>
+        Card_2<span class="token punctuation">,</span>
+        Card_SJ<span class="token punctuation">,</span> <span class="token comment">//small joker</span>
+        Card_BJ<span class="token punctuation">,</span> <span class="token comment">//big joker</span>
+        Card_End
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token comment">//花色类型和点数类型的成员变量</span>
+    CardSuit suit<span class="token punctuation">;</span>
+    CardPoint point<span class="token punctuation">;</span>
+    <span class="token function">Card</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span> <span class="token comment">// CARD_H</span></span>
+
+</code></pre><p>由于C++里面的类一般情况下咱们都需要把它的成员变量定义为私有，这里就重新修改一下权限，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    <span class="token comment">//花色类型和点数类型的成员变量</span>
+    CardSuit suit<span class="token punctuation">;</span>
+    CardPoint point<span class="token punctuation">;</span>
+</code></pre><p>定义为私有后，咱们就不能在外部访问了，为了能够访问到这个属性咱们就得添加相关的成员函数，通过成员函数再间接的对成员变量进行读或者写操作，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>    <span class="token comment">//成员函数</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">setSuit</span><span class="token punctuation">(</span>CardSuit suit<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//设置花色</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">setPoint</span><span class="token punctuation">(</span>CardPoint point<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//设置点数</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">suit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//获取花色</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">point</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//获取点数</span>
+
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    <span class="token comment">//花色类型和点数类型的成员变量</span>
+    CardSuit m_suit<span class="token punctuation">;</span>
+    CardPoint m_point<span class="token punctuation">;</span>
+</code></pre><p>下面再来实现定义的这四个函数，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>    CardSuit <span class="token function">suit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword keyword-const">const</span><span class="token punctuation">;</span>   <span class="token comment">//获取花色 末尾加const限定 便于const类型调用</span>
+    CardPoint <span class="token function">point</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword keyword-const">const</span><span class="token punctuation">;</span> <span class="token comment">//获取点数 末尾加const限定 便于const类型调用</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-void">void</span> <span class="token class-name">Card</span><span class="token double-colon punctuation">::</span><span class="token function">setSuit</span><span class="token punctuation">(</span>CardSuit suit<span class="token punctuation">)</span><span class="token comment">//设置花色</span>
+<span class="token punctuation">{</span>
+    m_suit <span class="token operator">=</span> suit<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-void">void</span> <span class="token class-name">Card</span><span class="token double-colon punctuation">::</span><span class="token function">setPoint</span><span class="token punctuation">(</span>CardPoint point<span class="token punctuation">)</span> <span class="token comment">//设置点数</span>
+<span class="token punctuation">{</span>
+    m_point <span class="token operator">=</span> point<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+Card<span class="token double-colon punctuation">::</span>CardSuit <span class="token class-name">Card</span><span class="token double-colon punctuation">::</span><span class="token function">suit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword keyword-const">const</span><span class="token comment">//获取花色</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-return">return</span> m_suit<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+Card<span class="token double-colon punctuation">::</span>CardPoint <span class="token class-name">Card</span><span class="token double-colon punctuation">::</span><span class="token function">point</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword keyword-const">const</span> <span class="token comment">//获取点数</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-return">return</span> m_point<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre><h2 id="三-添加卡牌窗口类">三、添加卡牌窗口类 </h2>
+<p>QWidget</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1756560669780-12ee650b-d709-4813-9afc-937a783e81da.png" alt=""><!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1756610191524-f6389c9b-1a83-4935-845e-479a4455aeb9.png" alt=""></p>
+<p>首先每张扑克牌窗口对象上都需要显示对应的图片，所以需要一个设置图片的函数，包含正面图片和背面图片，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">CARDPANEL_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">CARDPANEL_H</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QObject&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QWidget&gt;</span></span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">CardPanel</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">QWidget</span></span>
+<span class="token punctuation">{</span>
+    Q_OBJECT
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-explicit">explicit</span> <span class="token function">CardPanel</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent <span class="token operator">=</span> <span class="token keyword keyword-nullptr">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 设置获取图片函数</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">setImage</span><span class="token punctuation">(</span>QPixmap <span class="token operator">&amp;</span>front<span class="token punctuation">,</span> QPixmap <span class="token operator">&amp;</span>back<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//设置图片正面和背面</span>
+    QPixmap <span class="token function">getImage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//获取图片</span>
+
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">paintEvent</span><span class="token punctuation">(</span>QPaintEvent <span class="token operator">*</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//事件处理函数</span>
+
+signals<span class="token operator">:</span>
+
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    <span class="token comment">//添加两个私有成员变量</span>
+    QPixmap m_front<span class="token punctuation">;</span>
+    QPixmap m_back<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span> <span class="token comment">// CARDPANEL_H</span></span>
+
+</code></pre><p>下面开始编写者成员函数，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-void">void</span> <span class="token class-name">CardPanel</span><span class="token double-colon punctuation">::</span><span class="token function">setImage</span><span class="token punctuation">(</span>QPixmap <span class="token operator">&amp;</span>front<span class="token punctuation">,</span> QPixmap <span class="token operator">&amp;</span>back<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    m_front <span class="token operator">=</span> front<span class="token punctuation">;</span>
+    m_back <span class="token operator">=</span> back<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+QPixmap <span class="token class-name">CardPanel</span><span class="token double-colon punctuation">::</span><span class="token function">getImage</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//获取图片</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-return">return</span> m_front<span class="token punctuation">;</span> <span class="token comment">//返回正面</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token class-name">CardPanel</span><span class="token double-colon punctuation">::</span><span class="token function">paintEvent</span><span class="token punctuation">(</span>QPaintEvent <span class="token operator">*</span>event<span class="token punctuation">)</span> <span class="token comment">//事件处理函数</span>
+<span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+</code></pre><p>在添加一个成员变量布尔值来判断窗口是正面还是背面，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>    <span class="token comment">//添加一个布尔值标记是哪一面</span>
+    <span class="token keyword keyword-bool">bool</span> m_isfront<span class="token punctuation">;</span>
+</code></pre><p>如果是正面就绘制正面图片，如果是背面，就绘制背面图片，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QPainter&gt;</span>  <span class="token comment">//添加画图</span></span>
+
+<span class="token keyword keyword-void">void</span> <span class="token class-name">CardPanel</span><span class="token double-colon punctuation">::</span><span class="token function">paintEvent</span><span class="token punctuation">(</span>QPaintEvent <span class="token operator">*</span>event<span class="token punctuation">)</span> <span class="token comment">//事件处理函数</span>
+<span class="token punctuation">{</span>
+    QPainter <span class="token function">p</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//当前窗口</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>m_isfront<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        p<span class="token punctuation">.</span><span class="token function">drawPixmap</span><span class="token punctuation">(</span><span class="token function">rect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> m_front<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//rect()获取当前窗口尺寸信息</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-else">else</span>
+    <span class="token punctuation">{</span>
+        p<span class="token punctuation">.</span><span class="token function">drawPixmap</span><span class="token punctuation">(</span><span class="token function">rect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> m_back<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>paintEvent函数什么时候被调用？当我们把图片设置好之后就需要重新绘制当前图片信息，因此需要手动进行<font style="color:#DF2A3F;">update更新</font>，另外需要让当前窗口和咱们的扑克牌对象的图片一样大，咱们随便使用一个m_front就能获取扑克牌的尺寸信息，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-void">void</span> <span class="token class-name">CardPanel</span><span class="token double-colon punctuation">::</span><span class="token function">setImage</span><span class="token punctuation">(</span>QPixmap <span class="token operator">&amp;</span>front<span class="token punctuation">,</span> QPixmap <span class="token operator">&amp;</span>back<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    m_front <span class="token operator">=</span> front<span class="token punctuation">;</span>
+    m_back <span class="token operator">=</span> back<span class="token punctuation">;</span>
+    <span class="token comment">//获取图片的尺寸信息</span>
+    <span class="token function">setFixedSize</span><span class="token punctuation">(</span>m_front<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//手动更新</span>
+<span class="token punctuation">}</span>
+</code></pre><p>除此之外，我们还需要再当前的扑克牌窗口类里面，添加两组有关状态的属性函数，</p>
+<p>一组用来标记<font style="color:#DF2A3F;">当前的扑克牌窗口到底是正面还是背面</font>，另一组是用来标记当前的扑克牌窗口有没有被选中，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>    <span class="token comment">// 扑克牌显示哪一面</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">setFrontSide</span><span class="token punctuation">(</span><span class="token keyword keyword-bool">bool</span> flag<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//将flag值通过m_isfront保存下来</span>
+    <span class="token keyword keyword-bool">bool</span> <span class="token function">isFrontSide</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//判断当前扑克牌到底是正面还是背面</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-void">void</span> <span class="token class-name">CardPanel</span><span class="token double-colon punctuation">::</span><span class="token function">setFrontSide</span><span class="token punctuation">(</span><span class="token keyword keyword-bool">bool</span> flag<span class="token punctuation">)</span> <span class="token comment">//将flag值通过m_isfront保存下来</span>
+<span class="token punctuation">{</span>
+    m_isfront <span class="token operator">=</span> flag<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-bool">bool</span> <span class="token class-name">CardPanel</span><span class="token double-colon punctuation">::</span><span class="token function">isFrontSide</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//判断当前扑克牌到底是正面还是背面</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-return">return</span> m_isfront<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p><font style="color:#DF2A3F;">接着添加窗口是否被选中，</font></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>    <span class="token comment">// 记录窗口是否被选中了</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">setSelected</span><span class="token punctuation">(</span><span class="token keyword keyword-bool">bool</span> flag<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-bool">bool</span> <span class="token function">isSelected</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-void">void</span> <span class="token class-name">CardPanel</span><span class="token double-colon punctuation">::</span><span class="token function">setSelected</span><span class="token punctuation">(</span><span class="token keyword keyword-bool">bool</span> flag<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    m_isSelect <span class="token operator">=</span> flag<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-bool">bool</span> <span class="token class-name">CardPanel</span><span class="token double-colon punctuation">::</span><span class="token function">isSelected</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-return">return</span> m_isSelect<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p><font style="color:#DF2A3F;">另外扑克牌窗口里面要显示正面图片对应的花色以及他的点数，</font></p>
+<p>所以需要包含前面定义的卡牌类，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;card.h&gt;</span> <span class="token comment">//包含卡牌类</span></span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>    <span class="token comment">// 扑克牌的花色以及点数</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">setCard</span><span class="token punctuation">(</span>Card<span class="token operator">&amp;</span> card<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Card <span class="token function">getCard</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-void">void</span> <span class="token class-name">CardPanel</span><span class="token double-colon punctuation">::</span><span class="token function">setCard</span><span class="token punctuation">(</span>Card <span class="token operator">&amp;</span>card<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    m_card <span class="token operator">=</span> card<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+Card <span class="token class-name">CardPanel</span><span class="token double-colon punctuation">::</span><span class="token function">getCard</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-return">return</span> m_card<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>然后还需要知道这张扑克牌的所有者，到底属于左侧机器人还是右侧机器人或者当前玩家，</p>
+<p>因此需要先创建玩家类Player。</p>
+<h2 id="四-添加玩家类">四、添加玩家类 </h2>
+<p>基类选择QObject，因为后续可能在这个类里面使用QT的信号槽机制，需要让这个类从QObject直接或者间接派生，也就是直接继承QObject或者从QObject的子类派生继承，如果不继承QObject，那么咱们就没有办法使用QT给提供的信号槽机制，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1756605632419-a50c082c-36af-487a-8d46-dc9ad27dc465.png" alt=""></p>
+<p>在前面卡牌窗口类添加</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;player.h&gt;</span> <span class="token comment">//包含玩家类</span></span>
+</code></pre><p>并添加卡牌所有者玩家设置函数，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>    <span class="token comment">// 扑克牌的所有者 到底属于左侧机器人还是右侧机器人或者玩家</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">setOwner</span><span class="token punctuation">(</span>Player<span class="token operator">*</span> player<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//玩家设置函数</span>
+    Player<span class="token operator">*</span> <span class="token function">getOwner</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-void">void</span> <span class="token class-name">CardPanel</span><span class="token double-colon punctuation">::</span><span class="token function">setOwner</span><span class="token punctuation">(</span>Player <span class="token operator">*</span>player<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    m_owner <span class="token operator">=</span> player<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+Player <span class="token operator">*</span><span class="token class-name">CardPanel</span><span class="token double-colon punctuation">::</span><span class="token function">getOwner</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-return">return</span> m_owner<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre><p>然后添加鼠标事件处理函数，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-void">void</span> <span class="token function">mousePressEvent</span><span class="token punctuation">(</span>QMouseEvent<span class="token operator">*</span> event<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//鼠标事件处理函数</span>
+</code></pre><p>具体逻辑暂时空着，当要用到鼠标事件的时候再添加。</p>
+<h2 id="五-添加多种卡牌类">五、添加多种卡牌类 </h2>
+<p>在游戏开始阶段，每副扑克牌有52张，每次需要依次分发给三个玩家，每个玩家拿一个碗进行存储，最后抢到地主的玩家会得到最后三张底牌，</p>
+<p>在游戏进行阶段，每个玩家依次出牌，有可能打出的是一张，有可能是多张出牌，打出一张或多张手里就少一张或多张，直到手里牌打完了，这个玩家就赢了，</p>
+<p>这就是游戏的基本规则。</p>
+<p>也就是咱们需要有一个类对这多张扑克牌进行管理，首先在管理扑克牌的类里就需要有一个容器来存储这多张扑克牌，而且这个扑克牌的数量是实时在发送变化的，所以这个<font style="color:#DF2A3F;">存储数据的容器是要能够动态变化</font>的，如果基于C语言，最简单的方法就是用数组或者说自己写个链表，但是在C++里面，咱们就可以使用STL里面的容器了，标准C++给我们提供了一系列的容器，在QT里面，也给我们提供了一系列的STL的容器，QT里面的STL只是对标准的C++的STL有一些封装而已。</p>
+<p>我们如果想要使用STL里面的容器，咱们用什么？</p>
+<p>首先我们手里的每张牌不一样（即使点数一样，花色也不一样），在STL里面有个容器，它可以存储若干个元素，但是它能保证元素不重复，就是set容器，也就是集合，在标准C++里面，这个集合里面的元素，它是有序的（自动排序，默认情况从小到大），但是在QT里面的这个容器，它只能保证存储的元素是不重复的，但是里面的数据是无序的，因为在STL里面这个set容器，它是用红黑树来实现的，在QT里面，这个函数的底层是使用哈希表来实现的，因此实现的方式不一样最终呈现的结果不一样。</p>
+<p>注：<font style="color:rgb(0, 0, 0);">红黑树是一种特殊的二叉查找树，它在每个节点上增加了一个存储位表示节点的颜色（红色或黑色）。通过约束节点的着色方式，确保没有任何一条路径会比其他路径长出两倍，从而维持近似的平衡。</font></p>
+<p><font style="color:#DF2A3F;">如果使用QT这边的容器，需要自己完成相关排序操作</font><font style="color:rgb(0, 0, 0);">，</font></p>
+<p>另外，当我们有了这个容器之后，发牌阶段，咱们就需要把得到的扑克牌，依次存储到这个set容器里面，当出牌的时候，咱们就需要把一张或者多张从set容器里面删除，并且咱们扑克牌拿在手上还需要展示到当前窗口并按照某种顺序排列，一般从小到大进行排列，需要知道最大点数和最小点数，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1756610123754-9da551eb-48a5-481e-b2a6-20b67b7bafe5.png" alt=""></p>
+<p>添加一个新的多张卡牌类，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1756610289570-d892b0c2-a896-4d91-97e3-bd153e5c0376.png" alt=""></p>
+<p>因为这个Cards类主要是存储扑克牌相关的属性信息，因此目前可以不需要指定基类。</p>
+<p>首先添加一个容器类型的私有成员变量，存储扑克牌的数据，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"card.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QSet&gt;</span></span>
+
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    QSet<span class="token operator">&lt;</span>Card<span class="token operator">&gt;</span> m_cards<span class="token punctuation">;</span>
+</code></pre><p>发牌--》存储，出牌---》删除</p>
+<p>因此需要添加扑克牌添加与删除函数，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>    <span class="token comment">//添加扑克牌</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">add</span><span class="token punctuation">(</span>Card<span class="token operator">&amp;</span> card<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">add</span><span class="token punctuation">(</span>Cards<span class="token operator">&amp;</span> cards<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//删除扑克牌</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">remove</span><span class="token punctuation">(</span>Card<span class="token operator">&amp;</span> card<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">remove</span><span class="token punctuation">(</span>Cards<span class="token operator">&amp;</span> cards<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>如果说我们得到一个card对象，就需要把它放进m_cards里面，</p>
+<p>查询一下QSet这个类给我们提供了哪些函数，直接F1跳转到帮助文档QSet处，<!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1756995894018-867576af-e9ac-4a0b-a587-3e87c670e199.png" alt=""></p>
+<p>找到有个insert方法，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-void">void</span> <span class="token class-name">Cards</span><span class="token double-colon punctuation">::</span><span class="token function">add</span><span class="token punctuation">(</span>Card <span class="token operator">&amp;</span>card<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    m_cards<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>card<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>如果拿到多张扑克牌对象，则需要把N1张和N2张合并，也就是求集合N1和集合N2的并集，<!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1756996256321-4e7db116-87d3-4f18-913e-0cd469b9bb81.png" alt=""></p>
+<p>找到求并集的函数，参数为QSet类型，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-void">void</span> <span class="token class-name">Cards</span><span class="token double-colon punctuation">::</span><span class="token function">add</span><span class="token punctuation">(</span>Cards <span class="token operator">&amp;</span>cards<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    m_cards<span class="token punctuation">.</span><span class="token function">unite</span><span class="token punctuation">(</span>cards<span class="token punctuation">.</span>m_cards<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1756996679390-3e768381-969b-4c86-986f-0eb2429210d5.png" alt="">  删除</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1756996666752-3c8f420b-fb06-4f3e-a0f7-59b645ad1eaf.png" alt=""> 差集</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-void">void</span> <span class="token class-name">Cards</span><span class="token double-colon punctuation">::</span><span class="token function">remove</span><span class="token punctuation">(</span>Card <span class="token operator">&amp;</span>card<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    m_cards<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>card<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-void">void</span> <span class="token class-name">Cards</span><span class="token double-colon punctuation">::</span><span class="token function">remove</span><span class="token punctuation">(</span>Cards <span class="token operator">&amp;</span>cards<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    m_cards<span class="token punctuation">.</span><span class="token function">subtract</span><span class="token punctuation">(</span>cards<span class="token punctuation">.</span>m_cards<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>上面两个add方法，没调用一次只能添加一个对象（单张扑克牌对象和多张扑克牌对象），但是添加多张扑克牌对象我们不能直接进行操作，要做一下前期的铺垫，需要先对Cards类型作初始化，如果网Cards里添加10张扑克牌就需要调用10次add单张方法，然后得到Cards对象，在调用add多张方法对两个集合进行加法操作。</p>
+<p>有没有一种简单的方式，可以让我们一次性就把这多张单个的扑克牌对象放到cards里？可以参考C++里面的输出操作，如果说要把一个数据打印到当前终端，在标准C++里面使用的是Cout，通过插入数据符号就可以把多条数据放到这个Cout对象里（Cout &lt;&lt; xxx &lt;&lt; ???）,这个对象就可以把当前数据打印到屏幕上。这个&lt;&lt;在这不是左移符，它和Cout一同使用就是一个数据的插入符，因为在这个对应的i/o类里面对这个操作符进行了重载。那么我们也可以在当前的cards类里面对这个操作符&lt;&lt;进行重载，完成一个数据插入的操作。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>    <span class="token comment">//一次性插入多个数据(操作符重载&lt;&lt;)</span>
+    Cards<span class="token operator">&amp;</span> <span class="token keyword keyword-operator">operator</span> <span class="token operator">&lt;&lt;</span> <span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Card<span class="token operator">&amp;</span> card<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Cards<span class="token operator">&amp;</span> <span class="token keyword keyword-operator">operator</span> <span class="token operator">&lt;&lt;</span> <span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Cards<span class="token operator">&amp;</span> cards<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>Cards <span class="token operator">&amp;</span>Cards<span class="token double-colon punctuation">::</span><span class="token keyword keyword-operator">operator</span> <span class="token operator">&lt;&lt;</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Card <span class="token operator">&amp;</span>card<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">add</span><span class="token punctuation">(</span>card<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token operator">*</span><span class="token keyword keyword-this">this</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+Cards <span class="token operator">&amp;</span>Cards<span class="token double-colon punctuation">::</span><span class="token keyword keyword-operator">operator</span> <span class="token operator">&lt;&lt;</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Cards <span class="token operator">&amp;</span>cards<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">add</span><span class="token punctuation">(</span>cards<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token operator">*</span><span class="token keyword keyword-this">this</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>另外还需要判断扑克牌的数量，扑克牌是否为空、玩家当前扑克牌数量、以及游戏重新开始清空玩家手里扑克牌，<!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757058187363-b29d0a11-82e4-4614-ade7-76607149d03d.png" alt=""></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>    <span class="token comment">//扑克牌的数量</span>
+    <span class="token keyword keyword-int">int</span> <span class="token function">cardCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//是否为空</span>
+    <span class="token keyword keyword-bool">bool</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//清空扑克牌</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> <span class="token class-name">Cards</span><span class="token double-colon punctuation">::</span><span class="token function">cardCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-return">return</span> m_cards<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-bool">bool</span> <span class="token class-name">Cards</span><span class="token double-colon punctuation">::</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-return">return</span> m_cards<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token class-name">Cards</span><span class="token double-colon punctuation">::</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    m_cards<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>接下来看一下这多张扑克牌类里面关于点数相关的一些操作函数，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757058199824-d6ec40b2-c32b-4ca1-9496-b5cc7db5fef9.png" alt=""></p>
+<p>首先需要知道在多张扑克牌里面点数最小的是谁，点数最大的是哪张，某张扑克牌在当前的这多张集合里面到底是存在还是不存在，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>Card<span class="token double-colon punctuation">::</span>CardPoint <span class="token class-name">Cards</span><span class="token double-colon punctuation">::</span><span class="token function">maxPoint</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 使用迭代器写个for循环</span>
+    Card<span class="token double-colon punctuation">::</span>CardPoint max <span class="token operator">=</span> Card<span class="token double-colon punctuation">::</span>Card_Begin<span class="token punctuation">;</span> <span class="token comment">//最大值初始化最小值</span>
+    <span class="token comment">//如果m_cards集合容器是空的就直接返回Card_Begin了，所以做个判断</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span><span class="token operator">!</span>m_cards<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> it <span class="token operator">=</span> m_cards<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it<span class="token operator">!=</span>m_cards<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>it<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>it<span class="token operator">-&gt;</span><span class="token function">point</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> max<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token comment">//更新max值</span>
+                max <span class="token operator">=</span> it<span class="token operator">-&gt;</span><span class="token function">point</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-return">return</span> max<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>为什么it-&gt;可以直接调用point呢？这个需要看一下关于QSet类，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757058817504-a6ea176e-8124-46ea-acce-54477be7849a.png" alt=""><!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757058869429-cbdf484d-f240-4172-90d3-cb62012114b1.png" alt=""><!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757060361373-ed75f63f-b8c6-43b8-ad74-7c8f91104954.png" alt=""><!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757060375975-7faf2226-c493-42b3-a218-cdf25e169f96.png" alt=""></p>
+<p>可以看到迭代器类型有两个，在这个iterator里面它作了一些重载，我们基于这个迭代器对象使用箭头这个操作符就能够取出容器中对应的那个实例对象T，得到这个对象后，再调用这个对象的api就没有问题了，</p>
+<p>也就是说用it-&gt;得到的是一个card对象，使用card函数再调用相关的函数就能得到需要的属性了。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>Card<span class="token double-colon punctuation">::</span>CardPoint <span class="token class-name">Cards</span><span class="token double-colon punctuation">::</span><span class="token function">minPoint</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 使用迭代器写个for循环</span>
+    Card<span class="token double-colon punctuation">::</span>CardPoint min <span class="token operator">=</span> Card<span class="token double-colon punctuation">::</span>Card_End<span class="token punctuation">;</span>  <span class="token comment">//最小值初始化最大值</span>
+    <span class="token comment">//如果m_cards集合容器是空的就直接返回Card_Begin了，所以做个判断</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span><span class="token operator">!</span>m_cards<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> it <span class="token operator">=</span> m_cards<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it<span class="token operator">!=</span>m_cards<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>it<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>it<span class="token operator">-&gt;</span><span class="token function">point</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> min<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token comment">//更新min值</span>
+                min <span class="token operator">=</span> it<span class="token operator">-&gt;</span><span class="token function">point</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-return">return</span> min<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> <span class="token class-name">Cards</span><span class="token double-colon punctuation">::</span><span class="token function">pointCount</span><span class="token punctuation">(</span>Card<span class="token double-colon punctuation">::</span>CardPoint point<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> it <span class="token operator">=</span> m_cards<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it<span class="token operator">!=</span>m_cards<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>it<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">//判断当前点数和传进来的点数是否相等</span>
+        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>it<span class="token operator">-&gt;</span><span class="token function">point</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> point<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            count<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-return">return</span> count<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>QSet这个类里面提供了相关函数判断某张牌是不是在这个集合里面，<!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757060427086-b0f8439e-e1cd-448c-adae-70198af9e391.png" alt=""></p>
+<p>可以传递一个元素，也可以传递一个集合，存在返回true，不存在返回false,</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-bool">bool</span> <span class="token class-name">Cards</span><span class="token double-colon punctuation">::</span><span class="token function">contains</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Card <span class="token operator">&amp;</span>card<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-return">return</span> m_cards<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>card<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-bool">bool</span> <span class="token class-name">Cards</span><span class="token double-colon punctuation">::</span><span class="token function">contains</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Cards <span class="token operator">&amp;</span>cards<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-return">return</span> m_cards<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>cards<span class="token punctuation">.</span>m_cards<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>我们把52张扑克牌都存储在QSet容器里面（无序的），然后发牌阶段每次需要取出一张牌依次分发，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QRandomGenerator&gt;</span> <span class="token comment">//生成随机数</span></span>
+</code></pre><p>F1跳转，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757061167891-028fee2f-2a67-4d4f-ad66-c76f95c073cc.png" alt=""><!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757061228250-25457394-aef9-4412-8714-c84859e7b90f.png" alt=""></p>
+<p>两种方法，一种调用构造函数，一种直接调用静态方法，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757061376301-3d3a2f9d-cb75-41cf-8e19-a0524c8f9f5a.png" alt="">bounded生成随机数</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>    <span class="token comment">//随机取出一种扑克牌</span>
+    Cards <span class="token function">takeRandCard</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>Card <span class="token class-name">Cards</span><span class="token double-colon punctuation">::</span><span class="token function">takeRandCard</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">//生成一个随机数#include &lt;QRandomGenerator&gt;</span>
+    <span class="token comment">//调用静态方法global得到一个对象，再根据对象调用bounded函数生成随机数 0-51</span>
+    <span class="token keyword keyword-int">int</span> num <span class="token operator">=</span> <span class="token class-name">QRandomGenerator</span><span class="token double-colon punctuation">::</span><span class="token function">global</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-&gt;</span><span class="token function">bounded</span><span class="token punctuation">(</span>m_cards<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//创建一个迭代器 const_iterator只读迭代器，只取扑克牌不修改</span>
+    QSet<span class="token operator">&lt;</span>Card<span class="token operator">&gt;</span><span class="token double-colon punctuation">::</span>const_iterator it <span class="token operator">=</span> m_cards<span class="token punctuation">.</span><span class="token function">constBegin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>num<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">,</span> <span class="token operator">++</span>it<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//只让它循环就行了</span>
+    <span class="token comment">//循环num次，就把it迭代器指向的元素的值给取出来 Card类型</span>
+    Card card <span class="token operator">=</span> <span class="token operator">*</span>it<span class="token punctuation">;</span>
+    <span class="token comment">//再把迭代器it对应的元素从容器里面删掉</span>
+    m_card<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>it<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//发出去的一张牌给删掉</span>
+
+    <span class="token keyword keyword-return">return</span> card<span class="token punctuation">;</span> <span class="token comment">//把拿出去的一张牌返回给调用者</span>
+<span class="token punctuation">}</span>
+</code></pre><p>对于玩家扑克牌抽取需要进行排序，因此需要一个可以存储有序序列的容器，对于C++里面是STL的Vector，对于QT里面就是QVector，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>QVector<span class="token operator">&lt;</span>Card<span class="token operator">&gt;</span>
+</code></pre><p>由于这个类型比较长，在后续的过程中可能会操作写起来不方便，因此可以给它定义一个别名，可以使用typedefine或者使用using，在card.h里面末尾，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QVector&gt;</span></span>
+<span class="token comment">//定义类型的别名</span>
+<span class="token keyword keyword-using">using</span> CardList <span class="token operator">=</span> QVector<span class="token operator">&lt;</span>Card<span class="token operator">&gt;</span><span class="token punctuation">;</span>
+</code></pre><p>后续就使用CardList代替，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>    <span class="token comment">// QVector&lt;Card&gt;</span>
+    <span class="token comment">// QSet  --&gt;  QVector  转化</span>
+    CardList <span class="token function">toCardList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//将QSet无序数列转换成有序数列并存储到CardList</span>
+</code></pre><p>然后排序可以使用升序或者降序，可以再定义一个枚举num类型，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-enum">enum</span> <span class="token class-name">SortType</span><span class="token punctuation">{</span>Asc<span class="token punctuation">,</span> Desc<span class="token punctuation">,</span> NoSort<span class="token punctuation">}</span><span class="token punctuation">;</span>  <span class="token comment">//升序、 降序、 不排序</span>
+</code></pre><p>然后把SortType作为toCardList函数的参数，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>CardList <span class="token function">toCardList</span><span class="token punctuation">(</span>SortType type<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>下面来实现一下这个排序，</p>
+<p>先变一下这个Set容器，首先把东西取出来，再存储在Vector容器，然后再排序，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>CardList <span class="token class-name">Cards</span><span class="token double-colon punctuation">::</span><span class="token function">toCardList</span><span class="token punctuation">(</span>Cards<span class="token double-colon punctuation">::</span>SortType type<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    CardList list<span class="token punctuation">;</span>  <span class="token comment">//定义一个QVector&lt;card&gt;容器</span>
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> it <span class="token operator">=</span> m_cards<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it <span class="token operator">!=</span> m_cards<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>it<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        list <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span>it<span class="token punctuation">;</span> <span class="token comment">//把扑克牌从Qset取出，并存入list</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//排序类型判断</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>type <span class="token operator">==</span> Asc<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>type <span class="token operator">==</span> Desc<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>现在的问题就是，我们怎么对CardList里面的元素进行排序·呢？在QT里面其实有一个函数qsort，通过这个函数就可以对容器里面的元素完成排序操作，但是这个qsort在高版本的QT里面被废弃了，官方不建议使用，F1跳转，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757073730542-7ce38e4e-d708-4a5a-8eaa-ff86ebba772a.png" alt=""></p>
+<p>但是在帮助文档直接搜索可以搜索到，<!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757073908738-37a4ec86-f9c9-4aff-bdbe-7b56fa04d904.png" alt=""></p>
+<p>建议使用 标准C++的std::sort 代替，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span><span class="token function">sort</span><span class="token punctuation">(</span>list<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> list<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> lessSort<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>这里添加使用<strong>回调函数</strong>lessSort，利用这个函数判断出这两个元素里面哪个元素比较小，</p>
+<p>关于这个lessSort需要传递两个参数，这两个参数都应该是CardLists里面的元素类型（Card）,</p>
+<p>因为这个lessSort的参数类型是Card类型，因此建议把这个函数定义到Card.h类里面，这里把改函数写成当前类的外部函数而不是成员函数，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">//对象比较</span>
+<span class="token keyword keyword-bool">bool</span> <span class="token function">lessSort</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Card<span class="token operator">&amp;</span> c1<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> Card<span class="token operator">&amp;</span> c2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-bool">bool</span> <span class="token function">greaterSort</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Card<span class="token operator">&amp;</span> c1<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> Card<span class="token operator">&amp;</span> c2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>如果咱们把这个函数写在card类里面，就是当前类里面的对象对当前类里面的成员函数进行操作，或者当前类里面的对象和另外的一个对象进行相关的操作，但是这个lessSort是对指定的两个对象进行相关操作，是c1和c2，和当前这个this的对象没关系，是一个独立的比较函数，</p>
+<p>Card这个类里面只有一个点数和一个花色，如果点数相同，花色肯定是不一样的，花色和点数咱前面定义到一个枚举类型里面了，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-bool">bool</span> <span class="token function">lessSort</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Card <span class="token operator">&amp;</span>c1<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> Card <span class="token operator">&amp;</span>c2<span class="token punctuation">)</span> <span class="token comment">//c1&lt;c2返回true</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>c1<span class="token punctuation">.</span><span class="token function">point</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> c2<span class="token punctuation">.</span><span class="token function">point</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-return">return</span> c1<span class="token punctuation">.</span><span class="token function">suit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> c2<span class="token punctuation">.</span><span class="token function">suit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-else">else</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-return">return</span> c1<span class="token punctuation">.</span><span class="token function">point</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> c2<span class="token punctuation">.</span><span class="token function">point</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-bool">bool</span> <span class="token function">greaterSort</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Card <span class="token operator">&amp;</span>c1<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> Card <span class="token operator">&amp;</span>c2<span class="token punctuation">)</span> <span class="token comment">//c1&gt;c2返回true</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>c1<span class="token punctuation">.</span><span class="token function">point</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> c2<span class="token punctuation">.</span><span class="token function">point</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-return">return</span> c1<span class="token punctuation">.</span><span class="token function">suit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> c2<span class="token punctuation">.</span><span class="token function">suit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-else">else</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-return">return</span> c1<span class="token punctuation">.</span><span class="token function">point</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> c2<span class="token punctuation">.</span><span class="token function">point</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p><strong>每次从集合中取出两个元素值，然后通过lessSort进行比较，返回true，比较小的就放在前面，</strong></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>CardList <span class="token class-name">Cards</span><span class="token double-colon punctuation">::</span><span class="token function">toCardList</span><span class="token punctuation">(</span>Cards<span class="token double-colon punctuation">::</span>SortType type<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    CardList list<span class="token punctuation">;</span>  <span class="token comment">//定义一个QVector&lt;card&gt;容器</span>
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> it <span class="token operator">=</span> m_cards<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it <span class="token operator">!=</span> m_cards<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>it<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        list <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span>it<span class="token punctuation">;</span> <span class="token comment">//把扑克牌从Qset取出，并存入list</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//排序类型判断  容器list里面的参数是什么类型，排序函数lessSort的参数就是什么类型</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>type <span class="token operator">==</span> Asc<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span><span class="token function">sort</span><span class="token punctuation">(</span>list<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> list<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> lessSort<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>type <span class="token operator">==</span> Desc<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span><span class="token function">sort</span><span class="token punctuation">(</span>list<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> list<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> greaterSort<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-return">return</span> list<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>直接给CardList指定默认排序值，从右到左，从小到大排列，</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>CardList <span class="token function">toCardList</span><span class="token punctuation">(</span>SortType type <span class="token operator">=</span> Desc<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//将QSet无序数列转换成有序数列并存储到CardList</span>
+</code></pre><p>到这里，多张卡牌类就写完了.</p>
+<h3 id="bug">bug </h3>
+<p>编译，这里有个bug,</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757077042159-85c2d116-3a71-4f7a-b1e2-70d78040a14c.png" alt=""></p>
+<p>这里带const限定的变量不能给没有const变量的参数进行赋值（但是没有const的对象可以给有const限定的对象进行赋值）。</p>
+<p>这里推荐给add函数加个const. （也可以删除重载中的const）</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>    <span class="token comment">//添加扑克牌</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Card<span class="token operator">&amp;</span> card<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Cards<span class="token operator">&amp;</span> cards<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>D:\Qt\Qt5.14.2\5.14.2\mingw73_64\include\QtCore\qhashfunctions.h:118: error: no matching function for call to 'qHash(const Card&amp;)'</p>
+<pre class="language-text"> noexcept(noexcept(qHash(t)))
+
+                   ~~~~~^~~
+</pre>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757078207643-e82f8b90-908c-4798-898f-9fe0ef5d62ce.png" alt=""></p>
+<p><code>&lt;font style="color:rgb(0, 0, 0);"&gt;QSet&lt;T&gt;&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);"> 是 Qt 提供的</font><strong><font style="color:rgb(0, 0, 0);">高效无序集合容器</font></strong><font style="color:rgb(0, 0, 0);">，基于 </font><code>&lt;font style="color:rgb(0, 0, 0);"&gt;QHash&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);"> 实现，用于存储唯一值并提供快速的查找操作,</font></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757078358170-dcf91f1f-3ef9-41ac-94ad-ed49f720e4ce.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757078468139-f2468e04-4550-4ee0-9c15-3f478d43b368.png" alt=""></p>
+<p><font style="color:rgb(0, 0, 0);">如果要将自定义类型（</font><code>&lt;font style="color:rgb(0, 0, 0);"&gt;Card&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);"> 类）用作 </font><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;QSet&lt;T&gt;&lt;/font&gt;**</code><strong><font style="color:rgb(0, 0, 0);"> 或 </font></strong><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;QHash&lt;/font&gt;**</code><strong><font style="color:rgb(0, 0, 0);"> 的键（Key）</font></strong><font style="color:rgb(0, 0, 0);">，必须完成以下两步关键操作：</font></p>
+<ul>
+<li><strong><font style="color:rgb(0, 0, 0);">默认情况下，</font></strong><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;QSet&lt;T&gt;&lt;/font&gt;**</code><strong><font style="color:rgb(0, 0, 0);"> </font><strong><strong><font style="color:rgb(0, 0, 0);">会尝试使用</font></strong></strong><font style="color:rgb(0, 0, 0);"> </font></strong><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;operator==&lt;/font&gt;**</code><strong><font style="color:rgb(0, 0, 0);"> </font><strong><strong><font style="color:rgb(0, 0, 0);">和</font></strong></strong><font style="color:rgb(0, 0, 0);"> </font></strong><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;qHash&lt;/font&gt;**</code><strong><font style="color:rgb(0, 0, 0);"> </font>****<font style="color:rgb(0, 0, 0);">进行元素比较和哈希计算。</font></strong></li>
+<li><strong><font style="color:rgb(0, 0, 0);">如果</font>****<font style="color:rgb(0, 0, 0);"> </font></strong><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;operator==&lt;/font&gt;**</code><strong><font style="color:rgb(0, 0, 0);"> </font><strong><strong><font style="color:rgb(0, 0, 0);">和</font></strong></strong><font style="color:rgb(0, 0, 0);"> </font></strong><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;qHash&lt;/font&gt;**</code><strong><font style="color:rgb(0, 0, 0);"> </font>****<font style="color:rgb(0, 0, 0);">都没有定义，会发生编译错误，除非：</font></strong>
+<ul>
+<li><code>&lt;font style="color:rgb(0, 0, 0);"&gt;T&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);"> </font><font style="color:rgb(0, 0, 0);">是</font><font style="color:rgb(0, 0, 0);"> </font><strong><font style="color:rgb(0, 0, 0);">基本类型（如</font>****<font style="color:rgb(0, 0, 0);"> </font></strong><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;int&lt;/font&gt;**</code><strong><font style="color:rgb(0, 0, 0);">、</font></strong><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;QString&lt;/font&gt;**</code><strong><font style="color:rgb(0, 0, 0);">）</font></strong><font style="color:rgb(0, 0, 0);"> </font><font style="color:rgb(0, 0, 0);">→ Qt 已内置支持。</font></li>
+<li><code>&lt;font style="color:rgb(0, 0, 0);"&gt;T&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);"> </font><font style="color:rgb(0, 0, 0);">是</font><font style="color:rgb(0, 0, 0);"> </font><strong><font style="color:rgb(0, 0, 0);">标准库类型（如</font>****<font style="color:rgb(0, 0, 0);"> </font></strong><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;std::string&lt;/font&gt;**</code><strong><font style="color:rgb(0, 0, 0);">）</font></strong><font style="color:rgb(0, 0, 0);"> </font><font style="color:rgb(0, 0, 0);">→ 可能报错（除非显式提供</font><font style="color:rgb(0, 0, 0);"> </font><code>&lt;font style="color:rgb(0, 0, 0);"&gt;qHash&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">）。</font></li>
+<li><code>&lt;font style="color:rgb(0, 0, 0);"&gt;T&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);"> 是一个 </font><strong><font style="color:rgb(0, 0, 0);">自定义类（如 </font></strong><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;Card&lt;/font&gt;**</code><strong><font style="color:rgb(0, 0, 0);">）</font></strong><font style="color:rgb(0, 0, 0);"> → </font><strong><font style="color:rgb(0, 0, 0);">必须手动实现 </font></strong><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;operator==&lt;/font&gt;**</code><strong><font style="color:rgb(0, 0, 0);"> 和 </font></strong><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;qHash&lt;/font&gt;**</code><font style="color:rgb(0, 0, 0);">。</font></li>
+</ul>
+</li>
+</ul>
+<h4 id="font-stylecolorrgb0-0-01-fontfont-stylecolorrgb0-0-0重载-fontfont-stylecolorrgb0-0-0operatorfont"><font style="color:rgb(0, 0, 0);">1. </font><strong><font style="color:rgb(0, 0, 0);">重载 </font></strong><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;operator==&lt;/font&gt;**</code> </h4>
+<p><code>&lt;font style="color:rgb(0, 0, 0);"&gt;QSet&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);"> 在插入、查找、去重时，必须判断两张牌是否相同，这就需要 </font><code>&lt;font style="color:rgb(0, 0, 0);"&gt;operator==&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);"> 来定义“如何比较两张 </font><code>&lt;font style="color:rgb(0, 0, 0);"&gt;Card&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">”。</font></p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>QSet 内部会调用 `operator==` 判断是否相同
+如果 `operator==` 返回 true，就不会重复插入
+</code></pre><p><strong><font style="color:rgb(0, 0, 0);">如果没有 </font></strong><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;operator==&lt;/font&gt;**</code><font style="color:rgb(0, 0, 0);">：</font></p>
+<ul>
+<li><code>&lt;font style="color:rgb(0, 0, 0);"&gt;QSet&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);"> 不知道两张 </font><code>&lt;font style="color:rgb(0, 0, 0);"&gt;Card&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);"> 是否相同，可能导致</font><strong><font style="color:rgb(0, 0, 0);">重复存储相同牌</font></strong><font style="color:rgb(0, 0, 0);">或</font><strong><font style="color:rgb(0, 0, 0);">查找失败</font></strong><font style="color:rgb(0, 0, 0);">。</font></li>
+</ul>
+<h4 id="font-stylecolorrgb0-0-02fontfont-stylecolorrgb0-0-0-fontfont-stylecolorrgb0-0-0重写全局函数fontfont-stylecolorrgb0-0-0-fontfont-stylecolorrgb0-0-0qhashfont"><font style="color:rgb(0, 0, 0);">2.</font><font style="color:rgb(0, 0, 0);"> </font><strong><font style="color:rgb(0, 0, 0);">重写全局函数</font>****<font style="color:rgb(0, 0, 0);"> </font></strong><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;qHash()&lt;/font&gt;**</code> </h4>
+<p><code>&lt;font style="color:rgb(0, 0, 0);"&gt;QSet&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);"> 内部使用哈希表存储数据，需通过 </font><code>&lt;font style="color:rgb(0, 0, 0);"&gt;qHash()&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);"> 计算元素的哈希值以快速定位。</font><code>&lt;font style="color:rgb(0, 0, 0);"&gt;qHash&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);"> 的作用是</font><strong><font style="color:rgb(0, 0, 0);">计算每张牌的哈希值</font></strong><font style="color:rgb(0, 0, 0);">，让查找、插入速度接近 </font><strong><font style="color:rgb(0, 0, 0);">O(1)</font></strong><font style="color:rgb(0, 0, 0);">（即超快）。</font></p>
+<p><strong><font style="color:rgb(0, 0, 0);">如果没有 </font></strong><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;qHash&lt;/font&gt;**</code><font style="color:rgb(0, 0, 0);">：</font></p>
+<ul>
+<li><code>&lt;font style="color:rgb(0, 0, 0);"&gt;QSet&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);"> 会退化成 </font><strong><font style="color:rgb(0, 0, 0);">List</font></strong><font style="color:rgb(0, 0, 0);">（或 </font><code>&lt;font style="color:rgb(0, 0, 0);"&gt;QList&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">），查找速度从 </font><strong><font style="color:rgb(0, 0, 0);">O(1)</font></strong><font style="color:rgb(0, 0, 0);"> 退化为 </font><strong><font style="color:rgb(0, 0, 0);">O(n)</font></strong><font style="color:rgb(0, 0, 0);">（即遍历所有牌找匹配的）。</font></li>
+</ul>
+<hr>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>//操作符重载 (==)
+bool operator == (const Card&amp; left, const Card&amp; right);
+//重写全局函数 qHash 返回uint类型
+uint qHash(const Card&amp; card);
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>bool operator ==(const Card &amp;left, const Card &amp;right)
+{
+    //QSet 内部会调用 `operator==` 判断是否相同，点色和花色都相等就返回true
+    return (left.point() == right.point() &amp;&amp; left.suit() == right.suit());
+}
+
+uint qHash(const Card &amp;card)
+{
+    //52张扑克牌的哈希值是52个,应该避免哈希冲突风险
+    //因此把每张扑克牌对应的哈希值算成不同的数就行了
+    return card.point() * 200 + card.suit();
+}
+
+</code></pre><hr>
+<p>再次编译，成功！</p>
+<h2 id="六-游戏玩家类">六、游戏玩家类 </h2>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757081356911-b918f844-5ef3-4c50-be36-0b4a95d69401.png" alt=""></p>
+<p>对于游戏中的玩家分为两种，一种是机器人类robot，一种是用户玩家类UserPlayer，给这两个类添加一个共同的基类Player，用来定义相同的功能。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757081133925-114b5d08-450d-4d19-8db1-074286c91769.png" alt=""><!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757081176877-cae57da9-b6e1-416e-9bda-7b9b05653b2a.png" alt=""></p>
+<p>对于一个基本玩家来说，需要具备的属性，如图所示，</p>
+<p>对于玩家的基类Player，已经构建好了，下面我们再添加一个玩家的属性，属性如名字可以添加到构造函数中，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>#ifndef PLAYER_H
+#define PLAYER_H
+
+#include &lt;QObject&gt;
+
+class Player : public QObject
+{
+    Q_OBJECT
+public:
+    explicit Player(QObject *parent = nullptr);
+    explicit Player(QString name, QObject *parent = nullptr);  //添加构造函数 包含玩家属性
+
+signals:
+
+private:
+    QString m_name; //玩家姓名
+
+};
+
+#endif // PLAYER_H
+</code></pre><p>下面来实现一下构造函数，只需要把名字保存下来即可，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>Player::Player(QString name, QObject *parent)
+{
+    m_name = name;
+}
+</code></pre><p>下面继续完善玩家的属性，</p>
+<p>首先定义一个枚举来保存角色属性，包含地主和农民，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>enum Role{Lord, Farmer}; //角色
+</code></pre><p>然后是玩家的性别，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>enum Sex{Man, Woman};  //性别
+</code></pre><p>游戏里面人物头像显示方向，比如左边玩家头像需要朝向右，右边玩家头像需要朝向左，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>enum Direction{Left, Right};  //头像的显示方位
+</code></pre><p>是玩家的类型，包含机器人玩家和用户玩家，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>enum Type{Robot, User, UnKnow}; //玩家的类型
+</code></pre><p>我们还需要在当前类添加相关的操作函数，比如设置角色属性，设置性别，设置头像的方位以及玩家的类型等，</p>
+<p>另外，设置函数，一般对应一个get获取函数，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>public:
+    enum Role{Lord, Farmer}; //角色
+    enum Sex{Man, Woman};    //性别
+    enum Direction{Left, Right};    //头像的显示方位
+    enum Type{Robot, User, UnKnow}; //玩家的类型
+
+    explicit Player(QObject *parent = nullptr);
+    explicit Player(QString name, QObject *parent = nullptr);  //添加构造函数 包含玩家属性
+
+    //名字
+    void setName(QString name);
+    QString getName();
+    //角色
+    void setRole(Role role);  //枚举类型参数
+    Role getRole();
+    //性别
+    void setSex(Sex sex);
+    Sex getSex();
+    //方位
+    void setDirection(Direction direction);
+    Direction getDirection();
+    //玩家类型
+    void setType(Type type);
+    Type getType();
+
+    //玩家得分
+    void setScore(int score);
+    int getScore();
+    //游戏结果
+    void setWin(bool flag);
+    bool isWin();
+
+private:
+    QString m_name; //玩家姓名
+    Role m_role; //玩家角色
+    Sex m_sex;   //玩家性别
+    Direction m_direcrion; //玩家方位
+    Type m_type; //玩家类型
+
+    int m_score;  //玩家得分
+    bool m_isWin; //玩家是否赢了
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>Player::Player(QString name, QObject *parent)
+{
+    m_name = name;
+}
+
+void Player::setName(QString name)
+{
+    m_name = name;
+}
+
+QString Player::getName()
+{
+    return m_name;
+}
+
+void Player::setRole(Player::Role role)
+{
+    m_role = role;
+}
+
+Player::Role Player::getRole()
+{
+    return m_role;
+}
+
+void Player::setSex(Player::Sex sex)
+{
+    m_sex = sex;
+}
+
+Player::Sex Player::getSex()
+{
+    return m_sex;
+}
+
+void Player::setDirection(Player::Direction direction)
+{
+    m_direcrion = direction;
+}
+
+Player::Direction Player::getDirection()
+{
+    return m_direcrion;
+}
+
+void Player::setType(Player::Type type)
+{
+    m_type = type;
+}
+
+Player::Type Player::getType()
+{
+    return m_type;
+}
+
+void Player::setScore(int score)
+{
+    m_score = score;
+}
+
+int Player::getScore()
+{
+    return m_score;
+}
+
+void Player::setWin(bool flag)
+{
+    m_isWin = flag;
+}
+
+bool Player::isWin()
+{
+    return m_isWin;
+}
+</code></pre><p>三个玩家轮流出牌，因此需要知道玩家上家是是谁，下家是谁？</p>
+<p>因此需要提供两个指针来保存玩家上家和下家的地址，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>public:
+    //提供当前对象的上家和下家
+    void setPrevPlayer(Player* player);
+    void setNextPlayer(Player* player);
+    Player* getPrevPlayer();
+    Player* getNextPlayer();
+private:
+    Player* m_prev; //上家
+    Player* m_next; //下家
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>void Player::setPrevPlayer(Player *player)
+{
+    m_prev = player;
+}
+
+void Player::setNextPlayer(Player *player)
+{
+    m_next = player;
+}
+
+Player *Player::getPrevPlayer()
+{
+    return m_prev;
+}
+
+Player *Player::getNextPlayer()
+{
+    return m_next;
+}
+</code></pre><p>发完牌之后需要进行下注，叫地主或者抢地主，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>//叫地主？抢地主 下注0,1,2,3分，0分就是不抢地主
+void grabLordBet(int point);
+</code></pre><p>目前还没有处理游戏的操作流程，因此先空着这个函数。</p>
+<p>发牌的时候，依次从中间向三位玩家进行发牌，玩家收到牌之后需要存储起来，因此需要一个对象进行卡牌的存储，因此需要引入Cards类，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>#include "cards.h" //多张卡牌类
+
+Cards m_cards; //存储多张扑克牌（玩家手中的牌）
+</code></pre><p>首先是发牌时，每个玩家每次存储一张扑克牌，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>//存储扑克牌（发牌时得到的扑克牌）
+void storeDispatchCard(Card&amp; card);
+</code></pre><p>然后是需要保留三张底盘，给抢到地主的玩家，这三种扑克牌是一次性发出，因此需要存储一次多张扑克牌，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>void storeDispatchCard(Cards&amp; cards);
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>void Player::storeDispatchCard(Card &amp;card)
+{
+    m_cards.add(card);
+}
+
+void Player::storeDispatchCard(Cards &amp;cards)
+{
+    m_cards.add(cards);
+}
+</code></pre><p>另外需要将玩家存储的扑克牌展示在窗口中，因此需要知道有多少字扑克牌，并且知道每张扑克牌的点数花色，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>    //得到多张扑克牌
+    Cards getCards();
+    //清空多张扑克牌
+    void clearCards();
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>void Player::storeDispatchCard(Card &amp;card)
+{
+    m_cards.add(card);
+}
+
+void Player::storeDispatchCard(Cards &amp;cards)
+{
+    m_cards.add(cards);
+}
+
+Cards Player::getCards()
+{
+    return m_cards;
+}
+
+void Player::clearCards()
+{
+    m_cards.clear();
+}
+</code></pre><p>然后是出牌，可能出一张票也可能出多张牌，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>    //出牌
+    void playHand(Cards&amp; cards);
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>void Player::playHand(Cards &amp;cards)
+{
+    m_cards.remove(cards); //打出扑克牌就从手中删掉
+}
+</code></pre><p>另外用户出牌之后，如果没人要就可以继续出牌，如果下家比较大就可以出牌，因此需要保存打出的扑克牌并与下家可能要打出的扑克牌进行比较，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>public:
+  //设置出牌的玩家已经待处理的扑克牌
+  void setPendingInfo(Player* player, Cards&amp; cards);
+  Player* getPendPlayer();
+  Cards getPendCards();
+
+private:
+  Cards m_pendCards;    //保存打出的待处理的扑克牌
+  Player* m_pendPlayer; //打出这张扑克牌的所有者
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>void Player::setPendingInfo(Player *player, Cards &amp;cards)
+{
+    m_pendPlayer = player;
+    m_pendCards = cards;
+}
+
+Player *Player::getPendPlayer()
+{
+    return m_pendPlayer;
+}
+
+Cards Player::getPendCards()
+{
+    return m_pendCards;
+}
+</code></pre><p>至此，玩家的基类的基本功能已经初步完成了。</p>
+<hr>
+<p>还有两个玩家子类，一个是机器人类，一个是用户玩家类，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757335473274-a4e66e83-d8b9-4015-a9cd-45e165e39966.png" alt=""></p>
+<p>两个用户都需要进行叫地主/抢地主/出牌，但是用户玩家是通过操作界面完成这些动作的，而机器人玩家是通过子线程自主处理完成相关动作的，这两个玩家在游戏过程中可以有同名的操作函数，但是内部处理的逻辑是不一样的，因此，可以使用<strong>多态</strong>来实现。</p>
+<p>首先在player类里面添加两个<strong>虚函数</strong>，一个准备叫地主，一个准备出牌，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>//虚函数
+virtual void prepareCallLord();
+virtual void preparePlayerHand();
+</code></pre><p>对于这两个操作，对于用户玩家来说，需要进行思考之后进行动作，对于机器人玩家来说，直接在虚函数里面写出来就行了，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>void Player::prepareCallLord()
+{
+    
+}
+
+void Player::preparePlayerHand()
+{
+    
+}
+</code></pre><p>函数体内部可以空着，也可以让虚函数等于0，但是如果让着两个虚函数等于0的话，就是纯虚函数了，变成纯虚函数后，这个player基类就变成一个抽象类了，抽象类是不能进行实例化的。</p>
+<p>接下来咱们再来添加两个玩家类的子类。</p>
+<h2 id="七-玩家子类-机器人玩家">七、玩家子类-机器人玩家 </h2>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757336843478-a493fefe-3b81-4bb6-a5c0-3b196de6738f.png" alt=""></p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>#ifndef ROBOT_H
+#define ROBOT_H
+
+#include &lt;QObject&gt;
+#include "player.h" //基类
+
+class Robot : public Player
+{
+    Q_OBJECT
+public: 
+    //Robot(); //Add New 新建可能默认是普通的默认构造函数,并且缺少基类头文件
+    // 显式声明（explicit） 的构造函数，接受一个可选的 QObject* 父对象参数（默认值为 nullptr）
+    explicit Robot(QObject *parent = nullptr);
+
+};
+
+#endif // ROBOT_H
+
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>    //重写基类虚函数
+    void prepareCallLord() override;
+    void preparePlayerHand() override;
+</code></pre><p>加上override关键字，表示重写父类的虚函数，如果这个虚函数不是父类的虚函数就会编译器显示报错，</p>
+<p>对于这两个虚函数的具体内容，在后续分析游戏的具体流程时再实现。</p>
+<h2 id="八-玩家子类-用户玩家">八、玩家子类-用户玩家 </h2>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757337877524-d907186f-c3fc-4195-927e-9b6ff7f69e61.png" alt=""></p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>#ifndef USERPLAYER_H
+#define USERPLAYER_H
+
+#include &lt;QObject&gt;
+#include "player.h"
+
+class UserPlayer : public Player
+{
+    Q_OBJECT
+public:
+    //UserPlayer();
+    explicit UserPlayer(QObject *parent = nullptr);
+
+    void prepareCallLord() override;
+    void preparePlayerHand() override;
+};
+
+#endif // USERPLAYER_H
+</code></pre><p>通前面一样，把父类的两个虚函数重写一下。（也暂时空着）</p>
+<hr>
+<h2 id="基础构造函数">基础构造函数 </h2>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757338166738-967c0897-f0bf-4220-94f7-e43653d5f840.png" alt=""></p>
+<p>在玩家父类中，有两个构造函数，其中一个指定了玩家的名字，我们也需要在子类中继续指定玩家的名字，有两种方法，一种方法是在子类里继续添加一个构造函数，给构造函数加上名字参数，另外一种方法是使用<strong>继承构造函数</strong>，就是直接继承父类的构造函数就行了，我们就不需要在子类里面再写一遍了，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>using Player::Player; //告诉当前的类可以使用基类中的所有构造函数
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757338605638-7b75baa0-94ec-485e-a482-0981d4b26e8a.png" alt=""></p>
+<p>另外对于基类中的成员变量，如果在子类中需要继承的话，就不能使用私有权限了，<strong>需要改成protected</strong>受保护的，改完了就可以在子类中随意使用这些变量了。</p>
+<p>比如：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757339140563-d937504b-8a30-46b0-9102-594ab8edb755.png" alt=""></p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>Robot::Robot(QObject *parent) : Player(parent)
+{
+    m_type = Player :: Robot;
+}
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>UserPlayer::UserPlayer(QObject *parent) : Player(parent)
+{
+    m_type = Player :: User;
+}
+</code></pre><h2 id="九-游戏控制类">九、游戏控制类 </h2>
+<p>让卡牌类和玩家类整体协调起来组成一个游戏！</p>
+<p>需要定义一个游戏控制类对这些对象进行管理，由于后续需要用到信号槽机制，因此继承QObject基类，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757421430165-bf8138be-1211-406c-9ac5-c7936368782e.png" alt=""></p>
+<p>首先是游戏状态和玩家状态，可以将其定义成枚举类型，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757421499789-c02c12f3-f4e6-43a7-adf2-af542808c595.png" alt=""></p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>    //游戏状态
+    enum GameStatus{
+        DispatchCard, //发牌
+        CallingLord,  //叫地主
+        PlayingHand   //出牌
+    };
+    //玩家状态
+    enum PlayerStatus{
+        ThinkingForCallLord, //考虑叫地主
+        ThinkingForPlayHand, //考虑出牌
+        Winning              //获胜
+    };
+</code></pre><p>玩家的初始化，一个三个玩家，两个机器人和一个用户玩家，每个玩家需要对应一个实例对象，</p>
+<p>机器人玩家对应的是Robot类型，用户玩家对应的是UserPlayer类型,</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>#include "userplayer.h"
+#include "robot.h"
+</code></pre><p>添加三个私有成员变量，其中两个是Robot类型的指针，还有一个是UserPlayer类型的指针，用这个指针来保存对应的实例对象地址，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>private:
+    Robot* m_robotLeft;  //左侧机器人
+    Robot* m_robotRight; //右侧机器人
+    UserPlayer* m_user;  //用户玩家
+</code></pre><p>下面来实现初始化玩家函数，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>    //初始化玩家
+    void playerInit();
+</code></pre><p>在playerInit函数里面，需要对刚才创建的三个指针进行实例化，把它们对应的对象先new出来，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>    //对象实例化
+    m_robotLeft = new Robot("机器人A", this);
+    m_robotRight = new Robot("机器人B", this);
+    m_user = new UserPlayer("我自己", this);
+</code></pre><p>第二个参数this，是给这个对象指定一个父对象，</p>
+<p>父对象的作用就是在当前GameControl释放的时候自动的释放这三个对象，</p>
+<p>对象实例化之后，接下来设置相关的属性信息，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>    //头像的显示  不同子类调用相同基类的共有函数
+    m_robotLeft-&gt;setDirection(Player::Left);
+    m_robotRight-&gt;setDirection(Player::Right);
+    m_user-&gt;setDirection(Player::Right);
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>    //性别  随机生成 #include &lt;QRandomGenerator&gt;
+    Player::Sex sex;
+    sex = (Player::Sex)QRandomGenerator::global()-&gt;bounded(2);  //0男-1女  数字强制转换成枚举类型对应的值
+    m_robotLeft-&gt;setSex(sex);
+    sex = (Player::Sex)QRandomGenerator::global()-&gt;bounded(2);  //0男-1女  数字强制转换成枚举类型对应的值
+    m_robotRight-&gt;setSex(sex);
+    sex = (Player::Sex)QRandomGenerator::global()-&gt;bounded(2);  //0男-1女  数字强制转换成枚举类型对应的值
+    m_user-&gt;setSex(sex);
+</code></pre><p>还有个属性是玩家的类别，关于玩家的类别，其实在创建类型对象的时候已经设置好了，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757426273574-4b1566f4-b812-47f2-a063-aa3a69a27194.png" alt=""><!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757426287311-07097e2b-81d0-4220-ba07-f90729cb5f42.png" alt=""></p>
+<p>因此就不需要调用对应的set函数进行设定了。</p>
+<p>除此之外，还有三个玩家的出牌顺序需要设定，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>    // 出牌顺序
+    //user
+    m_user-&gt;setPrevPlayer(m_robotLeft);
+    m_user-&gt;setNextPlayer(m_robotRight);
+
+    //left robot
+    m_robotLeft-&gt;setPrevPlayer(m_robotRight);
+    m_robotLeft-&gt;setNextPlayer(m_user);
+
+    //right robot
+    m_robotRight-&gt;setPrevPlayer(m_user);
+    m_robotRight-&gt;setNextPlayer(m_robotLeft);
+</code></pre><p>这三个玩家出牌顺序指定之后，还需要知道当前玩家是谁？</p>
+<p>在游戏开始之后，必须现有一个玩家叫地主，他叫完地主之后，再由他的下家叫地主，</p>
+<p>谁是当前玩家，咱们需要再初始化的时候指定出来，因此咱需要先定义一个保存当前玩家对象的指针，</p>
+<p>由于这个玩家类型可能是机器人Robot也可能是用户UserPlayer，因此指定其为父类Player类型,</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>Player* m_currPlayer; //当前出牌玩家
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>    // 指定当前玩家
+    m_currPlayer = m_user;
+</code></pre><p>游戏开始时，必须指定一个玩家叫地主，指定谁为当前玩家都是没关系的，这里先指定用户玩家为当前玩家，让其拥有优先叫地主的权利，下面需要得到玩家的实例化对象，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>    //得到玩家的实例对象
+    Robot* getLeftRobot();
+    Robot* getRightRobot();
+    UserPlayer* getUserPlayer();
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>Robot *GameControl::getLeftRobot()
+{
+    return m_robotLeft;
+}
+
+Robot *GameControl::getRightRobot()
+{
+    return m_robotRight;
+}
+
+UserPlayer *GameControl::getUserPlayer()
+{
+    return m_user;
+}
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>    void setCurrentPlayer(Player* player);
+    Player* getCurrentPlayer(); //当前玩家需要先设置再得到
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>void GameControl::setCurrentPlayer(Player *player)
+{
+    m_currPlayer = player;
+}
+
+Player *GameControl::getCurrentPlayer()
+{
+    return m_currPlayer;
+}
+</code></pre><p>关于出牌的对象，咱们要保存下来，只有保存了出牌对象之后，咱们在出牌的时候才能做出相关的判断。如果说这个牌不是我打出的，我就需要对打出的牌进行判断，我必须要打出比这个牌更大的点数才可以；如果这个牌在上一把就是我打出的，说明转了一圈之后没人能压住我的牌，所以我在下一轮就可以随意出牌。因此需要再定义两个函数，一个得到出牌玩家，一个得到出牌玩家打出的牌，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>#include "cards.h"
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>    //得到出牌玩家和打出的牌
+    Player* getPendPlayer();
+    Cards getPendCards();
+</code></pre><p>在当前类添加私有成员，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>    Player* m_pendPlayer; //出牌的玩家
+    Cards m_PendCards;  //打出的牌
+</code></pre><p>关于这个m_PendCards什么时候初始化，当前不研究，因为这个类是个游戏管理类，后面肯定有出牌的动作，当我们调用了那个出牌函数之后，咱们就需要把玩家打出的那张牌，通过这个m_PendCards保存下来，然后调用getPendCards函数就能得到保存的这张扑克牌，同理，打出牌的这个玩家也需要一个指针来记录一下它对应的实例对象。</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>Player *GameControl::getPendPlayer()
+{
+    return m_pendPlayer;
+}
+
+Cards GameControl::getPendCards()
+{
+    return m_pendCards;
+}
+</code></pre><p>下面来看一下扑克牌·的·初始化操作，咱们初始化就是52张扑克牌的数据信息，在前面咱们已经写好了一个类Cards，在这个类里有个存储多张扑克牌的函数，初始化的过程中，需要把每张扑克牌的数据存储到卡牌对象里，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>    //初始化扑克牌 洗牌
+    void initAllCards();
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>    Cards m_allcards;   //所有卡牌
+</code></pre><p>首先将Card对象，进行初始化，然后将其添加到多张卡牌类中去，</p>
+<p>对于Card对象如何进行初始化，首先找一下Card类的构造函数<!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757488889693-ec516165-0b78-4843-90f8-a6ca5b5c9c63.png" alt="">，</p>
+<p>如果直接调用这个构造函数，咱们得到的是一个空对象，那么这个空对象里如何拥有数据呢？咱们就需要调用对应的set方法，另外也可以添加一个带参数的Card类构造函数，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>Card(CardPoint point, CardSuit suit); //添加一个带参数的Card类构造函数
+
+Card::Card(Card::CardPoint point, Card::CardSuit suit)
+{
+    setPoint(point);
+    setSuit(suit);
+}
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>void GameControl::initAllCards()
+{
+    m_allcards.clear();
+    for (Card::CardPoint p = Card::Card_Begin+1; p &lt; Card::Card_SJ; ++p ){
+        for (Card::CardSuit s = Card::Suit_Begin+1; s &lt; Card::Suit_End; ++s)
+        {
+            Card c(p, s);
+            m_allcards.add(c);
+        }
+    }
+    m_allcards.add(Card(Card::Card_SJ, Card::Suit_Begin));
+    m_allcards.add(Card(Card::Card_BJ, Card::Suit_Begin));
+}
+</code></pre><h4 id="这里有bug">这里有bug， </h4>
+<ol>
+<li><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;Card::CardPoint&lt;/font&gt;**</code><font style="color:rgb(0, 0, 0);"> 是一个 </font><strong><font style="color:rgb(0, 0, 0);">枚举类型，</font></strong><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;Card::Card_Begin + 1&lt;/font&gt;**</code><font style="color:rgb(0, 0, 0);"> 是一个 </font><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;int&lt;/font&gt;**</code><font style="color:rgb(0, 0, 0);"> 运算， 因为</font><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;enum&lt;/font&gt;**</code><strong><font style="color:rgb(0, 0, 0);"> 值可以隐式转 </font></strong><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;int&lt;/font&gt;**</code><strong><font style="color:rgb(0, 0, 0);">，但反向（</font></strong><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;int&lt;/font&gt;**</code><strong><font style="color:rgb(0, 0, 0);"> 转 </font></strong><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;enum&lt;/font&gt;**</code><strong><font style="color:rgb(0, 0, 0);">）通常不允许</font></strong><font style="color:rgb(0, 0, 0);">（除非显式转换）。</font></li>
+<li><font style="color:rgb(0, 0, 0);"> </font><strong><font style="color:rgb(0, 0, 0);">C++11 的 </font></strong><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;enum class&lt;/font&gt;**</code><font style="color:rgb(0, 0, 0);"> 中尤为严格，不允许隐式 </font><code>&lt;font style="color:rgb(0, 0, 0);"&gt;int&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);"> → </font><code>&lt;font style="color:rgb(0, 0, 0);"&gt;enum&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);"> 转换。</font></li>
+</ol>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>    // enum 值可以隐式转 int,但反向不可以，可以使用static_cast&lt;&gt;进行显示转换
+    for (Card::CardPoint p = static_cast&lt;Card::CardPoint&gt;(Card::Card_Begin + 1);
+         p &lt; Card::Card_SJ;
+         p = static_cast&lt;Card::CardPoint&gt;(static_cast&lt;int&gt;(p) + 1))
+    {
+
+        for (Card::CardSuit s = static_cast&lt;Card::CardSuit&gt;(Card::Suit_Begin + 1);
+             s &lt; Card::Suit_End;
+             s = static_cast&lt;Card::CardSuit&gt;(static_cast&lt;int&gt;(s) + 1))
+        {
+            Card c(p, s);
+            m_allcards.add(c);
+        }
+    }
+</code></pre><ul>
+<li><code>&lt;font style="color:rgb(0, 0, 0);"&gt;static_cast&lt;Card::CardPoint&gt;&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);"> </font><font style="color:rgb(0, 0, 0);">把</font><font style="color:rgb(0, 0, 0);"> </font><code>&lt;font style="color:rgb(0, 0, 0);"&gt;int&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);"> </font><font style="color:rgb(0, 0, 0);">转</font><font style="color:rgb(0, 0, 0);"> </font><code>&lt;font style="color:rgb(0, 0, 0);"&gt;enum&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">。</font></li>
+<li><code>&lt;font style="color:rgb(0, 0, 0);"&gt;static_cast&lt;int&gt;(p) + 1&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);"> 再转回 </font><code>&lt;font style="color:rgb(0, 0, 0);"&gt;int&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);"> 运算（</font><code>&lt;font style="color:rgb(0, 0, 0);"&gt;++&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);"> 可能无法直接作用于 </font><code>&lt;font style="color:rgb(0, 0, 0);"&gt;enum&lt;/font&gt;</code><font style="color:rgb(0, 0, 0);">）。</font></li>
+</ul>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>    m_allcards.clear();
+    for (int p = Card::Card_Begin+1; p &lt; Card::Card_SJ; ++p ){
+        for (int s = Card::Suit_Begin+1; s &lt; Card::Suit_End; ++s)
+        {
+            //构造单张牌并添加到牌堆
+            Card c((Card::CardPoint)p, (Card::CardSuit)s);  //强制转换int为Card卡牌类型
+            //卡牌对象c: c.m_point = (CardPoint)p（点数） c.m_suit = (CardSuit)s（花色）
+            m_allcards.add(c);
+        }
+    }
+</code></pre><p>现在，所以的卡牌都存储到m_allcards这个对象了，下面实现每次发一张牌和得到最后一张牌，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>    //每次发一张牌
+    Card takeOneCard();
+    //得到最后三张牌
+    Cards getSurplusCards();
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>Card GameControl::takeOneCard()
+{
+     return m_allcards.takeRandCard(); //返回随机取一张牌
+}
+
+Cards GameControl::getSurplusCards()
+{
+    return m_allcards; //发牌到最后肯定只剩下三张，直接返回
+}
+</code></pre><p>清空玩家手中扑克牌并洗牌，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>void GameControl::restCardData()
+{
+    //洗牌
+    initAllCards();
+    //清空扑克牌
+    m_robotLeft-&gt;clearCards();
+    m_robotRight-&gt;clearCards();
+    m_user-&gt;clearCards();
+    //初始化出牌玩家
+    m_pendPlayer = nullptr;
+    m_pendCards.clear();
+}
+</code></pre><p>然后是准备叫地主和成为地主并准备出牌，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>    //开始叫地主
+    void startCallLord();
+    //成为地主
+    void becomeLord(Player* player);
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>void GameControl::startCallLord()
+{
+    m_currPlayer-&gt;prepareCallLord(); //准备叫地主
+}
+
+void GameControl::becomeLord(Player *player)
+{
+    //三方角色
+    m_currPlayer-&gt;setRole(Player::Lord);
+    m_currPlayer-&gt;getPrevPlayer()-&gt;setRole(Player::Farmer);
+    m_currPlayer-&gt;getNextPlayer()-&gt;setRole(Player::Farmer);
+    //指定当前玩家 并每次存储三张底牌
+    m_currPlayer = player;
+    m_currPlayer-&gt;storeDispatchCard(m_allcards);  //m_cards.add(m_allcards);
+    //准备出牌
+    m_currPlayer-&gt;preparePlayerHand();
+}
+</code></pre><p>最后清空所有玩家得分。</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>    //清空所以玩家得分
+    void clearScore();
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>void GameControl::clearScore()
+{
+    m_robotLeft-&gt;setScore(0);
+    m_robotRight-&gt;setScore(0);
+    m_user-&gt;setScore(0);
+}
+</code></pre><hr>
+<h1 id="第二阶段主界面功能开发">第二阶段：主界面功能开发 </h1>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757499104010-e35f8edd-df4c-4762-91a0-8261a9e68d3f.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757499075160-928ac2b0-56ae-4bfd-ae39-3c716b3587b2.png" alt=""></p>
+<h2 id="一-制作分数面板">一、制作分数面板 </h2>
+<p>新建QT界面，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757593465679-5f754e52-0ed8-4942-9e5c-aa6a939fbecc.png" alt=""></p>
+<p>悬着widget类型窗口，这个类型窗口是可以内嵌的，可以没有边框的形式下完美的附着在父窗口上，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757593557300-df3ae7c1-a116-4ab8-bf30-7fb5483a9f32.png" alt=""></p>
+<p>取名ScorePanel，完成。</p>
+<hr>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757593995122-6671ee67-4a0e-46a9-b7fa-b526fb43b4ef.png" alt=""></p>
+<p>首先使用label标签，用来显示：玩家、得分、单位，然后点击最外侧界面进行栅格布局，并调节一下界面大小，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757594225380-b6f4cfc0-21e7-474e-a46d-9a5da91965d4.png" alt=""><!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757594323779-a2c307de-7610-4663-ab3f-87de1b566a9d.png" alt=""><!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757594475768-43d28fc1-bca7-4041-8991-f90252265152.png" alt=""></p>
+<p>修改一下中间三个得分显示label的objectname名称，以及所有控件的字体，<!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757594850617-0f6c039f-5c9a-44a0-98f9-a213970e1a93.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757594936698-08911078-e10f-4494-b4cb-7f4104ab9a2d.png" alt=""></p>
+<p>还可以添加字体颜色，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757595037929-c7eedce0-8cee-45f3-80d2-a8a2bd664430.png" alt=""><!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757595051984-2163ee80-9f3a-476c-bed0-b781e947ffaa.png" alt=""></p>
+<p>设置文本居中，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757595209569-44e01204-a03f-4f4c-99ab-7fb649da1aa1.png" alt=""></p>
+<p>也可以直接调用SetFont进行设置字体相关参数，类似样式表直接调用SetStyleSheet函数，<!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757595381661-9e4891ff-e4b4-44b6-945a-6d6a794b4583.png" alt=""><!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757595338497-13bb2088-0c67-4543-8234-5c443e93053a.png" alt=""></p>
+<p>这个得分子窗口设置好之后，我们需要把它放置到主窗口里面（主窗口右上角），</p>
+<p>打开主窗口GamePanel，先放一个Widget，然后再Widget里面再放一个Widget，然后放一个弹簧，让弹簧和分数面板做一个水平布局，将分数面板顶到右，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757595857401-bb21d8b7-5ab3-4f2e-b120-073e132231fd.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757596191922-545e7212-310a-4d7e-ab02-cb7a54553d7d.png" alt=""><!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757596117055-e0e12fe0-efda-44b0-80cb-6368c226e476.png" alt=""></p>
+<p>现在子窗口是一个QWidget类型，并不是我们的分数面板窗口，因此需要做<strong>窗口的提升</strong>，所谓的提升就是把父类变成子类，咱们可以看到ScorePanel类的基类是QWidget，因此咱们可以把一个基类QWidget的类型的面板控件提升为子类ScorePanel类型，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757596354225-4f8778f4-0584-4a99-908a-467e44c6301b.png" alt=""></p>
+<p>右键控件，提升为ScorePanel类型，<!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757596594376-276915e2-a267-4345-a931-9d6ad87599aa.png" alt=""></p>
+<p>点击添加，再点提示，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757596882174-cece8138-5315-4644-aa9e-584ca4a83039.png" alt=""><!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757597001261-e96873bb-fec9-4f75-b606-7a8ecae36a31.png" alt=""></p>
+<p>可以看到QT中的标准控件变成了自定义的控件类型，再改一下窗口名称，便于区分，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757597107700-c5c78290-8eb5-42c9-bce4-eb87d82d97dd.png" alt="">对GamePanel窗口做垂直布局，</p>
+<p>然后再拿根弹簧顶上去，<!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757597248881-44c196d6-4786-45d5-91f2-38d7ac458521.png" alt=""></p>
+<p>虽然当前分数面板窗口显示很小，但是当程序运行之后，会将子窗口分数面板全部展现在窗口里面。</p>
+<h2 id="二-自定义按钮类">二、自定义按钮类 </h2>
+<p>QT默认的按钮不是很美观，因此自定义按钮与后面更改的背景更搭。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757597487396-e4afe1d9-2a7f-41c9-b638-e4d508367554.png" alt=""></p>
+<p>开始只有一个按钮，当点击按钮之后，会出现一组按钮，<!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757597526796-94644e81-91e8-48c9-afa8-0d2fd8fce3e7.png" alt=""></p>
+<p>然后点击按钮过程中按钮有图片状态变化（三种）：鼠标不按，鼠标放上悬停，鼠标按下。</p>
+<p>直接从QPushButton进行派生，美化按钮，需要创建一个不带UI界面的按钮类，</p>
+<p>首先创建一个C++类，让其基类先继承QWidget，当这个类创建好之后再将基类改为QPushButton，<!-- 这是一张图片，ocr 内容为： --><br>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757597840604-e7056390-46b0-45ac-a0bd-fd3a38af7c3e.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1757597989247-1a31e679-4397-45e4-bc69-d61e5423b376.png" alt=""></p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>#ifndef MYBUTTON_H
+#define MYBUTTON_H
+
+#include &lt;QPushButton&gt;
+
+class MyButton : public QPushButton
+{
+    Q_OBJECT
+public:
+    explicit MyButton(QWidget *parent = nullptr);
+
+signals:
+
+};
+
+#endif // MYBUTTON_H
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>#include "mybutton.h"
+
+MyButton::MyButton(QWidget *parent) : QPushButton(parent)
+{
+
+}
+
+</code></pre><p>然后重写鼠标事件函数，不清楚可以查看一下帮助文档，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>protected:
+    // 重写鼠标事件函数
+    //鼠标按下
+    void mousePressEvent(QMouseEvent *ev);
+    //鼠标释放
+    void mouseReleaseEvent(QMouseEvent *ev);
+    //鼠标进入
+    void enterEvent(QEvent* ev);
+    //绘图
+    void paintEvent(QPaintEvent* ev);
+</code></pre><p>在处理鼠标状态的时候，都需要有一张对应的图片来回应，也就是说咱们需要在这个类里面再添加一个设置图片的函数，三个状态因此需要对应三张图片，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>void setImage(QString normal, QString hover, QString pressed);
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>private:
+    //三张图片的路径
+    QString normal;
+    QString hover;
+    QString pressed;
+</code></pre>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

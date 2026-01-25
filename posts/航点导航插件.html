@@ -1,0 +1,448 @@
+<!DOCTYPE html><html><head>
+      <title>航点导航插件</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\LingJiaXiaoHu\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.20\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h3 id="航点导航插件介绍">航点导航插件介绍 </h3>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730256443904-f5024dae-bc98-4c00-9f05-c5d4e38d21f0.png" alt=""></p>
+<p>介绍一款开源的ROS导航插件，能够在地图上设置多个目标导航点，然后可以通过编写节点代码来指定机器人导航去往哪个节点，</p>
+<p><a href="https://github.com/6-robot/waterplus_map_tools">https://github.com/6-robot/waterplus_map_tools</a></p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>ht@ht-VirtualBox:~$ cd catkin_ws/src
+ht@ht-VirtualBox:~/catkin_ws/src$ git clone https://github.com/6-robot/waterplus_map_tools.git
+正克隆到 'waterplus_map_tools'...
+remote: Enumerating objects: 334, done.
+remote: Counting objects: 100% (73/73), done.
+remote: Compressing objects: 100% (46/46), done.
+remote: Total 334 (delta 48), reused 48 (delta 27), pack-reused 261 (from 1)
+接收对象中: 100% (334/334), 925.81 KiB | 990.00 KiB/s, 完成.
+处理 delta 中: 100% (192/192), 完成.
+ht@ht-VirtualBox:~/catkin_ws/src$ 
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>ht@ht-VirtualBox:~/catkin_ws/src$ cd waterplus_map_tools/scripts/
+ht@ht-VirtualBox:~/catkin_ws/src/waterplus_map_tools/scripts$ ./install_for_noetic.sh 
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>ht@ht-VirtualBox:~/catkin_ws/src/waterplus_map_tools/scripts$ cd ~/catkin_ws/
+ht@ht-VirtualBox:~/catkin_ws$ catkin_make
+Base path: /home/ht/catkin_ws
+Source space: /home/ht/catkin_ws/src
+Build space: /home/ht/catkin_ws/build
+Devel space: /home/ht/catkin_ws/devel
+Install space: /home/ht/catkin_ws/install
+。。。。。
+</code></pre><p>按照前面的课程，对仿真环境进行建图，建好的地图文件放在</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730257526890-384a1261-5c34-4b9e-88c8-d05ff103cf0d.png" alt=""></p>
+<p>然后执行航点设置程序，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>ht@ht-VirtualBox:~/catkin_ws$ source ./devel/setup.bash
+ht@ht-VirtualBox:~/catkin_ws$ roslaunch waterplus_map_tools add_waypoint_simulation.launch 
+。。。。。
+</code></pre><p>弹出一个rviz窗口，里面显示的就是刚才那两个地图文件里面的地图，</p>
+<p>点击工具栏Add Waypoint，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730257822504-a472d4cd-941b-4bf2-9a62-108607dc326e.png" alt=""></p>
+<p>像设置导航点一样设置，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730258033490-53ecaa66-4a85-42e9-8cfa-2f82128e991b.png" alt=""></p>
+<p>四个标牌就是咱们设置的航点位置，箭头方向就是航点姿态的朝向，头上的黄色字符就是航点名称，可以把这些航点像地图一样保存到文件里面，后面运行导航的时候就可以加载进来使用，</p>
+<p>新开一个窗口，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730258341081-a4297f57-09df-4cb4-8f57-0d891d782c84.png" alt=""></p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>ht@ht-VirtualBox:~/catkin_ws$ source ./devel/setup.bash
+ht@ht-VirtualBox:~/catkin_ws$ rosrun waterplus_map_tools wp_saver 
+[ INFO] [1730258269.033386161]: Save waypoints to the file : /home/ht/waypoints.xml
+ht@ht-VirtualBox:~/catkin_ws$ 
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730258468716-a0e59b29-65cc-4c0f-a793-0abf95763923.png" alt=""></p>
+<p><em>Name标签：航点标牌黄色文字信息</em></p>
+<p><em>Position的x,y,z三个数值：航点在地图里面的坐标值</em></p>
+<p><em>Orientation的x,y,z,w三个数值：航点姿态朝向的四元数</em></p>
+<p>下面看看如何使用这些航点信息进行导航，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>ht@ht-VirtualBox:~/catkin_ws$ roslaunch wpr_simulation wpb_map_tool.launch 
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730259008509-7bcb596c-a806-4f04-b4e9-7fa485adc1e5.png" alt=""></p>
+<p>发现gazebo里面的机器人初始位置在门口，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730259077291-4af39e99-fd65-4b35-833f-b0367d94dea9.png" alt=""></p>
+<p>rviz里面的机器人初始位置在中央，咱们给它重新设置一下初始位置，<img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730259189948-bf095a7b-71bb-41cd-b8af-ef570111efa7.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730259225174-ffcbfb45-9a9e-4a2a-8e75-effe89a03df7.png" alt=""></p>
+<p>运行应该案例程序，让机器人自动导航到1号航点，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>ht@ht-VirtualBox:~/catkin_ws$ source ./devel/setup.bash
+ht@ht-VirtualBox:~/catkin_ws$ rosrun wpr_simulation demo_map_tool
+[ WARN] [1730259518.301065659, 571.884000000]: [NavResultCallback] done
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730259405454-fc347104-9ca1-4698-826f-6280405d6a99.png" alt=""></p>
+<p>机器人到达目标点后会调整自己的航向，找到航点箭头标牌所指的方向，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730259566770-698e53cd-1803-4608-8c44-c93e53b7c3c0.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730259668048-66eac3f3-d370-4d21-90ca-ff6eba902725.png" alt=""></p>
+<p>跟前面坐标导航效果一样，接收到导航完成的消息，</p>
+<p>如果想调整导航目标点的位置和朝向，需要怎么做呢？</p>
+<p>在终端里再次运行添加节点的launch文件，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>roslaunch waterplus_map_tools add_waypoint_simulation.launch 
+</code></pre><p>咱们找一下1号航点<img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730260234884-ac9d2736-d153-4c7e-aa97-c049414f2862.png" alt=""></p>
+<p>把鼠标移动到红色箭头上，鼠标指针旁边会出现一个移动标识，此时按住鼠标左键不放，拖动鼠标，可以在前后方向上移动航点，绿色也同理，把鼠标移动到圆环上，鼠标指针旁边出现一个旋转标识，按住鼠标左键不放可以调整航点朝向。</p>
+<p>我们把1号航点移动到地图中央，再次执行航点保存指令，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>ht@ht-VirtualBox:~/catkin_ws$ rosrun waterplus_map_tools wp_saver 
+[ INFO] [1730260584.779264079]: Save waypoints to the file : /home/ht/waypoints.xml
+ht@ht-VirtualBox:~/catkin_ws$ 
+</code></pre><p>目标航点的调整就完成了。</p>
+<p>退出航点设置程序，执行导航的launch文件，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>roslaunch wpr_simulation wpb_map_tool.launch
+</code></pre><p>调整rviz里机器人起始点位置，开始执行案例程序，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>rosrun wpr_simulation demo_map_tool
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730260978368-8b8ba972-960d-442f-916c-a449c8d6a815.png" alt=""></p>
+<h3 id="航点导航插件的集成和启动">航点导航插件的集成和启动 </h3>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730271199348-3b89932f-06fe-40be-9c8b-b2ce256bdef6.png" alt=""></p>
+<p>在move_base的Action接口处增加了一个wpr_navi_server节点，它会按照前面坐标导航中的方法，去调用move_base的导航功能，所以咱们只需要启动这个节点，就不需要再自己去实现这个具体的导航功能，那wpr_navi_server节点它的导航坐标值从哪里来的呢？在它前面有个wp_manage节点（航点管理员节点）。那管理员的节点又从哪里来的呢？前面在rviz里设置的那些航点。它们都保存在waypoints.xml文件中，咱们用wp_manage节点去加载它就行了，前面的wp_navi_server节点会和这个wp_manager节点建立通讯。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730271912543-6c928466-dd05-46f2-a354-ca050d8aff64.png" alt=""></p>
+<p>节点网络搞清楚了，那咱们怎么告诉它机器人应该导航去哪个节点呢？</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730272419832-9f2e3cde-f1b6-4edf-b098-c4c3b3ca3e55.png" alt=""></p>
+<p>原来这个wpr_navi_server节点订阅了一个话题，专门来接收导航的目标点名称，同时它还发布了一个话题专门来报告导航执行的结果，所以咱们只需要成为目标航点话题这个节点的话题发布者，就可以改wpr_navi_server节点发送要进行导航的目标节点名称，然后再订阅一下导航结果这个话题，就可以获得导航执行的结果了。</p>
+<p>咱们来看看如何把这连个节点增加到之前编写的nav.launch文件中去，</p>
+<p>在文件末尾添加一个wp_navi_server节点的启动项和一个wp_manager节点的启动项，接下来需要修改一下rviz的显示配置文件（wpr_simulation文件夹下rviz目录复制），</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730274886259-bef5ed18-7b8f-4f48-92fc-dcd94580f577.png" alt=""></p>
+<p>接下来使用案例程序测试一下，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>ht@ht-VirtualBox:~/catkin_ws$ source ./devel/setup.bash
+ht@ht-VirtualBox:~/catkin_ws$ roslaunch wpr_simulation wpb_stage_robocup.launch 
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730275342634-39ff2c8b-eaa1-4b9d-a348-953ff09749b1.png" alt=""></p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>ht@ht-VirtualBox:~/catkin_ws$ source ./devel/setup.bash
+ht@ht-VirtualBox:~/catkin_ws$ roslaunch nav_pkg nav.launch 
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730275398019-5185c865-6aea-49c6-bc89-a7dc968a0554.png" alt=""></p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>ht@ht-VirtualBox:~/catkin_ws$ source ./devel/setup.bash
+ht@ht-VirtualBox:~/catkin_ws$ rosrun wpr_simulation demo_map_tool
+</code></pre><p>测试节点 默认导航到1号</p>
+<h3 id="ros-航点导航功能的-c-实现">ROS 航点导航功能的 C++ 实现 </h3>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730275796232-936b11e2-5c7e-4bc4-9083-16a4a4e4d638.png" alt=""></p>
+<p>新建wp_node.cpp文件，然后开始编写节点代码，</p>
+<p>首先是include Ros的头文件，接下来咱们要发送的目标航点名称是字符串格式，所以在include 一个String类型的消息包头文件，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>#include &lt;ros/ros.h&gt;
+#include &lt;std_msgs/String.h&gt;
+</code></pre><p>下面开始编写主函数，先是初始化节点，然后定义一个NodeHandle对象n，用来订阅和发布话题，接下来发布一个话题，话题名称为/waterplus/navi_waypoint，这个是目标航点名称的话题，咱们后面会把目标航点消息包发送到这个话题里，然后订阅一个话题，话题名称为/waterplus/navi_result，这个就是用来接收导航执行结果的话题，当导航完成时，节点消息包会发送到这个话题，咱们的实验节点就能接受到了，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>int main(int argc, char** argv)
+{
+    ros::init(argc, argv, "wp_node");
+
+    ros::NodeHandle n;
+    ros::Publisher nav_pub = n.advertise&lt;std_msgs::String&gt;("/waterplus/navi_waypoint", 10);
+    ros::Subscriber res_sub = n.subscribe("/waterplus/navi_result",10,NavResultCallback);
+}
+</code></pre><p>这里为它设置一个回调函数NavResultCallback，用来接收这个消息包，回调函数需要写在主函数前面，在这个回调函数里，调用ROS_WARN（）将导航结果显示成黄色文字，方便观察，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730277104768-7651a383-0303-4b3f-9192-c10fd83111cd.png" alt=""></p>
+<p>回到主函数，这些话题发布和订阅操作，都是在系统后台完成的，所以这里需要调用sleep()函数，让程序停顿一下，大致估个时间，等后台订阅和发布操作完成后，再继续往后执行，这里设置1s，</p>
+<p>话题发布后，构建一个String类型的消息包，名字为nav_msg，然后给它赋值“1”，这个就是咱们要发送的目标航点名称，接着使用消息包对象把消息包发送到目标航点话题里，这个消息包会通过话题到达wp_navi_server节点，它会调用move_base的导航接口，驱动机器人导航前往1号导航点，当机器人到达目标航点时，它会返回一个消息包，传到咱们的回调函数NavResultCallback，于是导航节点就出现在终端窗口。</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>#include &lt;ros/ros.h&gt;
+#include &lt;std_msgs/String.h&gt;
+
+void NavResultCallback(const std_msgs::String &amp;msg)
+{
+    ROS_WARN("[NavResultCallback] %s", msg.data.c_str());
+}
+
+int main(int argc, char** argv)
+{
+    ros::init(argc, argv, "wp_node");
+
+    ros::NodeHandle n;
+    ros::Publisher nav_pub = n.advertise&lt;std_msgs::String&gt;("/waterplus/navi_waypoint", 10);
+    ros::Subscriber res_sub = n.subscribe("/waterplus/navi_result",10,NavResultCallback);
+
+    sleep(1);
+
+    std_msgs::String nav_msg;
+    nav_msg.data ="1";
+    nav_pub.publish(nav_msg);
+
+    ros::spin();
+
+    return 0;
+
+}
+</code></pre><p>最后再调用一个ros::spin(）函数让节点程序保持运行别退出，以等待接收导航结束的消息，如果程序被打断就返回0。</p>
+<p>为节点文件设置编译规则，打开CmakeList.txt文件</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>add_executable(wp_node src/wp_node.cpp)
+add_dependencies(wp_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(wp_node
+  ${catkin_LIBRARIES}
+)
+</code></pre><p>编译，进入工作空间目录，</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>catkin_make
+</code></pre><p>开始运行：</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>ht@ht-VirtualBox:~/catkin_ws$ roslaunch wpr_simulation wpb_stage_robocup.launch 
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>ht@ht-VirtualBox:~/catkin_ws$ roslaunch nav_pkg nav.launch 
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>ht@ht-VirtualBox:~/catkin_ws$ rosrun nav_pkg wp_node
+</code></pre><p>第一步到“1”</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730281408089-19d7311c-9bac-4e7a-a81d-76e8841a6af6.png" alt=""></p>
+<p>将“1”改成“2”，编译后继续启动编写的导航节点文件，</p>
+<p>不知道为啥原地转圈 ？？？</p>
+<p>思考：如何让节点由1--》2--》3--》4导航一遍呢？</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730279496949-0795c0fe-8acf-40da-8e5b-c48df8a24ce2.png" alt=""></p>
+<h3 id="ros-航点导航功能的-python-实现">ROS 航点导航功能的 Python 实现 </h3>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>#!/usr/bin/env python3
+# coding=utf-8
+
+import rospy
+from std_msgs.msg import String
+
+def NavResultCallback(msg):
+    rospy.logwarn("导航结果 = %s",msg.data)
+
+if __name__ == "__main__":
+    rospy.init_node("wp_node")
+
+    navi_pub = rospy.Publisher("/waterplus/navi_waypoint",String,queue_size=10)
+    res_sub = rospy.Subscriber("/waterplus/navi_result",String,NavResultCallback,queue_size=10)
+
+    rospy.sleep(1)
+
+    navi_msg = String()
+    navi_msg.data = '1'
+    navi_pub.publish(navi_msg)
+
+    rospy.spin()
+    
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>ht@ht-VirtualBox:~/catkin_ws/src/nav_pkg/scripts$ ls
+nav_client.py  wp_node.py
+ht@ht-VirtualBox:~/catkin_ws/src/nav_pkg/scripts$ chmod +x *.py
+ht@ht-VirtualBox:~/catkin_ws/src/nav_pkg/scripts$ ls
+nav_client.py  wp_node.py
+ht@ht-VirtualBox:~/catkin_ws/src/nav_pkg/scripts$ 
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>roslaunch wpr_simulation wpb_stage_robocup.launch 
+roslaunch nav_pkg nav.launch 
+rosrun nav_pkg wp_node.py 
+</code></pre><p><font style="color:#DF2A3F;">注意#!/usr/bin/env python3 感叹号英文的不用打错了</font></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730364576705-2fa7cca9-23a1-4480-b16f-af49b3318fea.png" alt=""></p>
+<p>“1”---》“2”和前面C++实现一样也在原地转圈，好像是电脑计算资源不够的原因。</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>[ WARN] [1730364703.827709343, 1922.904000000]: Map update loop missed its desired rate of 1.0000Hz... the loop actually took 7.3500 seconds
+[ WARN] [1730364704.329146787, 1923.308000000]: Map update loop missed its desired rate of 10.0000Hz... the loop actually took 0.3040 seconds
+[ERROR] [1730364714.364514186, 1931.156000000]: Failed to get a plan.
+[ WARN] [1730364714.401514969, 1931.190000000]: Map update loop missed its desired rate of 1.0000Hz... the loop actually took 3.2860 seconds
+[ WARN] [1730364720.401588812, 1935.812000000]: Map update loop missed its desired rate of 1.0000Hz... the loop actually took 3.6220 seconds
+[ WARN] [1730364720.446431799, 1935.830000000]: Clearing both costmaps outside a square (0.00m) large centered on the robot.
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>ht@ht-VirtualBox:~/catkin_ws$ rosrun nav_pkg wp_node.py 
+[WARN] [1730364780.581388, 1958.697000]: 导航结果 = failure
+</code></pre><p>同上述C++方式一样思考，如何让机器人沿着“1”--》“2”--》“3”--》“4”移动？</p>
+<h3 id="思考题">思考题 </h3>
+<p><em>如何让机器人沿着“1”--》“2”--》“3”--》“4”移动？</em></p>
+<p>要实现机器人按顺序完成<code>"1" -&gt; "2" -&gt; "3" -&gt; "4"</code>的导航任务，你可以按照以下步骤进行改进：</p>
+<ol>
+<li><strong>检查导航状态</strong>：在<code>NavResultCallback</code>中，监听导航系统返回的结果。例如，如果返回值指示导航任务成功完成，则可以开始下一个目标。</li>
+<li><strong>设定目标序列</strong>：你可以用一个目标序列数组或队列来存储多个导航点，例如<code>["1", "2", "3", "4"]</code>，并逐步发布这些导航目标。</li>
+<li><strong>自动导航控制</strong>：在回调函数<code>NavResultCallback</code>中，检测到一个导航点完成后，发布下一个目标点，直到序列全部完成。</li>
+</ol>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>#include &lt;ros/ros.h&gt;
+#include &lt;std_msgs/String.h&gt;
+#include &lt;vector&gt;
+
+// 当前导航点索引
+int current_index = 0;
+// 定义导航点序列
+std::vector&lt;std::string&gt; waypoints = {"1", "2", "3", "4"};
+ros::Publisher nav_pub;
+
+// 回调函数，接收导航结果消息
+void NavResultCallback(const std_msgs::String &amp;msg)
+{
+    ROS_WARN("[NavResultCallback] %s", msg.data.c_str());
+    
+    // 检查导航结果
+    if (msg.data == "success") { // 假设"success"表示导航成功完成
+        current_index++;
+        if (current_index &lt; waypoints.size()) {
+            std_msgs::String nav_msg;
+            nav_msg.data = waypoints[current_index];
+            nav_pub.publish(nav_msg);
+            ROS_INFO("Publishing next waypoint: %s", nav_msg.data.c_str());
+        } else {
+            ROS_INFO("All waypoints completed.");
+        }
+    }
+}
+
+int main(int argc, char** argv)
+{
+    ros::init(argc, argv, "wp_node");
+    ros::NodeHandle n;
+
+    nav_pub = n.advertise&lt;std_msgs::String&gt;("/waterplus/navi_waypoint", 10);
+    ros::Subscriber res_sub = n.subscribe("/waterplus/navi_result", 10, NavResultCallback);
+
+    sleep(1);
+
+    // 发布第一个导航点
+    std_msgs::String nav_msg;
+    nav_msg.data = waypoints[current_index];
+    nav_pub.publish(nav_msg);
+    ROS_INFO("Publishing initial waypoint: %s", nav_msg.data.c_str());
+
+    ros::spin();
+    return 0;
+}
+
+</code></pre><p><strong>详细解释</strong></p>
+<ol>
+<li><strong>变量定义</strong>：
+<ul>
+<li><code>current_index</code>：记录当前要导航到的目标点序号。</li>
+<li><code>waypoints</code>：定义导航点的序列，包括从<code>"1"</code>到<code>"4"</code>的目标。</li>
+</ul>
+</li>
+<li>**回调函数 **<code>**NavResultCallback**</code>：
+<ul>
+<li>每当收到导航结果（假设<code>/waterplus/navi_result</code>话题发布的消息）时触发，检查是否到达导航点。</li>
+<li>如果成功（<code>msg.data == "success"</code>），则导航到下一个点。若所有导航点都已完成，输出完成提示。</li>
+</ul>
+</li>
+<li>**主程序 **<code>**main**</code>：
+<ul>
+<li>初始化 ROS 节点和句柄。</li>
+<li>设置发布器<code>nav_pub</code>，用于发布导航目标。</li>
+<li>设置订阅器<code>res_sub</code>，用于接收导航结果。</li>
+<li>发布第一个导航点<code>waypoints[0]</code>，启动导航。</li>
+<li><code>ros::spin()</code>保持程序运行，等待回调函数的触发。</li>
+</ul>
+</li>
+</ol>
+<p>通过这样的结构，机器人会自动依次导航到所有指定的目标点，并在完成后停止。</p>
+<p><strong>运行实现</strong></p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>roslaunch wpr_simulation wpb_stage_robocup.launch 
+roslaunch nav_pkg nav.launch
+rosrun nav_pkg wp_navigation
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730442041294-942fda41-ac17-4b9c-8cbe-c622b0e623c3.png?x-oss-process=image%2Fformat%2Cwebp%2Fresize%2Cw_949%2Climit_0" alt=""></p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>ht@ht-VirtualBox:~/catkin_ws$ rosrun nav_pkg wp_navigation 
+[ INFO] [1730441983.238988127, 292.618000000]: Publishing initial waypoint: 1
+[ WARN] [1730442008.414570904, 311.125000000]: [NavResultCallback] done
+
+</code></pre><p>不动了！返回结果为done，不是success，需要修改一下。</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>#include &lt;ros/ros.h&gt;              // 包含 ROS 的头文件
+#include &lt;std_msgs/String.h&gt;      // 包含 ROS 中 String 消息类型的头文件
+
+// 当前导航点的索引，用于记录当前需要导航到的点
+int current_index = 0;
+
+// 定义一个导航点序列，从 "1" 到 "4" 表示依次需要到达的目标点
+std::vector&lt;std::string&gt; waypoints = {"1", "2", "3", "4"};
+
+// 声明一个全局发布器，用于在回调函数中发布导航目标
+ros::Publisher nav_pub;
+
+// 导航结果的回调函数，当接收到导航结果时自动调用
+void NavResultCallback(const std_msgs::String &amp;msg)
+{
+    // 输出接收到的导航结果
+    ROS_WARN("[NavResultCallback] %s", msg.data.c_str());
+    
+    // 检查导航结果是否成功 (假设 msg.data 为 "done" 表示导航成功)
+    if (msg.data == "done") {
+        // 如果导航成功，增加当前导航点的索引以导航至下一个点
+        current_index++;
+        
+        // 检查当前索引是否在导航点序列范围内
+        if (current_index &lt; waypoints.size()) {
+            // 创建并发布下一个导航点
+            std_msgs::String nav_msg;
+            nav_msg.data = waypoints[current_index];
+            nav_pub.publish(nav_msg);
+            ROS_INFO("Publishing next waypoint: %s", nav_msg.data.c_str());
+        } else {
+            // 如果所有导航点均已完成，则输出完成信息
+            ROS_INFO("All waypoints completed.");
+        }
+    }
+}
+
+int main(int argc, char** argv)
+{
+    // 初始化 ROS 节点，节点名称为 "wp_navigation"
+    ros::init(argc, argv, "wp_navigation");
+
+    // 创建节点句柄，用于与 ROS 通信
+    ros::NodeHandle n;
+
+    // 创建一个发布器，向 "/waterplus/navi_waypoint" 话题发布 String 消息，队列大小为10
+    nav_pub = n.advertise&lt;std_msgs::String&gt;("/waterplus/navi_waypoint", 10);
+
+    // 创建一个订阅器，订阅 "/waterplus/navi_result" 话题，当有消息时调用 NavResultCallback 回调函数
+    ros::Subscriber res_sub = n.subscribe("/waterplus/navi_result", 10, NavResultCallback);
+
+    // 休眠1秒，等待系统准备就绪（根据需求调整等待时间）
+    sleep(1);
+
+    // 发布第一个导航点，初始化导航任务
+    std_msgs::String nav_msg;
+    nav_msg.data = waypoints[current_index];
+    nav_pub.publish(nav_msg);
+    ROS_INFO("Publishing initial waypoint: %s", nav_msg.data.c_str());
+
+    // 进入循环，等待回调函数处理订阅的消息
+    ros::spin();
+
+    return 0;   // 程序正常结束
+}
+
+</code></pre><p><em><font style="color:#DF2A3F;">每次修改代码后都需要重新编译才能使更改生效</font></em>。在 ROS 中，源代码的改动不会自动反映到可执行文件中，因此你需要重新编译整个工作空间。ROS 支持 Python 编写的节点，Python 文件无需编译即可直接运行。可以将 C++ 节点转换为 Python 节点来避免编译。</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code># wp_navigation.py
+import rospy
+from std_msgs.msg import String
+
+waypoints = ["1", "2", "3", "4"]
+current_index = 0
+nav_pub = None
+
+def nav_result_callback(msg):
+    global current_index
+    rospy.logwarn("[NavResultCallback] %s" % msg.data)
+    if msg.data == "done":
+        current_index += 1
+        if current_index &lt; len(waypoints):
+            nav_msg = String()
+            nav_msg.data = waypoints[current_index]
+            nav_pub.publish(nav_msg)
+            rospy.loginfo("Publishing next waypoint: %s" % nav_msg.data)
+        else:
+            rospy.loginfo("All waypoints completed.")
+
+if __name__ == "__main__":
+    rospy.init_node("wp_navigation")
+    nav_pub = rospy.Publisher("/waterplus/navi_waypoint", String, queue_size=10)
+    rospy.Subscriber("/waterplus/navi_result", String, nav_result_callback)
+    rospy.sleep(1)
+
+    # 发布第一个导航点
+    nav_msg = String()
+    nav_msg.data = waypoints[current_index]
+    nav_pub.publish(nav_msg)
+    rospy.loginfo("Publishing initial waypoint: %s" % nav_msg.data)
+
+    rospy.spin()
+
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>ht@ht-VirtualBox:~/catkin_ws$ rosrun nav_pkg wp_navigation 
+[ INFO] [1730443267.057431417, 288.135000000]: Publishing initial waypoint: 1
+[ WARN] [1730443291.590414618, 305.751000000]: [NavResultCallback] done
+[ INFO] [1730443291.590454817, 305.751000000]: Publishing next waypoint: 2
+[ WARN] [1730443353.611933851, 346.685000000]: [NavResultCallback] failure
+
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1730443499648-229c72f1-5d90-4c69-af75-671df161ff4d.png" alt=""></p>
+<p><font style="color:#DF2A3F;">“1”--》“2”继续导航失败！</font></p>
+<p>大概是运行在虚拟机中，可能由于_<font style="color:#DF2A3F;">资源限制</font>_（例如 CPU、内存），导航节点无法满足计算需求。ROS 需要较高的系统资源来支持路径规划和地图更新。<em>可以进一步调试 <em><code>_move_base_</code></em> 的配置，或尝试在真实硬件上运行以排除虚拟机的影响</em>。</p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

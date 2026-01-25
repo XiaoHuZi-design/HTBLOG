@@ -87,6 +87,28 @@ async function loadPostsFromGitHub() {
     }
 
     const { owner, repo, branch, path } = CONFIG.GITHUB;
+
+    // 策略1: 优先尝试加载本地HTML文件（快速）
+    try {
+        const localPosts = await loadLocalHtmlPosts();
+        if (localPosts.length > 0) {
+            allPosts = localPosts;
+            allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            allTags = new Set();
+            allPosts.forEach(post => {
+                post.tags.forEach(tag => allTags.add(tag));
+            });
+
+            filteredPosts = [...allPosts];
+            console.log('使用本地HTML文件加载:', allPosts.length, '篇文章');
+            return;
+        }
+    } catch (e) {
+        console.log('本地HTML加载失败，尝试GitHub API:', e.message);
+    }
+
+    // 策略2: 本地无HTML，从GitHub API加载MD文件
     console.log('正在从 GitHub 加载文章:', { owner, repo, branch, path });
 
     const endpoint = `/repos/${owner}/${repo}/contents/${path}?ref=${branch}`;
@@ -118,7 +140,8 @@ async function loadPostsFromGitHub() {
                 ...parsed,
                 sha: content.sha,
                 path: file.path,
-                filename: file.name
+                filename: file.name,
+                isHtml: false
             };
         })
     );
@@ -138,6 +161,72 @@ async function loadPostsFromGitHub() {
     });
 
     filteredPosts = [...allPosts];
+}
+
+// 加载本地HTML文章（快速，无需API）
+async function loadLocalHtmlPosts() {
+    const posts = [];
+
+    // 如果有本地索引，使用索引
+    if (typeof LOCAL_POSTS !== 'undefined' && LOCAL_POSTS.length > 0) {
+        for (const post of LOCAL_POSTS) {
+            const mdPath = post.path;
+            const htmlPath = mdPath.replace('.md', '.html');
+
+            // 尝试加载对应的HTML文件
+            try {
+                const response = await fetch(htmlPath);
+                if (response.ok) {
+                    const htmlContent = await response.text();
+
+                    // 使用posts-index.js中的标题（保持一致性），不从HTML提取
+                    const title = post.title;
+
+                    // 尝试从HTML中提取日期
+                    let date = post.date;
+                    const dateMatch = htmlContent.match(/发布日期[：:]\s*(\d{4}-\d{2}-\d{2})/);
+                    if (dateMatch) date = dateMatch[1];
+
+                    // 生成摘要
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = htmlContent;
+                    const plainText = tempDiv.textContent || tempDiv.innerText || '';
+                    const excerpt = plainText.substring(0, 150) + (plainText.length > 150 ? '...' : '');
+
+                    // 计算字数
+                    const chineseChars = (plainText.match(/[\u4e00-\u9fa5]/g) || []).length;
+                    const englishWords = (plainText.replace(/[\u4e00-\u9fa5]/g, '').match(/[a-zA-Z]+/g) || []).length;
+                    const wordCount = chineseChars + englishWords;
+
+                    posts.push({
+                        title: title,
+                        date: date,
+                        tags: post.tags || [],
+                        content: htmlContent,
+                        excerpt: excerpt,
+                        wordCount: wordCount,
+                        path: htmlPath,
+                        filename: post.path.split('/').pop(),
+                        isHtml: true,  // 标记为HTML
+                        mdPath: mdPath,  // 保存MD路径用于编辑
+                        sha: null
+                    });
+                }
+            } catch (e) {
+                // HTML文件不存在，跳过
+                console.log(`HTML文件不存在: ${htmlPath}`);
+            }
+        }
+    }
+
+    return posts;
+}
+
+// 去除HTML标签
+function stripHtmlTags(html) {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || '';
 }
 
 function updateBlogStats() {
@@ -332,6 +421,25 @@ function openPostModal(post) {
 
     const readingTime = Math.ceil(post.wordCount / 400);
 
+    // 判断是HTML还是Markdown
+    let renderedContent;
+    if (post.isHtml) {
+        // HTML文件：直接渲染内容（快速，无需解析）
+        // 提取HTML中的body部分或主要内容
+        let htmlContent = post.content;
+
+        // 尝试提取主要内容（去除head、script等标签）
+        const bodyMatch = htmlContent.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+        if (bodyMatch) {
+            htmlContent = bodyMatch[1];
+        }
+
+        renderedContent = htmlContent;
+    } else {
+        // Markdown文件：使用marked解析（兼容在线编辑）
+        renderedContent = typeof marked !== 'undefined' ? marked.parse(post.content) : escapeHtml(post.content);
+    }
+
     content.innerHTML = `
         <h1 class="modal-post-title">${escapeHtml(post.title)}</h1>
         <div class="modal-post-info">
@@ -340,12 +448,12 @@ function openPostModal(post) {
             <span>⏱️ 预计阅读 ${readingTime} 分钟</span>
         </div>
         <div class="modal-post-body markdown-body">
-            ${typeof marked !== 'undefined' ? marked.parse(post.content) : escapeHtml(post.content)}
+            ${renderedContent}
         </div>
     `;
 
-    // 代码高亮
-    if (typeof hljs !== 'undefined') {
+    // 代码高亮（仅对Markdown需要，HTML已自带高亮）
+    if (typeof hljs !== 'undefined' && !post.isHtml) {
         content.querySelectorAll('pre code').forEach(block => {
             hljs.highlightElement(block);
         });

@@ -1,0 +1,189 @@
+<!DOCTYPE html><html><head>
+      <title>导航Action接口</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\LingJiaXiaoHu\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.20\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h2 id="font-stylecolorrgb24-25-281导航action编程接口font"><font style="color:rgb(24, 25, 28);">1.导航Action编程接口</font> </h2>
+<p><font style="color:rgb(24, 25, 28);">ROS 的导航系统 Navigation 的编程接口（Action）</font></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1729564433651-12a6e506-dc3d-41db-8333-22540ea50b47.png" alt=""></p>
+<p>不能每次都设置导航的目标点，所以需要编写程序代码来实现自主导航的功能，这就需要使用Navigation的导航接口(有好几个），ROS官方推荐Action接口。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1729564368250-14568046-11e6-430e-a967-01b572b46819.png" alt=""></p>
+<p>Action是ROS里的一种通讯方式，和Topic话题通讯有点不一样，在Topic通讯中，消息包传输是单向的，只能从发布者节点发送到订阅者节点，<font style="color:#74B602;">而在Action通讯中，消息包的传输是双向的</font>，Action将通讯双方分为了Server节点和Client节点，比如ROS的导航实现中，Navigation系统中的move_base就相当于一个Server，咱们需要编写一个Client节点向move_base这个Server发送导航请求，这个请求包含了导航目标点的坐标值和期望的姿态，move_base接收到导航请求后，就开始正常的完成导航。</p>
+<p>和Topic通讯不同，Action通讯是可以持续不断的返回信息的，比如move_base就会向咱们编写的Client节点实时反馈导航的进程。在导航结束的时候可以给Client节点返回导航完成的消息，如果导航失败了也会返回相应的失败消息。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1729565260186-e48d8b7b-1886-47b3-8fd3-abecf555551e.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1729565361995-21130c4b-d1f3-449b-86a7-18a188ee6b72.png" alt=""></p>
+<p>这种一次请求就能获得连续返回信息的方式，就是Action通讯和Topic话题通讯最大的区别。</p>
+<h2 id="2坐标导航的-c-编程实现">2.坐标导航的 C++ 编程实现 </h2>
+<p>分为四步：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1729565701369-34385486-1297-42aa-9b33-27eba140dea9.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1729566831861-f053c5d5-b0c7-4bac-bbdb-b88c416c710d.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1729566805053-e9007c60-868a-4072-83e3-d69e97174503.png" alt=""></p>
+<p>可以在ROS_Index中搜索消息包的格式定义</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1729566900841-6866f78a-ccee-45e4-9c66-d2afa97858d0.png" alt=""></p>
+<p>使用simple_action_client这种简单的客户端来和move_base进行Action通讯，这样可以减少很多繁琐的操作，快速的实现导航功能的调用，这个Action客户端的声明语法和话题发布者订阅者类似，先是一个对象类型，后面接一对尖括号，括号里是通讯使用的消息包类型，在代码里使用了typedef将这么长的一段定义代码取个别名，叫做MoveBaseClient，后面咱们生成Action客户端对象时就可以直接使用这个别名取代前面这一长串代码。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1729575717758-525cbcdd-fc29-4fd7-825f-c7b69617e576.png" alt=""></p>
+<p>这里的ac是ActionClient首字母的缩写，在这个对象的构造函数里，第一个参数是要连接的Action Server的名字，这里写move_base，第二个参数设置为True，让这个ac与move_base通讯的过程中自动堵塞等待结果，省的咱们还得另外写代码去调用spin（）函数。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1729575869506-3a6d89d7-76bc-44c8-8193-705cce90795f.png" alt=""></p>
+<p>接下来，在调用move_base的导航服务之前，需要确认move_base的导航服务已经开启了，这里调用ac的waitForServer（）函数来查询导航服务的状态，在参数里又调用了ros的Duration（）函数，它的参数表示等待服务开启的时间（单位s）,</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1729576456714-e2241240-fc7f-425d-a52d-f2aabb229a07.png" alt=""></p>
+<p>这句代码的意思是，先等待5秒钟，move_base的导航服务启动了，则立刻停止等待，返回True，跳出while循环，开始后面的操作。如果5秒后，move_base的导航服务仍未启动，则返回False，while循环会进入下一个5秒等待，如此循环，直到导航服务启动为止，再执行后面内容。</p>
+<p>确认move_base的导航服务启动后，咱们就可以给move_base发送导航请求了，主要就是把导航点的坐标值和目标姿态发送给move_base。</p>
+<p>先定义一个导航消息包，类型为move_base_msgs的MoveBaseGoal，消息包名称为goal，然后给这个消息包赋值，先是导航目标点的坐标值，坐标系为map，打上时间戳stamp，然后是坐标数值，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1729577152369-f8c742a0-0f0f-46e7-953a-2318085285b9.png" alt=""></p>
+<p>（主要map为地图坐标系，以机器人出发位置为原点，机器人的初始坐标轴为地图坐标轴）</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1729577437863-2014391a-11a6-47cf-9429-7e137e7fcfb8.png" alt=""></p>
+<p>即 ，x轴负方向3米，y轴正方形2米，z默认为0贴着地面。 导航目标点就是            这里。</p>
+<p>然后目标姿态是一个四元数，这里只给w赋值1，另外三个数x,y,z都没有赋值，默认也是0，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1729577706077-0735f1f3-b652-4a34-8a93-a449214d137d.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1729577748731-eba1e40d-06e1-4fe6-9ba8-23668b40fd72.png" alt=""></p>
+<p>这四个数的值表示导航目标的朝向和地图的x轴保持一致。（<font style="color:#DF2A3F;">具体看四元数和欧拉角的转换</font>）</p>
+<p>消息包赋值完毕之后，调用Action客户端对象的SendGoal（）函数将消息包发送给move_base，然后就可以等待导航的结果了，这个WaitForResult（）函数会阻塞卡住，直到move_base返回导航结果，才继续往后执行，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1729578092321-c18ae68c-2833-4c79-980e-69343cc0f5cf.png" alt=""></p>
+<p>有了结果以后再调用Action客户对象的getState（）函数查询move_base返回的状态，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1729578286963-8e33fc9d-6134-432e-8172-024eda3d7454.png" alt=""></p>
+<p>如果是SUCCEEDED，说明move_base的导航顺利到达了目的地，咱们就要ROS_INFO输出结果Mission complete，如果返回状态不是SUCCEEDED，说明move_base导航失败了。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;ros/ros.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;move_base_msgs/MoveBaseAction.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;actionlib/client/simple_action_client.h&gt;</span></span>
+
+<span class="token keyword keyword-typedef">typedef</span> actionlib<span class="token double-colon punctuation">::</span>SimpleActionClient<span class="token operator">&lt;</span>move_base_msgs<span class="token double-colon punctuation">::</span>MoveBaseAction<span class="token operator">&gt;</span> MoveBaseClient<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> argc<span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span><span class="token operator">*</span><span class="token operator">*</span> argv<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    ros<span class="token double-colon punctuation">::</span><span class="token function">init</span><span class="token punctuation">(</span>argc<span class="token punctuation">,</span> argv<span class="token punctuation">,</span> <span class="token string">"nav_client"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    MoveBaseClient <span class="token function">ac</span><span class="token punctuation">(</span><span class="token string">"move_base"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>ac<span class="token punctuation">.</span><span class="token function">waitForServer</span><span class="token punctuation">(</span>ros<span class="token double-colon punctuation">::</span><span class="token function">Duration</span><span class="token punctuation">(</span><span class="token number">5.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">ROS_INFO</span><span class="token punctuation">(</span><span class="token string">"Waiting for the move_base action server to come up"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+    move_base_msgs<span class="token double-colon punctuation">::</span>MoveBaseGoal goal<span class="token punctuation">;</span>
+
+    goal<span class="token punctuation">.</span>target_pose<span class="token punctuation">.</span>header<span class="token punctuation">.</span>frame_id <span class="token operator">=</span> <span class="token string">"map"</span><span class="token punctuation">;</span>
+    goal<span class="token punctuation">.</span>target_pose<span class="token punctuation">.</span>header<span class="token punctuation">.</span>stamp <span class="token operator">=</span> ros<span class="token double-colon punctuation">::</span><span class="token class-name">Time</span><span class="token double-colon punctuation">::</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    goal<span class="token punctuation">.</span>target_pose<span class="token punctuation">.</span>pose<span class="token punctuation">.</span>position<span class="token punctuation">.</span>x <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">3.0</span><span class="token punctuation">;</span>
+    goal<span class="token punctuation">.</span>target_pose<span class="token punctuation">.</span>pose<span class="token punctuation">.</span>position<span class="token punctuation">.</span>y <span class="token operator">=</span> <span class="token number">2.0</span><span class="token punctuation">;</span>
+    goal<span class="token punctuation">.</span>target_pose<span class="token punctuation">.</span>pose<span class="token punctuation">.</span>orientation<span class="token punctuation">.</span>w <span class="token operator">=</span> <span class="token number">1.0</span><span class="token punctuation">;</span>
+
+    <span class="token function">ROS_INFO</span><span class="token punctuation">(</span><span class="token string">"Sending Goal"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ac<span class="token punctuation">.</span><span class="token function">sendGoal</span><span class="token punctuation">(</span>goal<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    ac<span class="token punctuation">.</span><span class="token function">waitForResult</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>ac<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> actionlib<span class="token double-colon punctuation">::</span>SimpleClientGoalState<span class="token double-colon punctuation">::</span>SUCCEEDED<span class="token punctuation">)</span>
+        <span class="token function">ROS_INFO</span><span class="token punctuation">(</span><span class="token string">"Mission complete!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-else">else</span>
+        <span class="token function">ROS_INFO</span><span class="token punctuation">(</span><span class="token string">"Mission failed ..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>可参考wpr_simulation下案例 <img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1729579190957-da578e84-b39f-4262-8a4f-9e11507bd04f.png" alt=""></p>
+<p>代码写完了，下一步为节点设置编译规则，并运行</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>添加执行文件
+add_executable(nav_client src/nav_client.cpp)
+target_link_libraries(nav_client
+  ${catkin_LIBRARIES}
+)
+
+编译
+catkin_make
+
+1.启动仿真环境
+roslaunch wpr_simulation wpb_stage_robocup.launch
+2.启动导航系统
+roslaunch nav_pkg nav.launch
+3.启动上面编写的nav_client节点
+rosrun nav_pkg nav_client
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1729580836855-768f3f8a-d9ad-47c9-aeea-7fc36b06ca9b.png" alt=""></p>
+<p>向move_base发送消息包的提示...</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1729580867695-c5672a8c-fd88-4ecb-b8a3-3140d4841ca1.png" alt=""></p>
+<p>完成导航。</p>
+<p><font style="color:#DF2A3F;">有兴趣可以把导航位置坐标系换成别的，比如base_link，base_footprint，调整一下坐标数值，多运行几次，看看和map坐标系有什么差别</font>。在某些应用中，使用base_link坐标系会比使用map坐标系更方便一些。</p>
+<h2 id="3坐标导航的-python-编程实现">3.坐标导航的 Python 编程实现 </h2>
+<p>分为三步：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1729664901891-613e9c1f-476e-404d-8d16-8a12399c6223.png" alt=""></p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token comment">#!/usr/bin/env python3</span>
+<span class="token comment"># 指定运行环境编码为utf-8,能够正常显示中文字符</span>
+<span class="token comment"># coding=utf-8</span>
+
+<span class="token keyword keyword-import">import</span> rospy
+<span class="token keyword keyword-import">import</span> actionlib
+<span class="token keyword keyword-from">from</span> move_base_msgs<span class="token punctuation">.</span>msg <span class="token keyword keyword-import">import</span> MoveBaseAction<span class="token punctuation">,</span> MoveBaseGoal
+
+<span class="token keyword keyword-if">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    rospy<span class="token punctuation">.</span>init_node<span class="token punctuation">(</span><span class="token string">"nav_client"</span><span class="token punctuation">)</span>
+
+    ac <span class="token operator">=</span> actionlib<span class="token punctuation">.</span>SimpleActionClient<span class="token punctuation">(</span><span class="token string">'move_base'</span><span class="token punctuation">,</span>MoveBaseAction<span class="token punctuation">)</span>
+    ac<span class="token punctuation">.</span>wait_for_server<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    goal <span class="token operator">=</span> MoveBaseGoal<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    goal<span class="token punctuation">.</span>target_pose<span class="token punctuation">.</span>header<span class="token punctuation">.</span>frame_id <span class="token operator">=</span> <span class="token string">"map"</span>
+    goal<span class="token punctuation">.</span>target_pose<span class="token punctuation">.</span>pose<span class="token punctuation">.</span>position<span class="token punctuation">.</span>x <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">3.0</span>
+    goal<span class="token punctuation">.</span>target_pose<span class="token punctuation">.</span>pose<span class="token punctuation">.</span>position<span class="token punctuation">.</span>y <span class="token operator">=</span> <span class="token number">2.0</span>
+    goal<span class="token punctuation">.</span>target_pose<span class="token punctuation">.</span>pose<span class="token punctuation">.</span>position<span class="token punctuation">.</span>z <span class="token operator">=</span> <span class="token number">0.0</span>
+    goal<span class="token punctuation">.</span>target_pose<span class="token punctuation">.</span>pose<span class="token punctuation">.</span>orientation<span class="token punctuation">.</span>x <span class="token operator">=</span> <span class="token number">0.0</span>
+    goal<span class="token punctuation">.</span>target_pose<span class="token punctuation">.</span>pose<span class="token punctuation">.</span>orientation<span class="token punctuation">.</span>y <span class="token operator">=</span> <span class="token number">0.0</span>
+    goal<span class="token punctuation">.</span>target_pose<span class="token punctuation">.</span>pose<span class="token punctuation">.</span>orientation<span class="token punctuation">.</span>z <span class="token operator">=</span> <span class="token number">0.0</span>
+    goal<span class="token punctuation">.</span>target_pose<span class="token punctuation">.</span>pose<span class="token punctuation">.</span>orientation<span class="token punctuation">.</span>w <span class="token operator">=</span> <span class="token number">1.0</span>
+    ac<span class="token punctuation">.</span>send_goal<span class="token punctuation">(</span>goal<span class="token punctuation">)</span>
+
+    rospy<span class="token punctuation">.</span>loginfo<span class="token punctuation">(</span><span class="token string">"开始导航..."</span><span class="token punctuation">)</span>
+    ac<span class="token punctuation">.</span>wait_for_result<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword keyword-if">if</span> ac<span class="token punctuation">.</span>get_state<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> actionlib<span class="token punctuation">.</span>GoalStatus<span class="token punctuation">.</span>SUCCEEDED<span class="token punctuation">:</span>
+        rospy<span class="token punctuation">.</span>loginfo<span class="token punctuation">(</span><span class="token string">"导航成功！"</span><span class="token punctuation">)</span>
+    <span class="token keyword keyword-else">else</span><span class="token punctuation">:</span>
+        rospy<span class="token punctuation">.</span>loginfo<span class="token punctuation">(</span><span class="token string">"导航失败..."</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 添加可执行权限</span>
+</code></pre><pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>ht@ht-VirtualBox:~/catkin_ws/src/nav_pkg/scripts$ chmod +x *.py
+ht@ht-VirtualBox:~/catkin_ws/src/nav_pkg/scripts$ ls
+nav_client.py
+ht@ht-VirtualBox:~/catkin_ws/src/nav_pkg/scripts$ rospack find move_base_msgs
+/opt/ros/noetic/share/move_base_msgs
+ht@ht-VirtualBox:~/catkin_ws/src/nav_pkg/scripts$ 
+
+</code></pre><p>catkin_make编译一下（ctrl + shift +B）</p>
+<pre data-role="codeBlock" data-info="plain" class="language-plain plain"><code>1.启动仿真环境
+roslaunch wpr_simulation wpb_stage_robocup.launch
+2.启动导航系统
+roslaunch nav_pkg nav.launch
+3.启动上面编写的nav_client节点
+rosrun nav_pkg nav_client.py
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1729684500699-de4aad40-31c9-4e2f-bb81-0a097db682d9.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/39216292/1729684540180-0a23e08c-3503-4b69-8f5a-fe4b1c6ffbf3.png" alt=""></p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

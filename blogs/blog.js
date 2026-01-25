@@ -286,11 +286,25 @@ async function loadPosts() {
     }
 }
 
-// 从公开仓库加载文章（无需Token）
+// 从公开仓库加载文章（优先使用本地HTML，无需Token）
 async function loadPostsFromPublicRepo() {
     const { owner, repo, branch, path } = DEFAULT_REPO;
-    const endpoint = `/repos/${owner}/${repo}/contents/${path}?ref=${branch}`;
 
+    // 策略1: 优先尝试加载本地HTML文件（快速）
+    try {
+        const localPosts = await loadLocalHtmlPosts();
+        if (localPosts.length > 0) {
+            currentPosts = localPosts;
+            currentPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+            renderPosts(currentPosts);
+            return;
+        }
+    } catch (e) {
+        console.log('本地HTML加载失败，尝试GitHub API:', e.message);
+    }
+
+    // 策略2: 本地无HTML，从GitHub API加载MD文件
+    const endpoint = `/repos/${owner}/${repo}/contents/${path}?ref=${branch}`;
     const files = await publicGithubAPI(endpoint);
     const mdFiles = files.filter(f => f.name.endsWith('.md'));
 
@@ -308,7 +322,8 @@ async function loadPostsFromPublicRepo() {
             return {
                 ...parsed,
                 sha: content.sha,
-                path: file.path
+                path: file.path,
+                isHtml: false  // 标记为Markdown
             };
         })
     );
@@ -317,6 +332,68 @@ async function loadPostsFromPublicRepo() {
     currentPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
     renderPosts(currentPosts);
+}
+
+// 加载本地HTML文章（快速，无需API）
+async function loadLocalHtmlPosts() {
+    const posts = [];
+
+    // 获取posts目录下所有HTML文件
+    const htmlFiles = [];
+
+    // 方法1: 如果有本地索引，使用索引
+    if (typeof LOCAL_POSTS !== 'undefined' && LOCAL_POSTS.length > 0) {
+        for (const post of LOCAL_POSTS) {
+            const mdPath = post.path;
+            const htmlPath = mdPath.replace('.md', '.html');
+
+            // 尝试加载对应的HTML文件
+            try {
+                const response = await fetch(htmlPath);
+                if (response.ok) {
+                    const htmlContent = await response.text();
+
+                    // 使用posts-index.js中的标题（保持一致性），不从HTML提取
+                    const title = post.title;
+
+                    // 尝试从HTML中提取日期
+                    let date = post.date;
+                    const dateMatch = htmlContent.match(/发布日期[：:]\s*(\d{4}-\d{2}-\d{2})/);
+                    if (dateMatch) date = dateMatch[1];
+
+                    // 生成摘要
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = htmlContent;
+                    const plainText = tempDiv.textContent || tempDiv.innerText || '';
+                    const excerpt = plainText.substring(0, 150) + (plainText.length > 150 ? '...' : '');
+
+                    posts.push({
+                        title: title,
+                        date: date,
+                        tags: post.tags || [],
+                        content: htmlContent,
+                        excerpt: excerpt,
+                        path: htmlPath,
+                        isHtml: true,  // 标记为HTML
+                        mdPath: mdPath,  // 保存MD路径用于编辑
+                        sha: null
+                    });
+                }
+            } catch (e) {
+                // HTML文件不存在，跳过
+                console.log(`HTML文件不存在: ${htmlPath}`);
+            }
+        }
+    }
+
+    return posts;
+}
+
+// 去除HTML标签
+function stripHtmlTags(html) {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || '';
 }
 
 // 从配置的GitHub仓库加载文章（需要Token，用于管理自己的文章）
@@ -551,25 +628,48 @@ function showPostDetail(post) {
     postDetail.classList.remove('hidden');
 
     // 计算预计阅读时间 假设普通人阅读速度为 300-500 字/分钟
-    const readingTime = Math.ceil(post.wordCount / 400); 
+    const readingTime = Math.ceil(post.wordCount / 400);
 
-    // 渲染Markdown内容
-    // 在这里添加了字数统计显示 📝
-    // postContent.innerHTML = `
-    //     <h1>${escapeHtml(post.title)}</h1>
-    //     <div class="post-word-count" style="color: #666; font-size: 0.9em; margin-bottom: 15px;">
-    //         <span>📝 全文字数：${post.wordCount} 字</span>
-    //     </div>
-    //     ${marked.parse(post.content)}
-    // `;
-    postContent.innerHTML = `
-    <h1>${escapeHtml(post.title)}</h1>
-    <div class="post-detail-info" style="color: #888; margin-bottom: 20px;">
-        <span>📝 字数：${post.wordCount} 字</span> | 
-        <span>⏱️ 预计阅读：${readingTime} 分钟</span>
-    </div>
-    ${marked.parse(post.content)}
-    `;
+    // 判断是HTML还是Markdown
+    if (post.isHtml) {
+        // HTML文件：直接渲染内容（快速，无需解析）
+        // 提取HTML中的body部分或主要内容
+        let htmlContent = post.content;
+
+        // 尝试提取主要内容（去除head、script等标签）
+        const bodyMatch = htmlContent.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+        if (bodyMatch) {
+            htmlContent = bodyMatch[1];
+        }
+
+        // 提取已有的标题和元信息（如果HTML中有）
+        const existingTitle = htmlContent.match(/<h1[^>]*>(.+?)<\/h1>/i);
+        const existingMeta = htmlContent.match(/发布日期[：:]\s*(\d{4}-\d{2}-\d{2})/);
+
+        // 如果HTML中已有标题，就不重复添加
+        let contentToRender = htmlContent;
+        if (!existingTitle) {
+            contentToRender = `
+                <h1>${escapeHtml(post.title)}</h1>
+                <div class="post-detail-info" style="color: #888; margin-bottom: 20px;">
+                    <span>📅 发布日期: ${post.date}</span>
+                </div>
+                ${htmlContent}
+            `;
+        }
+
+        postContent.innerHTML = contentToRender;
+    } else {
+        // Markdown文件：使用marked解析（兼容在线编辑）
+        postContent.innerHTML = `
+            <h1>${escapeHtml(post.title)}</h1>
+            <div class="post-detail-info" style="color: #888; margin-bottom: 20px;">
+                <span>📝 字数：${post.wordCount} 字</span> |
+                <span>⏱️ 预计阅读：${readingTime} 分钟</span>
+            </div>
+            ${marked.parse(post.content)}
+        `;
+    }
 
     // 渲染元数据
     postMeta.innerHTML = `
@@ -579,10 +679,12 @@ function showPostDetail(post) {
         </div>
     `;
 
-    // 代码高亮
-    postContent.querySelectorAll('pre code').forEach(block => {
-        hljs.highlightElement(block);
-    });
+    // 代码高亮（仅对Markdown需要，HTML已自带高亮）
+    if (!post.isHtml) {
+        postContent.querySelectorAll('pre code').forEach(block => {
+            hljs.highlightElement(block);
+        });
+    }
 
     // 初始化Gitalk评论
     initGitalk(post);
@@ -633,7 +735,7 @@ function md5(string) {
 }
 
 // ==================== 文章编辑器 ====================
-function showEditor(post = null) {
+async function showEditor(post = null) {
     isEditing = !!post;
     currentPost = post;
 
@@ -646,7 +748,32 @@ function showEditor(post = null) {
     if (post) {
         postTitleInput.value = post.title;
         postTagsInput.value = post.tags.join(', ');
-        markdownEditor.value = post.content;
+
+        // 如果是HTML文章，尝试从GitHub加载对应的MD源文件
+        if (post.isHtml && post.mdPath) {
+            try {
+                // 从mdPath提取文件名
+                const filename = post.mdPath.split('/').pop();
+                const { owner, repo, branch, path } = DEFAULT_REPO;
+
+                const content = await publicGithubAPI(`/repos/${owner}/${repo}/contents/${path}/${filename}?ref=${branch}`);
+                const decoded = decodeBase64(content.content);
+                markdownEditor.value = decoded;
+
+                // 更新currentPost的sha（用于保存时API调用）
+                currentPost.sha = content.sha;
+                currentPost.originalPath = post.mdPath;
+            } catch (e) {
+                console.log('无法加载MD源文件，使用HTML内容:', e);
+                // 如果MD不存在，使用HTML内容（虽然不理想）
+                markdownEditor.value = post.content;
+                currentPost.originalPath = post.mdPath;
+            }
+        } else {
+            // Markdown文章，直接使用content
+            markdownEditor.value = post.content;
+            currentPost.originalPath = post.path;
+        }
     } else {
         postTitleInput.value = '';
         postTagsInput.value = '';
@@ -751,13 +878,30 @@ ${content}`;
 async function deletePost(post) {
     try {
         const { owner, repo, branch } = githubConfig;
-        const endpoint = `/repos/${owner}/${repo}/contents/${post.path}`;
+
+        // 确定要删除的文件路径（MD文件，因为HTML只是本地缓存）
+        const pathToDelete = post.mdPath || post.originalPath || post.path;
+
+        // 如果是HTML文章且没有sha，需要先获取MD文件的sha
+        let shaToDelete = post.sha;
+        if (!shaToDelete && post.mdPath) {
+            const filename = post.mdPath.split('/').pop();
+            const { path } = DEFAULT_REPO;
+            try {
+                const content = await publicGithubAPI(`/repos/${owner}/${repo}/contents/${path}/${filename}?ref=${branch}`);
+                shaToDelete = content.sha;
+            } catch (e) {
+                console.log('无法获取MD文件信息:', e);
+            }
+        }
+
+        const endpoint = `/repos/${owner}/${repo}/contents/${pathToDelete}`;
 
         await githubAPI(endpoint, {
             method: 'DELETE',
             body: JSON.stringify({
                 message: `删除文章: ${post.title}`,
-                sha: post.sha,
+                sha: shaToDelete,
                 branch: branch
             })
         });

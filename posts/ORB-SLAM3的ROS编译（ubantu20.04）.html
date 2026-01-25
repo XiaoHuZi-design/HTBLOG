@@ -1,0 +1,267 @@
+<!DOCTYPE html><html><head>
+      <title>ORB-SLAM3的ROS编译（ubantu20.04）</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\LingJiaXiaoHu\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.20\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<hr>
+<p><a href="https://www.bilibili.com/video/BV1nb411o7jm/?vd_source=9741da01eb5597a19fd0610df71471cc">基于orbslam3的rgbd三维重建(ros版)_哔哩哔哩_bilibili</a></p>
+<p><a href="https://github.com/lturing/ORB_SLAM3_ROS/issues">https://github.com/lturing/ORB_SLAM3_ROS/issues</a></p>
+<p>ubuntu20.04 从头开始配置orbslam3和ros1 noetic 并且使用d455跑代码(3):<br>
+<a href="https://blog.csdn.net/2303_79224782/article/details/146051737">https://blog.csdn.net/2303_79224782/article/details/146051737</a><br>
+<a href="https://github.com/emanuelenencioni/ORB_SLAM3_ROS">https://github.com/emanuelenencioni/ORB_SLAM3_ROS</a></p>
+<p>ORB-SLAM3  ROS版本 在ubantu20.04 编译会报错，需要更改:<br>
+<a href="https://blog.csdn.net/qq_39537898/article/details/124775247">https://blog.csdn.net/qq_39537898/article/details/124775247</a><br>
+<a href="https://github.com/UZ-SLAMLab/ORB_SLAM3/issues/442">https://github.com/UZ-SLAMLab/ORB_SLAM3/issues/442</a><br>
+<a href="https://github.com/Kin-Zhang/ORB_SLAM3/tree/feat/20.04">https://github.com/Kin-Zhang/ORB_SLAM3/tree/feat/20.04</a></p>
+<hr>
+<p><font style="color:#DF2A3F;">会出现rosbuild_init等报错...</font></p>
+<p><font style="color:rgb(78, 161, 219) !important;">ubuntu</font><font style="color:rgb(77, 77, 77);"> 20.04 需要进行一些修改，具体怎么改还不清楚。</font></p>
+<hr>
+<h2 id="绪零-原orb-slam3新建ros工作空间单目可用">绪零、原ORB-SLAM3新建ROS工作空间(单目可用） </h2>
+<p><a href="https://github.com/UZ-SLAMLab/ORB_SLAM3/issues/442">https://github.com/UZ-SLAMLab/ORB_SLAM3</a></p>
+<p>参考：<a href="https://blog.csdn.net/xs798465/article/details/135070426">ubuntu20.04通过ros-noetic配置ORBslam3-CSDN博客</a></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>orbslam3的ros部分源码只在ubuntu18.04上运行<span class="token punctuation">,</span>所以我们要重新用ros<span class="token punctuation">-</span>noetic创建新的工作空间
+https<span class="token punctuation">:</span>//blog.csdn.net/xs798465/article/details/135070426
+
+(1)创造工作空间
+cd ORB_SLAM3
+mkdir <span class="token punctuation">-</span>p ros/src
+cd ros
+catkin_make
+(2)生成功能包
+cd src/
+catkin_create_pkg orbslam3 roscpp cv_bridge
+(3)将orbslam的ros的源码复制粘贴过来
+
+<span class="token punctuation">---</span>
+roscore
+<span class="token punctuation">---</span>
+<span class="token comment"># terminal two</span>
+cd ros
+source /devel/setup.bash
+rosrun orbslam3 orbslam3_node ../Vocabulary/ORBvoc.txt ../Examples/Monocular/EuRoC.yaml
+
+
+roslaunch YOLO_ORB_SLAM3_with_pointcloud_map camera_topic_remap.launch
+
+roslaunch orbslam3 camera_topic_remap.launch
+rosrun orbslam3 RGBD ../Vocabulary/ORBvoc.txt ../Examples/RGB<span class="token punctuation">-</span>D/TUM2.yaml
+
+rosrun orbslam3 Stereo_Inertial ../Vocabulary/ORBvoc.txt ../Examples/Stereo<span class="token punctuation">-</span>Inertial/EuRoC.yaml true
+rosbag play <span class="token punctuation">-</span><span class="token punctuation">-</span>pause MH_01_easy.bag /cam0/image_raw<span class="token punctuation">:</span>=/camera/left/image_raw /cam1/image_raw<span class="token punctuation">:</span>=/camera/right/image_raw /imu0<span class="token punctuation">:</span>=/imu
+
+
+/cam0/image_raw<span class="token punctuation">:</span>=/camera/left/image_raw：这表示将bag文件中/cam0/image_raw话题的数据重新映射并发布到/camera/left/image_raw话题上。
+
+/cam1/image_raw<span class="token punctuation">:</span>=/camera/right/image_raw：这表示将bag文件中/cam1/image_raw话题的数据重新映射并发布到/camera/right/image_raw话题上。
+
+/imu0<span class="token punctuation">:</span>=/imu：这表示将bag文件中/imu0话题的数据重新映射并发布到/imu话题上。
+
+</code></pre><pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>cmake_minimum_required(VERSION 3.0.2)
+ 
+project(orbslam3)
+ 
+set(CMAKE_C_FLAGS "$<span class="token punctuation">{</span>CMAKE_C_FLAGS<span class="token punctuation">}</span>  <span class="token punctuation">-</span>Wall  <span class="token punctuation">-</span>O3")
+set(CMAKE_CXX_FLAGS "$<span class="token punctuation">{</span>CMAKE_CXX_FLAGS<span class="token punctuation">}</span> <span class="token punctuation">-</span>Wall  <span class="token punctuation">-</span>O3")
+<span class="token comment">## set path</span>
+set(ORBSLAM_PATH "/home/teng/dynamic_slam/ORB_SLAM3")
+ 
+include(CheckCXXCompilerFlag)
+CHECK_CXX_COMPILER_FLAG("<span class="token punctuation">-</span>std=c++11" COMPILER_SUPPORTS_CXX11)
+if(COMPILER_SUPPORTS_CXX11)
+   set(CMAKE_CXX_STANDARD 14)
+   add_definitions(<span class="token punctuation">-</span>DCOMPILEDWITHC11)
+   message(STATUS "Using flag <span class="token punctuation">-</span>std=c++11.")
+elseif(COMPILER_SUPPORTS_CXX0X)
+   set(CMAKE_CXX_FLAGS "$<span class="token punctuation">{</span>CMAKE_CXX_FLAGS<span class="token punctuation">}</span> <span class="token punctuation">-</span>std=c++0x")
+   add_definitions(<span class="token punctuation">-</span>DCOMPILEDWITHC0X)
+   message(STATUS "Using flag <span class="token punctuation">-</span>std=c++0x.")
+else()
+   message(FATAL_ERROR "The compiler $<span class="token punctuation">{</span>CMAKE_CXX_COMPILER<span class="token punctuation">}</span> has no C++11 support. Please use a different C++ compiler.")
+endif()
+ 
+<span class="token comment">#LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}//home/teng/dynamic_slam/ORB_SLAM3/cmake_modules)</span>
+LIST(APPEND CMAKE_MODULE_PATH $<span class="token punctuation">{</span>ORBSLAM_PATH<span class="token punctuation">}</span>/cmake_modules)
+ 
+find_package(OpenCV)
+if(NOT OpenCV_FOUND)
+   find_package(OpenCV 2.4.3 QUIET)
+   if(NOT OpenCV_FOUND)
+      message(FATAL_ERROR "OpenCV <span class="token punctuation">&gt;</span> 2.4.3 not found.")
+   endif()
+endif()
+ 
+ 
+ 
+find_package(Eigen3 REQUIRED)
+find_package(Pangolin REQUIRED)
+find_package(catkin REQUIRED COMPONENTS
+  cv_bridge
+  roscpp
+)
+ 
+ 
+catkin_package(
+<span class="token comment">#  INCLUDE_DIRS include</span>
+<span class="token comment">#  LIBRARIES orbslam3</span>
+ CATKIN_DEPENDS cv_bridge roscpp
+<span class="token comment">#  DEPENDS system_lib</span>
+)
+ 
+<span class="token comment">## include</span>
+include_directories(
+   $<span class="token punctuation">{</span>catkin_INCLUDE_DIRS<span class="token punctuation">}</span>
+   $<span class="token punctuation">{</span>OpenCV_INCLUDE_DIRS<span class="token punctuation">}</span>
+   $<span class="token punctuation">{</span>EIGEN3_INCLUDE_DIRS<span class="token punctuation">}</span>
+   $<span class="token punctuation">{</span>Pangolin_INCLUDE_DIRS<span class="token punctuation">}</span>
+   $<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span>
+   $<span class="token punctuation">{</span>ORBSLAM_PATH<span class="token punctuation">}</span>
+   $<span class="token punctuation">{</span>ORBSLAM_PATH<span class="token punctuation">}</span>/include
+   $<span class="token punctuation">{</span>ORBSLAM_PATH<span class="token punctuation">}</span>/include/CameraModels
+   $<span class="token punctuation">{</span>ORBSLAM_PATH<span class="token punctuation">}</span>/Thirdparty/Sophus
+   $<span class="token punctuation">{</span>Pangolin_INCLUDE_DIRS<span class="token punctuation">}</span>
+   $<span class="token punctuation">{</span>catkin_INCLUDE_DIRS<span class="token punctuation">}</span>
+)
+ 
+ 
+<span class="token comment">## libs</span>
+set(LIBS 
+$<span class="token punctuation">{</span>OpenCV_LIBS<span class="token punctuation">}</span> 
+$<span class="token punctuation">{</span>EIGEN3_LIBS<span class="token punctuation">}</span>
+$<span class="token punctuation">{</span>Pangolin_LIBRARIES<span class="token punctuation">}</span>
+$<span class="token punctuation">{</span>ORBSLAM_PATH<span class="token punctuation">}</span>/Thirdparty/DBoW2/lib/libDBoW2.so
+$<span class="token punctuation">{</span>ORBSLAM_PATH<span class="token punctuation">}</span>/Thirdparty/g2o/lib/libg2o.so
+$<span class="token punctuation">{</span>ORBSLAM_PATH<span class="token punctuation">}</span>/lib/libORB_SLAM3.so
+<span class="token punctuation">-</span>lboost_system
+)
+ 
+ 
+add_executable($<span class="token punctuation">{</span>PROJECT_NAME<span class="token punctuation">}</span>_node src/src/ros_mono.cc)
+<span class="token comment">#add_executable(${PROJECT_NAME}_node src/src/ros_rgbd.cc)  </span>
+<span class="token comment">#add_executable(${PROJECT_NAME}_node src/src/ros_stereo.cc) </span>
+ 
+target_link_libraries($<span class="token punctuation">{</span>PROJECT_NAME<span class="token punctuation">}</span>_node
+  $<span class="token punctuation">{</span>catkin_LIBRARIES<span class="token punctuation">}</span>
+  $<span class="token punctuation">{</span>LIBS<span class="token punctuation">}</span>
+)
+ 
+</code></pre><p><font style="color:#DF2A3F;">单目编译成功，</font></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1745997886104-6212762c-b6a5-4206-8f44-1c954ba01e4d.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1745998093021-2c7a7b07-256b-4672-89ea-3e5cd7017b18.png" alt=""></p>
+<p>由于没有传入图片信息，画面什么也没有。单目图像话题 <code>/camera/image_raw</code> ,</p>
+<p>我用仿真环境发布了<code>/camera/image_raw</code> ,但是还是没有画面，另外将EUROC数据集发布话题重映射到这个话题也没有画面。</p>
+<p><font style="color:#DF2A3F;">双目和RGBD编译失败，报错相同，</font></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1745998708751-21945da1-575f-4d0e-be7a-d403bfc99cd8.png" alt=""></p>
+<h2 id="绪一-更新rosdep-update后">绪一、更新（rosdep update后） </h2>
+<p>之前rosbulid_init报是rosdep update不能运行的问题，现在修复好了。</p>
+<p><a href="https://blog.csdn.net/Prototype___/article/details/129286042">Ubuntu20.04的ROS环境安装ORB-SLAM3详解_树莓派ubuntu20.04运行orbslam3与ros-CSDN博客</a></p>
+<h2 id="一-orb_slam3_rosb站稠密点云">一、ORB_SLAM3_ROS（B站）稠密点云 </h2>
+<p><a href="https://www.bilibili.com/video/BV1nb411o7jm/?vd_source=9741da01eb5597a19fd0610df71471cc">基于orbslam3的rgbd三维重建(ros版)_哔哩哔哩_bilibili</a></p>
+<p><a href="https://github.com/lturing/ORB_SLAM3_ROS/issues">https://github.com/lturing/ORB_SLAM3_ROS/issues</a></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>chmod +x ./build.sh 
+./build.sh 
+</code></pre><p>报错修改：</p>
+<p>改指针类型，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1745898319525-ef8afc05-76e1-4bbf-92c1-243cd169b18b.png" alt=""></p>
+<p>改数据集地址，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1745898528511-ed840383-26df-4be7-ac2d-8db28e607607.png" alt=""></p>
+<p>添加保存点云地图：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1745898385069-79c307e3-93f7-4ae1-a526-a3bdf3e7ef8c.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1745898419740-48987151-a0f8-4a88-beff-94f4e9232bb0.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code><span class="token comment"># 运行单目</span>
+<span class="token comment"># 适当修改 launch/orb_slam_mono.launch</span>
+chmod +x ./run_mono.sh
+./run_mono.sh 
+
+<span class="token comment"># 运行双目</span>
+<span class="token comment"># 适当修改 launch/orb_slam_stereo.launch</span>
+chmod +x ./run_stereo.sh 
+./run_stereo.sh 
+
+<span class="token comment"># 运行rgbd稠密建图</span>
+<span class="token comment"># 适当修改 launch/orb_slam_rgbd_mapping.launch</span>
+chmod +x ./run_rgbd_mapping.sh 
+./run_rgbd_mapping.sh 
+</code></pre><p>这里我们运行RGBD稠密建图，</p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code><span class="token punctuation">[</span>orb_slam3<span class="token punctuation">-</span><span class="token number">3</span><span class="token punctuation">]</span> process has died <span class="token punctuation">[</span>pid 15536<span class="token punctuation">,</span> exit code <span class="token punctuation">-</span><span class="token number">11</span><span class="token punctuation">,</span> cmd /home/teng/Dy_Nav/ORB_SLAM3_ROS/Examples/ROS/ros_rgbd_mapping /home/teng/Dy_Nav/ORB_SLAM3_ROS/Examples/RGB<span class="token punctuation">-</span>D/TUM3_or.yaml /home/teng/Dy_Nav/ORB_SLAM3_ROS/Vocabulary/ORBvoc.txt /home/teng/dynamic_slam/ORB_SLAM3/Datasets/TUM/rgbd_dataset_freiburg3_walking_xyz __name<span class="token punctuation">:</span>=orb_slam3 __log<span class="token punctuation">:</span>=/home/teng/.ros/log/bcdd5e08<span class="token punctuation">-</span>24c5<span class="token punctuation">-</span>11f0<span class="token punctuation">-</span>bdaf<span class="token punctuation">-</span>23573644f616/orb_slam3<span class="token punctuation">-</span>3.log<span class="token punctuation">]</span>.
+<span class="token key atrule">log file</span><span class="token punctuation">:</span> /home/teng/.ros/log/bcdd5e08<span class="token punctuation">-</span>24c5<span class="token punctuation">-</span>11f0<span class="token punctuation">-</span>bdaf<span class="token punctuation">-</span>23573644f616/orb_slam3<span class="token punctuation">-</span>3<span class="token important">*.log</span>
+
+</code></pre><p>不知道啥子原因，昨天还好的，为用的fr3数据集，TUM3.yaml，但是改成TUM2.yaml就运行成功。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1745908931828-9b9e7a4b-e41a-4aeb-92a6-6fa2bbfe5175.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>pcl_viewer map.pcb
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1745909015097-802fcad1-b207-480a-9c57-edc30823ecc5.png" alt=""></p>
+<p>根据作者修改：<a href="https://github.com/lturing/ORB_SLAM3_ROS/issues/7">https://github.com/lturing/ORB_SLAM3_ROS/issues/7</a></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1745910460418-7b36c1cf-1aef-44e6-aaa1-a572b8ab7738.png" alt=""></p>
+<p>运行成功，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1745911061624-12accefb-6274-4212-afb2-d6a9fc1d6399.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1745911154039-f6a0dddf-ef3b-457a-a1bd-860f4f6ef30b.png" alt=""></p>
+<p><font style="color:rgb(31, 35, 40);">KeyFrameTrajectory.txt没有保存 : </font><a href="https://github.com/lturing/ORB_SLAM3_ROS/issues/12">https://github.com/lturing/ORB_SLAM3_ROS/issues/12</a></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1745911501647-c412e574-e394-4796-ae29-1fbfadcee883.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1745911837962-58860845-c834-4095-be8b-2e5d8b2a3e61.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1745911942603-dee85a6c-3474-47cf-8d11-c9c06cf6f67d.png" alt=""></p>
+<p>再编译运行，</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1745912106808-f7fb11f4-c896-49ce-9b77-0b60c580075f.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1745912155283-a74bf1ae-7912-40a3-b373-7e206e51e91a.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch realsense2_camera rs_camera_480.launch
+rqt_image_view
+</code></pre><pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>source ./build/devel/setup.bash
+roslaunch orb_slam3 d455_mapping.launch
+</code></pre><p>自己写了个d455_mapping.launch没搞好.</p>
+<h2 id="二-orb_slam3_rosv10稀疏点云">二、ORB_SLAM3_ROS（V1.0）稀疏点云 </h2>
+<p><a href="https://github.com/emanuelenencioni/ORB_SLAM3_ROS">https://github.com/emanuelenencioni/ORB_SLAM3_ROS</a></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>./build.sh
+cd ~/catkin_ws/
+catkin build
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1745915163816-6ccd5fc2-113e-4f22-ad4c-c7c8af49475a.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>teng@teng<span class="token punctuation">-</span>JiguangPro<span class="token punctuation">:</span>~/Dy_Nav/orb3_ws$ roslaunch orb_slam3_ros 
+d455_360p.launch           euroc_mono.launch          live_t265.launch           stereo_kitti_04_12.launch  zed2i_imu.launch
+d455.launch                euroc_stereoimu.launch     stereo_kitti_00_02.launch  tum_rgbd.launch            zed2i.launch
+euroc_monoimu.launch       euroc_stereo.launch        stereo_kitti_03.launch     zed2i_from_images.launch   zed2i_rosbag.launch
+teng@teng<span class="token punctuation">-</span>JiguangPro<span class="token punctuation">:</span>~/Dy_Nav/orb3_ws$ roslaunch orb_slam3_ros 
+</code></pre><pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch orb_slam3_ros euroc_monoimu.launch
+rosbag play MH_01_easy.bag
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1745915667351-dff005e0-c17e-4f1e-b129-1f4a4e342164.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch realsense2_camera rs_camera_480.launch
+rqt_image_view
+</code></pre><pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>roslaunch orb_slam3_ros d455.launch 
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746280264183-54c0e547-60f3-43b3-a772-eed55cc196fe.png" alt=""></p>
+<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code>rviz
+</code></pre><p><img src="https://cdn.nlark.com/yuque/0/2025/png/39216292/1746281266726-68be390e-6d37-4da1-892a-d0b5f66df9b7.png" alt=""></p>
+<p>参考：<a href="https://github.com/thien94/orb_slam3_ros_wrapper">https://github.com/thien94/orb_slam3_ros_wrapper</a></p>
+<pre class="language-text">sudo apt install ros-noetic-hector-trajectory-server
+</pre>
+<hr>
+<p><a href="https://blog.csdn.net/2303_79224782/article/details/146051737">ubuntu20.04 从头开始配置orbslam3和ros1 noetic 并且使用d455跑代码(3)_orbslam3 ros-CSDN博客</a></p>
+<h2 id="三-orb_slam3-feat-2004">三、ORB_SLAM3-feat-20.04 </h2>
+<p><a href="https://github.com/UZ-SLAMLab/ORB_SLAM3/issues/442">https://github.com/UZ-SLAMLab/ORB_SLAM3/issues/442</a><br>
+<a href="https://github.com/Kin-Zhang/ORB_SLAM3/tree/feat/20.04">https://github.com/Kin-Zhang/ORB_SLAM3/tree/feat/20.04</a></p>
+<h2></h2>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
