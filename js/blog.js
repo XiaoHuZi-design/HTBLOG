@@ -88,7 +88,63 @@ async function loadPostsFromGitHub() {
 
     const { owner, repo, branch, path } = CONFIG.GITHUB;
 
-    // 策略1: 优先尝试加载本地HTML文件（快速）
+    // 策略1: 优先从 GitHub API 加载（实时数据）
+    console.log('正在从 GitHub 加载文章:', { owner, repo, branch, path });
+
+    const endpoint = `/repos/${owner}/${repo}/contents/${path}?ref=${branch}`;
+    console.log('API endpoint:', endpoint);
+
+    try {
+        const files = await githubAPI(endpoint);
+        if (!files) {
+            throw new Error('GitHub API 返回空数据');
+        }
+
+        console.log('获取到文件列表:', files.length, '个文件');
+
+        const mdFiles = files.filter(f => f.name.endsWith('.md'));
+
+        if (mdFiles.length === 0) {
+            throw new Error('没有找到 .md 文件');
+        }
+
+        allPosts = await Promise.all(
+            mdFiles.map(async (file) => {
+                const content = await githubAPI(`/repos/${owner}/${repo}/contents/${path}/${file.name}?ref=${branch}`);
+                if (!content) return null;
+                const decoded = decodeBase64(content.content);
+                const parsed = parseMarkdown(decoded, file.name);
+                return {
+                    ...parsed,
+                    sha: content.sha,
+                    path: file.path,
+                    filename: file.name,
+                    isHtml: false
+                };
+            })
+        );
+
+        allPosts = allPosts.filter(post => post !== null);
+
+        if (allPosts.length === 0) {
+            throw new Error('解析后没有有效文章');
+        }
+
+        allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        allTags = new Set();
+        allPosts.forEach(post => {
+            post.tags.forEach(tag => allTags.add(tag));
+        });
+
+        filteredPosts = [...allPosts];
+        console.log('从 GitHub API 加载成功:', allPosts.length, '篇文章');
+        return;
+    } catch (e) {
+        console.log('GitHub API 加载失败，尝试本地HTML:', e.message);
+    }
+
+    // 策略2: GitHub API 失败，fallback 到本地HTML文件
     try {
         const localPosts = await loadLocalHtmlPosts();
         if (localPosts.length > 0) {
@@ -105,62 +161,11 @@ async function loadPostsFromGitHub() {
             return;
         }
     } catch (e) {
-        console.log('本地HTML加载失败，尝试GitHub API:', e.message);
+        console.log('本地HTML加载失败:', e.message);
     }
 
-    // 策略2: 本地无HTML，从GitHub API加载MD文件
-    console.log('正在从 GitHub 加载文章:', { owner, repo, branch, path });
-
-    const endpoint = `/repos/${owner}/${repo}/contents/${path}?ref=${branch}`;
-    console.log('API endpoint:', endpoint);
-
-    const files = await githubAPI(endpoint);
-    if (!files) {
-        console.error('GitHub API 返回空数据');
-        showEmpty();
-        return;
-    }
-
-    console.log('获取到文件列表:', files.length, '个文件');
-
-    const mdFiles = files.filter(f => f.name.endsWith('.md'));
-
-    if (mdFiles.length === 0) {
-        showEmpty();
-        return;
-    }
-
-    allPosts = await Promise.all(
-        mdFiles.map(async (file) => {
-            const content = await githubAPI(`/repos/${owner}/${repo}/contents/${path}/${file.name}?ref=${branch}`);
-            if (!content) return null;
-            const decoded = decodeBase64(content.content);
-            const parsed = parseMarkdown(decoded, file.name);
-            return {
-                ...parsed,
-                sha: content.sha,
-                path: file.path,
-                filename: file.name,
-                isHtml: false
-            };
-        })
-    );
-
-    allPosts = allPosts.filter(post => post !== null);
-
-    if (allPosts.length === 0) {
-        showEmpty();
-        return;
-    }
-
-    allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-    allTags = new Set();
-    allPosts.forEach(post => {
-        post.tags.forEach(tag => allTags.add(tag));
-    });
-
-    filteredPosts = [...allPosts];
+    // 都失败了，显示空状态
+    showEmpty();
 }
 
 // 加载本地HTML文章（快速，无需API）
