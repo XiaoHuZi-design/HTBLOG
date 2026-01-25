@@ -652,9 +652,8 @@ function showPostDetail(post) {
             htmlContent = bodyMatch[1];
         }
 
-        // 修正图片路径：动态获取域名，避免换域名问题
-        const siteUrl = window.location.origin;  // 自动获取当前域名
-        htmlContent = htmlContent.replace(/src="assets\//g, `src="${siteUrl}/posts/assets/`);
+        // 修正图片路径：使用绝对路径
+        htmlContent = htmlContent.replace(/src="assets\//g, 'src="https://ht-libra.top/posts/assets/');
 
         // 提取已有的标题和元信息（如果HTML中有）
         const existingTitle = htmlContent.match(/<h1[^>]*>(.+?)<\/h1>/i);

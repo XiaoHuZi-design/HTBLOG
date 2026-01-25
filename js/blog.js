@@ -428,9 +428,8 @@ function openPostModal(post) {
         // 提取HTML中的body部分或主要内容
         let htmlContent = post.content;
 
-        // 修正图片路径：动态获取域名，避免换域名问题
-        const siteUrl = window.location.origin;  // 自动获取当前域名
-        htmlContent = htmlContent.replace(/src="assets\//g, `src="${siteUrl}/posts/assets/`);
+        // 修正图片路径：使用绝对路径
+        htmlContent = htmlContent.replace(/src="assets\//g, 'src="https://ht-libra.top/posts/assets/');
 
         // 尝试提取主要内容（去除head、script等标签）
         const bodyMatch = htmlContent.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
