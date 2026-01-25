@@ -347,9 +347,16 @@ async function loadLocalHtmlPosts() {
             const mdPath = post.path;
             const htmlPath = mdPath.replace('.md', '.html');
 
+            // 修正路径：从blogs/目录访问需要加 ../posts/
+            // 检测当前环境，如果是本地开发环境使用相对路径修正
+            let fetchPath = htmlPath;
+            if (window.location.pathname.includes('/blogs/')) {
+                fetchPath = '../posts/' + htmlPath;
+            }
+
             // 尝试加载对应的HTML文件
             try {
-                const response = await fetch(htmlPath);
+                const response = await fetch(fetchPath);
                 if (response.ok) {
                     const htmlContent = await response.text();
 
@@ -367,13 +374,16 @@ async function loadLocalHtmlPosts() {
                     const plainText = tempDiv.textContent || tempDiv.innerText || '';
                     const excerpt = plainText.substring(0, 150) + (plainText.length > 150 ? '...' : '');
 
+                    // 修正path属性，从blogs/目录访问需要使用绝对路径
+                    const displayPath = htmlPath.startsWith('posts/') ? '/' + htmlPath : htmlPath;
+
                     posts.push({
                         title: title,
                         date: date,
                         tags: post.tags || [],
                         content: htmlContent,
                         excerpt: excerpt,
-                        path: htmlPath,
+                        path: displayPath,  // 使用绝对路径，方便跨页面访问
                         isHtml: true,  // 标记为HTML
                         mdPath: mdPath,  // 保存MD路径用于编辑
                         sha: null
