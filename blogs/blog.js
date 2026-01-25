@@ -652,8 +652,9 @@ function showPostDetail(post) {
             htmlContent = bodyMatch[1];
         }
 
-        // 修正图片路径：使用绝对路径
-        htmlContent = htmlContent.replace(/src="assets\//g, 'src="https://ht-libra.top/posts/assets/');
+        // 修正图片路径：使用相对路径（从 blogs/ 访问 posts/assets/）
+        htmlContent = htmlContent.replace(/src="assets\//g, 'src="../posts/assets/');
+        htmlContent = htmlContent.replace(/src='assets\//g, "src='../posts/assets/");
 
         // 提取已有的标题和元信息（如果HTML中有）
         const existingTitle = htmlContent.match(/<h1[^>]*>(.+?)<\/h1>/i);
@@ -676,9 +677,9 @@ function showPostDetail(post) {
         // Markdown文件：使用marked解析（兼容在线编辑）
         let mdHtml = marked.parse(post.content);
 
-        // 修正 Markdown 中的图片路径
-        mdHtml = mdHtml.replace(/src="assets\//g, 'src="posts/assets/');
-        mdHtml = mdHtml.replace(/src='assets\//g, "src='posts/assets/");
+        // 修正 Markdown 中的图片路径（blogs/ 目录需要 ../）
+        mdHtml = mdHtml.replace(/src="assets\//g, 'src="../posts/assets/');
+        mdHtml = mdHtml.replace(/src='assets\//g, "src='../posts/assets/");
 
         postContent.innerHTML = `
             <h1>${escapeHtml(post.title)}</h1>
