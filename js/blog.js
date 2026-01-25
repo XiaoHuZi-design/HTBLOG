@@ -428,6 +428,10 @@ function openPostModal(post) {
         // 提取HTML中的body部分或主要内容
         let htmlContent = post.content;
 
+        // 修正图片路径：assets/ -> posts/assets/
+        // 这样无论在哪个页面访问，路径都正确
+        htmlContent = htmlContent.replace(/src="assets\//g, 'src="posts/assets/');
+
         // 尝试提取主要内容（去除head、script等标签）
         const bodyMatch = htmlContent.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
         if (bodyMatch) {

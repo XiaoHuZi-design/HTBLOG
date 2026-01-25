@@ -642,6 +642,10 @@ function showPostDetail(post) {
             htmlContent = bodyMatch[1];
         }
 
+        // 修正图片路径：assets/ -> posts/assets/
+        // 这样无论在哪个页面访问，路径都正确
+        htmlContent = htmlContent.replace(/src="assets\//g, 'src="posts/assets/');
+
         // 提取已有的标题和元信息（如果HTML中有）
         const existingTitle = htmlContent.match(/<h1[^>]*>(.+?)<\/h1>/i);
         const existingMeta = htmlContent.match(/发布日期[：:]\s*(\d{4}-\d{2}-\d{2})/);
