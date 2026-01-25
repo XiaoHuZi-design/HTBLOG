@@ -12,5 +12,6 @@ const LOCAL_POSTS = [
     { path: 'posts/ORB-SLAM2_ORB-SLAM3_数据集_相机_稠密地图_八叉树地图.md', title: 'ORB-SLAM2/SLAM3数据集相机稠密地图八叉树地图', date: '2025-01-15', tags: ['SLAM', 'ORB-SLAM', '导航'] },
     { path: 'posts/ORB-SLAM3的ROS编译（ubantu20.04）.md', title: 'ORB-SLAM3的ROS编译', date: '2025-01-15', tags: ['SLAM', 'ROS', '编译'] },
     { path: 'posts/SLAM仿真（gazebo）.md', title: 'SLAM仿真（Gazebo）', date: '2025-01-15', tags: ['SLAM', 'Gazebo', '仿真'] },
-    { path: 'posts/该睡觉了-1768419903329.md', title: '该睡觉了', date: '2025-01-15', tags: ['生活', '随笔'] }
+    { path: 'posts/该睡觉了-1768419903329.md', title: '该睡觉了', date: '2025-01-15', tags: ['生活', '随笔'] },
+    { path: 'posts/QT 欢乐斗地主.md', title: 'QT 欢乐斗地主', date: '2026-01-25', tags: ['C++', 'Qt', '游戏', '斗地主'] }
 ];
