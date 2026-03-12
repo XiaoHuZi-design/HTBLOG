@@ -1,0 +1,353 @@
+/* 龙虾成长日记样式 */
+
+.diary-page {
+    max-width: 900px;
+    width: 100%;
+    padding: 20px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+/* 返回按钮 */
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    transform: translateX(-5px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+/* 龙虾吉祥物 */
+.lobster-mascot {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px;
+    position: relative;
+}
+
+.lobster {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.lobster .body {
+    width: 80px;
+    height: 100px;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+    border-radius: 50% 50% 40% 40%;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+}
+
+.lobster .shell {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: inherit;
+}
+
+.lobster .stripe {
+    position: absolute;
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+.lobster .stripe-1 { top: 20%; }
+.lobster .stripe-2 { top: 45%; }
+.lobster .stripe-3 { top: 70%; }
+
+.lobster .eyes {
+    position: absolute;
+    top: 30%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.lobster .eye {
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    position: relative;
+    animation: blink 4s infinite;
+}
+
+.lobster .eye::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #333;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes blink {
+    0%, 90%, 100% { transform: scaleY(1); }
+    95% { transform: scaleY(0.1); }
+}
+
+.lobster .antennas {
+    position: absolute;
+    top: -20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.lobster .antenna {
+    width: 4px;
+    height: 25px;
+    background: linear-gradient(to top, #ff6b6b, #ff8e8e);
+    border-radius: 2px;
+    position: relative;
+}
+
+.lobster .antenna::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #ff8e8e;
+    border-radius: 50%;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.lobster .claws {
+    position: absolute;
+    top: 60%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.lobster .claw {
+    width: 35px;
+    height: 30px;
+    background: linear-gradient(135deg, #ff8e8e 0%, #ffb3b3 100%);
+    border-radius: 50% 50% 60% 40%;
+    box-shadow: 0 2px 8px rgba(255, 142, 142, 0.3);
+}
+
+/* 统计卡片 */
+.stats-container {
+    display: flex;
+    gap: 15px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(102, 126, 234, 0.1) 100%);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 107, 107, 0.2);
+    border-radius: 20px;
+    padding: 20px 30px;
+    text-align: center;
+    min-width: 120px;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+    border-color: rgba(255, 107, 107, 0.4);
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #ff6b6b, #667eea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* 日记卡片 */
+.diary-container {
+    margin: 30px 0;
+}
+
+.diary-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 248, 248, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 30px rgba(255, 107, 107, 0.15);
+    border: 2px solid rgba(255, 107, 107, 0.1);
+    transition: all 0.3s ease;
+}
+
+.diary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(255, 107, 107, 0.25);
+}
+
+.diary-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 2px dashed rgba(255, 107, 107, 0.2);
+}
+
+.diary-date {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.diary-day {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.diary-emoji {
+    font-size: 1.8rem;
+    margin-left: auto;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.diary-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    padding-left: 15px;
+    border-left: 4px solid #ff6b6b;
+}
+
+.diary-content h3 {
+    color: #667eea;
+    font-size: 1.2rem;
+    margin: 20px 0 10px 0;
+    padding-left: 10px;
+    border-left: 3px solid #ff6b6b;
+}
+
+.diary-content p {
+    line-height: 1.8;
+    color: #555;
+    margin: 10px 0;
+}
+
+.diary-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.diary-content li {
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+    color: #555;
+    line-height: 1.6;
+}
+
+.diary-content li::before {
+    content: '🦞';
+    position: absolute;
+    left: 0;
+    font-size: 0.8rem;
+}
+
+.diary-content strong {
+    color: #ff6b6b;
+    font-weight: bold;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .diary-page {
+        padding: 15px;
+    }
+    
+    .stats-container {
+        gap: 10px;
+    }
+    
+    .stat-card {
+        min-width: calc(33.33% - 10px);
+        padding: 15px 20px;
+    }
+    
+    .stat-number {
+        font-size: 1.8rem;
+    }
+    
+    .diary-card {
+        padding: 20px;
+    }
+    
+    .diary-title {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .stat-card {
+        min-width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .diary-header {
+        flex-wrap: wrap;
+    }
+}
