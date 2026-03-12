@@ -1,0 +1,57 @@
+/* 在这里只修改需要调整的部分 */
+.menu-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin: 30px 0;
+    max-width: 900px;
+}
+
+.menu-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 25px;
+    text-decoration: none;
+    color: #6a4a3c;
+    font-size: 1.05rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    min-width: calc(50% - 6px);
+}
+
+.menu-btn:hover {
+    transform: translateY(-5px);
+    background: #ffccd5;
+}
+
+@media (max-width: 768px) {
+    .menu-buttons {
+        gap: 10px;
+        padding: 0 16px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .menu-btn {
+        flex: 0 0 calc(33.33% - 7px);
+        justify-content: center;
+        padding: 10px 15px;
+        font-size: 0.95rem;
+        min-height: 44px;
+    }
+}
+
+/* 按钮特殊样式 */
+.menu-btn.primary-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: bold;
+}
+
+.menu-btn.primary-btn:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
