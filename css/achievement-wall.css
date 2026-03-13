@@ -1,4 +1,4 @@
-/* 成就徽章墙样式 */
+/* 成就徽章墙样式 - 调整配色增强对比度 */
 
 .achievement-page {
     max-width: 900px;
@@ -103,11 +103,12 @@ h1.glow-text {
     font-size: 2.5rem;
     margin-bottom: 10px;
     text-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+    color: white;
 }
 
 .subtitle {
     text-align: center;
-    color: rgba(255, 255, 255, 0.9);
+    color: white;
     margin-bottom: 30px;
     line-height: 1.6;
 }
@@ -116,18 +117,18 @@ h1.glow-text {
     display: block;
     margin-top: 8px;
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.9);
 }
 
 /* 进度条 */
 .progress-section {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.3) 100%);
     backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 24px;
     margin-bottom: 24px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.4);
 }
 
 .progress-header {
@@ -145,12 +146,13 @@ h1.glow-text {
 
 .progress-count {
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: white;
+    font-weight: bold;
 }
 
 .progress-bar {
     height: 12px;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 6px;
     overflow: hidden;
     position: relative;
@@ -185,7 +187,7 @@ h1.glow-text {
     text-align: right;
     margin-top: 8px;
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: white;
     font-weight: bold;
 }
 
@@ -196,7 +198,7 @@ h1.glow-text {
 
 .filter-title {
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: white;
     margin-bottom: 12px;
     font-weight: bold;
 }
@@ -209,24 +211,25 @@ h1.glow-text {
 
 .filter-btn {
     padding: 10px 24px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.25);
+    border: 2px solid rgba(255, 255, 255, 0.4);
     border-radius: 20px;
-    color: rgba(255, 255, 255, 0.9);
+    color: white;
     font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.3s ease;
     backdrop-filter: blur(5px);
+    font-weight: bold;
 }
 
 .filter-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.35);
     transform: translateY(-2px);
 }
 
 .filter-btn.active {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-color: transparent;
+    border-color: #667eea;
     color: white;
     box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 }
@@ -240,12 +243,12 @@ h1.glow-text {
 }
 
 .achievement-card {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.4) 100%);
     backdrop-filter: blur(10px);
     border-radius: 16px;
     padding: 20px;
     transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.4);
     position: relative;
     overflow: hidden;
     cursor: pointer;
@@ -266,8 +269,8 @@ h1.glow-text {
 
 .achievement-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
 }
 
 .achievement-card:hover::before {
@@ -282,16 +285,17 @@ h1.glow-text {
 
 .achievement-card.unlocked {
     border-color: var(--badge-color);
+    border-width: 3px;
 }
 
 .achievement-card.locked {
-    filter: grayscale(0.8);
-    opacity: 0.6;
+    filter: grayscale(0.6);
+    opacity: 0.7;
 }
 
 .achievement-card.locked:hover {
-    filter: grayscale(0.4);
-    opacity: 0.8;
+    filter: grayscale(0.3);
+    opacity: 0.85;
 }
 
 .achievement-card.hidden {
@@ -314,7 +318,7 @@ h1.glow-text {
     justify-content: center;
     border-radius: 12px;
     background: var(--badge-bg);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .achievement-card.unlocked .achievement-icon {
@@ -333,7 +337,7 @@ h1.glow-text {
 .achievement-name {
     font-size: 1.1rem;
     font-weight: bold;
-    color: white;
+    color: #333;
     margin-bottom: 4px;
 }
 
@@ -343,31 +347,32 @@ h1.glow-text {
     border-radius: 10px;
     background: var(--rarity-bg);
     color: white;
+    font-weight: bold;
 }
 
 .achievement-description {
-    color: rgba(255, 255, 255, 0.8);
+    color: #555;
     font-size: 0.9rem;
     margin-bottom: 12px;
     line-height: 1.5;
 }
 
 .achievement-card.locked .achievement-description {
-    color: rgba(255, 255, 255, 0.5);
+    color: #666;
     font-style: italic;
 }
 
 .achievement-condition {
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.6);
-    background: rgba(0, 0, 0, 0.2);
+    color: #666;
+    background: rgba(0, 0, 0, 0.1);
     padding: 8px 12px;
     border-radius: 8px;
 }
 
 .achievement-date {
     font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: #777;
     margin-top: 8px;
     text-align: right;
 }
@@ -376,29 +381,29 @@ h1.glow-text {
 .achievement-card.common {
     --badge-color: #60a5fa;
     --badge-bg: linear-gradient(135deg, #93c5fd 0%, #60a5fa 100%);
-    --badge-glow: rgba(96, 165, 250, 0.4);
-    --rarity-bg: rgba(96, 165, 250, 0.8);
+    --badge-glow: rgba(96, 165, 250, 0.5);
+    --rarity-bg: rgba(96, 165, 250, 0.9);
 }
 
 .achievement-card.rare {
     --badge-color: #8b5cf6;
     --badge-bg: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
-    --badge-glow: rgba(139, 92, 246, 0.4);
-    --rarity-bg: rgba(139, 92, 246, 0.8);
+    --badge-glow: rgba(139, 92, 246, 0.5);
+    --rarity-bg: rgba(139, 92, 246, 0.9);
 }
 
 .achievement-card.epic {
     --badge-color: #ec4899;
     --badge-bg: linear-gradient(135deg, #f472b6 0%, #ec4899 100%);
-    --badge-glow: rgba(236, 72, 153, 0.4);
-    --rarity-bg: rgba(236, 72, 153, 0.8);
+    --badge-glow: rgba(236, 72, 153, 0.5);
+    --rarity-bg: rgba(236, 72, 153, 0.9);
 }
 
 .achievement-card.legendary {
     --badge-color: #f59e0b;
     --badge-bg: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-    --badge-glow: rgba(245, 158, 11, 0.4);
-    --rarity-bg: rgba(245, 158, 11, 0.8);
+    --badge-glow: rgba(245, 158, 11, 0.5);
+    --rarity-bg: rgba(245, 158, 11, 0.9);
 }
 
 .achievement-card.legendary.unlocked .achievement-icon {
@@ -407,23 +412,23 @@ h1.glow-text {
 
 @keyframes legendary-glow {
     0%, 100% {
-        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5);
         transform: scale(1);
     }
     50% {
-        box-shadow: 0 6px 30px rgba(245, 158, 11, 0.6);
+        box-shadow: 0 6px 30px rgba(245, 158, 11, 0.7);
         transform: scale(1.05);
     }
 }
 
 /* 图例说明 */
 .legend-section {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(255,255, 255, 0.5) 0%, rgba(255, 255, 255, 0.4) 100%);
     backdrop-filter: blur(10px);
     border-radius: 16px;
     padding: 20px;
     margin-bottom: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.4);
 }
 
 .legend-title {
@@ -443,8 +448,9 @@ h1.glow-text {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: rgba(255, 255, 255, 0.8);
+    color: white;
     font-size: 0.9rem;
+    font-weight: bold;
 }
 
 .legend-badge {
@@ -457,11 +463,11 @@ h1.glow-text {
 }
 
 .tips-card {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.25) 0%, rgba(118, 75, 162, 0.25) 100%);
     backdrop-filter: blur(10px);
     border-radius: 16px;
     padding: 20px;
-    border: 1px solid rgba(102, 126, 234, 0.2);
+    border: 2px solid rgba(102, 126, 234, 0.4);
     display: flex;
     gap: 16px;
     align-items: flex-start;
@@ -484,7 +490,7 @@ h1.glow-text {
 }
 
 .tips-text {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.95);
     font-size: 0.9rem;
     line-height: 1.6;
 }
@@ -514,13 +520,14 @@ h1.glow-text {
 }
 
 .celebration-content {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%);
     backdrop-filter: blur(20px);
     border-radius: 24px;
     padding: 40px;
     text-align: center;
     max-width: 400px;
     animation: scaleIn 0.4s ease;
+    border: 3px solid #667eea;
 }
 
 @keyframes scaleIn {
