@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏆 成就徽章墙 - 机械仔的小站</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/achievement-wall.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="romantic">
+    <div id="sky-body" class="sky-body sun"></div>
+    <div id="stars-container" class="stars-container"></div>
+    <div id="sakura-container"></div>
+
+    <main class="achievement-page">
+        <a href="index.html" class="back-btn animate__animated animate__fadeInLeft">
+            <span class="btn-icon">←</span>
+            返回首页
+        </a>
+
+        <div class="achievement-mascot animate__animated animate__bounceIn">
+            <div class="mascot-body">
+                <div class="mascot-face">
+                    <div class="eye left">✨</div>
+                    <div class="eye right">✨</div>
+                    <div class="mouth">🎯</div>
+                </div>
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+
+        <h1 class="glow-text animate__animated animate__bounceIn">🏆 成就徽章墙</h1>
+        <p class="subtitle animate__animated animate__fadeIn">
+            收集徽章，见证成长~<br>
+            <small>由小诺记录 · 每一个徽章都是珍贵的回忆</small>
+        </p>
+
+        <div class="progress-section animate__animated animate__fadeInUp">
+            <div class="progress-header">
+                <span class="progress-title">收集进度</span>
+                <span class="progress-count"><span id="unlocked-count">0</span> / <span id="total-count">0</span></span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="overall-progress"></div>
+            </div>
+            <div class="progress-percentage"><span id="progress-percentage">0</span>%</div>
+        </div>
+
+        <div class="filter-section animate__animated animate__fadeInUp">
+            <div class="filter-title">筛选分类</div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">全部</button>
+                <button class="filter-btn" data-filter="unlocked">已解锁</button>
+                <button class="filter-btn" data-filter="locked">未解锁</button>
+            </div>
+        </div>
+
+        <div class="achievements-grid animate__animated animate__fadeInUp" id="achievements-grid">
+            <!-- 徽章将由JS动态生成 -->
+        </div>
+
+        <div class="legend-section animate__animated animate__fadeInUp">
+            <div class="legend-title">稀有度说明</div>
+            <div class="legend-items">
+                <div class="legend-item common">
+                    <span class="legend-badge common-badge">⚪</span>
+                    <span>普通（常见）</span>
+                </div>
+                <div class="legend-item rare">
+                    <span class="legend-badge rare-badge">🔵</span>
+                    <span>稀有（少见）</span>
+                </div>
+                <div class="legend-item epic">
+                    <span class="legend-badge epic-badge">🟣</span>
+                    <span>史诗（难得）</span>
+                </div>
+                <div class="legend-item legendary">
+                    <span class="legend-badge legendary-badge">🟡</span>
+                    <span>传说（传奇）</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tips-section animate__animated animate__fadeInUp">
+            <div class="tips-card">
+                <div class="tips-icon">💡</div>
+                <div class="tips-content">
+                    <div class="tips-title">获得徽章小贴士</div>
+                    <div class="tips-text">每天写日记、完成挑战、参与社区互动都有机会解锁新徽章哦~</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="celebration-overlay hidden" id="celebration-overlay">
+            <div class="celebration-content">
+                <div class="celebration-icon">🎉</div>
+                <div class="celebration-title">解锁新徽章！</div>
+                <div class="celebration-badge" id="celebration-badge"></div>
+                <button class="celebration-btn" onclick="hideCelebration()">太棒了！</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="js/achievement-data.js"></script>
+    <script src="js/achievement-wall.js"></script>
+</body>
+</html>
